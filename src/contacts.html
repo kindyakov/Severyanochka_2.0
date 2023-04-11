@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+@@include("html/components/main/_head.html", {"title":"Контакты"})
+
+<body>
+  <div class="wrapper">
+    @@include("html/components/main/_header.html", {})
+    <main class="main">
+      <div class="container">
+        <div class="main-body">
+          <nav class="main__navigation">
+            <ul class="main__navigation-list">
+              <a href="index.html" class="main__navigation-link">Главная</a>
+              <span class="main__navigation-span _icon-arrow"></span>
+              <a href="basket.html" class="main__navigation-link">Контакты</a>
+            </ul>
+          </nav>
+          <div class="main__content">
+            <h1 class="main__title">Контакты</h1>
+            <div class="contacts">
+              <div class="contacts__telefons">
+                <div class="contacts__telefons-block">
+                  <p class="contacts__telefons-name _icon-haus">Бухгалтерия, склад</p>
+                  <a href="tel:+78214092619" class="contacts__telefons-tel">+7-821-409-26-19</a>
+                </div>
+                <div class="contacts__telefons-block">
+                  <p class="contacts__telefons-name _icon-percent">Вопросы по системе лояльности</p>
+                  <a href="tel:+79087163397" class="contacts__telefons-tel">+7-908-716-33-97</a>
+                </div>
+              </div>
+
+              <div class="shops">
+                <h2 class="shops__title">Наши магазины</h2>
+                <nav class="map__navigation">
+                  <ul class="map__menu">
+                    <li class="map__item active" data-map="0">ул. Дорожная 10</li>
+                    <li class="map__item" data-map="1">ул. Советская 87</li>
+                    <li class="map__item" data-map="2">ул. Заводская 16</li>
+                    <li class="map__item" data-map="3">ул. Рабочая 1</li>
+                  </ul>
+                </nav>
+                <div class="shops__adress">
+                  <div class="shops__adress-block">
+                    <img src="img/market-восход.png " alt="Восход" class="shops__adress-img">
+                    <p class="shops__adress-name _icon-haus">ул. Дорожная 10</p>
+                    <div class="shops__wrapper-tel _icon-phone">
+                      <a href="tel:+79042713590" class="shops__tel">+7-904-271-35-90</a>
+                    </div>
+                  </div>
+                  <div class="shops__adress-block">
+                    <img src="img/market-парус.png " alt="парус" class="shops__adress-img">
+                    <p class="shops__adress-name _icon-haus">ул. Советская 87</p>
+                    <div class="shops__wrapper-tel _icon-phone">
+                      <a href="tel:+78214091330" class="shops__tel">+7-821-409-13-30</a>
+                    </div>
+                  </div>
+                  <div class="shops__adress-block">
+                    <img src="img/market-рябинушка.png " alt="рябинушка" class="shops__adress-img">
+                    <p class="shops__adress-name _icon-haus">ул. Заводская 16</p>
+                    <div class="shops__wrapper-tel _icon-phone">
+                      <a href="tel:+78214091101" class="shops__tel">+7-821-409-11-01</a>
+                    </div>
+                  </div>
+                  <div class="shops__adress-block">
+                    <img src="img/market-пелысь.png " alt="пелысь" class="shops__adress-img">
+                    <p class="shops__adress-name _icon-haus">ул. Рабочая 1</p>
+                    <div class="shops__wrapper-tel _icon-phone">
+                      <a href="tel:+78214091300" class="shops__tel">+7-821-409-13-00</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="map__cards" id="map">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    @@include("html/components/main/_footer.html",{})
+    <div class="menu-fixed"></div>
+    <div class="btn-up">↑</div>
+  </div>
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=b756749a-c9d8-4f04-a6c7-2653f5d9d0b7&lang=ru_RU"
+    type="text/javascript">
+    </script>
+  <script src="assets/js/map.js"></script>
+  @@include("html/components/main/_js.html",{})
+</body>
+
+</html>

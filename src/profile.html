@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+@@include("html/components/main/_head.html", {"title":"Личный кабинет"})
+
+<body>
+  <div class="wrapper">
+    @@include("html/components/main/_header.html", {})
+    <main class="main">
+      <div class="container">
+        <div class="main-body">
+          <nav class="main__navigation">
+            <ul class="main__navigation-list">
+              <a href="index.html" class="main__navigation-link">Главная</a>
+              <span class="main__navigation-span _icon-arrow"></span>
+              <a href="profile.html" class="main__navigation-link">Личный кабинет</a>
+            </ul>
+          </nav>
+          <div class="main__content">
+            <div class="main-wrapper-title">
+              <h1 class="main__title-catalog">Личный кабинет</h1>
+            </div>
+            <!-- account -->
+            <div class="account">
+              <div class="account__body">
+                <ul class="account__tab-list">
+                  <li class="account__tabs account-tabs" data-account="data">
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <path
+                          d="M16,29A13,13,0,1,1,29,16,13,13,0,0,1,16,29ZM16,5A11,11,0,1,0,27,16,11,11,0,0,0,16,5Z" />
+                        <path d="M16,17a5,5,0,1,1,5-5A5,5,0,0,1,16,17Zm0-8a3,3,0,1,0,3,3A3,3,0,0,0,16,9Z" />
+                        <path
+                          d="M25.55,24a1,1,0,0,1-.74-.32A11.35,11.35,0,0,0,16.46,20h-.92a11.27,11.27,0,0,0-7.85,3.16,1,1,0,0,1-1.38-1.44A13.24,13.24,0,0,1,15.54,18h.92a13.39,13.39,0,0,1,9.82,4.32A1,1,0,0,1,25.55,24Z" />
+                      </g>
+                    </svg>
+                    <span class="account__tabs-title">Личные
+                      данные</span>
+                  </li>
+                  <li class="account__tabs account-tabs" data-account="change-password">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <path
+                          d="M18,8V6A6,6,0,0,0,6,6V8a3,3,0,0,0-3,3v7a6.006,6.006,0,0,0,6,6h6a6.006,6.006,0,0,0,6-6V11A3,3,0,0,0,18,8ZM8,6a4,4,0,0,1,8,0V8H8ZM19,18a4,4,0,0,1-4,4H9a4,4,0,0,1-4-4V11a1,1,0,0,1,1-1H18a1,1,0,0,1,1,1Z" />
+                        <path d="M12,14a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V15A1,1,0,0,0,12,14Z" />
+                      </g>
+                    </svg><span class="account__tabs-title">Сменить пароль</span>
+                  </li>
+                  <li href="#" class="account__tabs account-tabs" data-account="history-purchas">
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <path
+                          d="M23.52,29h-15a5.48,5.48,0,0,1-5.31-6.83L6.25,9.76a1,1,0,0,1,1-.76H24a1,1,0,0,1,1,.7l3.78,12.16a5.49,5.49,0,0,1-.83,4.91A5.41,5.41,0,0,1,23.52,29ZM8,11,5.11,22.65A3.5,3.5,0,0,0,8.48,27h15a3.44,3.44,0,0,0,2.79-1.42,3.5,3.5,0,0,0,.53-3.13L23.28,11Z" />
+                        <path
+                          d="M20,17a1,1,0,0,1-1-1V8a3,3,0,0,0-6,0v8a1,1,0,0,1-2,0V8A5,5,0,0,1,21,8v8A1,1,0,0,1,20,17Z" />
+                      </g>
+                    </svg><span class="account__tabs-title">История
+                      покупок</span>
+                  </li>
+                  <a href="basket.html" class="account__tabs" data-account="basket">
+                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <path
+                          d="M397.78,316H192.65A15,15,0,0,1,178,304.33L143.46,153.85a15,15,0,0,1,14.62-18.36H432.35A15,15,0,0,1,447,153.85L412.4,304.33A15,15,0,0,1,397.78,316ZM204.59,286H385.84l27.67-120.48H176.91Z" />
+                        <path
+                          d="M222,450a57.48,57.48,0,1,1,57.48-57.48A57.54,57.54,0,0,1,222,450Zm0-84.95a27.48,27.48,0,1,0,27.48,27.47A27.5,27.5,0,0,0,222,365.05Z" />
+                        <path
+                          d="M368.42,450a57.48,57.48,0,1,1,57.48-57.48A57.54,57.54,0,0,1,368.42,450Zm0-84.95a27.48,27.48,0,1,0,27.48,27.47A27.5,27.5,0,0,0,368.42,365.05Z" />
+                        <path
+                          d="M158.08,165.49a15,15,0,0,1-14.23-10.26L118.14,78H70.7a15,15,0,1,1,0-30H129a15,15,0,0,1,14.23,10.26l29.13,87.49a15,15,0,0,1-14.23,19.74Z" />
+                      </g>
+                    </svg><span class="account__tabs-title">Моя корзина</span>
+                  </a>
+                  <a href="favourites.html" class="account__tabs" data-account="favourites">
+                    <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M116.22,16.68C108,8.8,95.16,4.88,83.44,6.71,75,8,68.17,12.26,64.07,18.68c-4-6.53-10.62-10.84-18.93-12.22-11.61-1.91-25,2.19-33.37,10.21A38.19,38.19,0,0,0,0,44.05,39.61,39.61,0,0,0,11.74,72.65L59,119.94a7,7,0,0,0,9.94,0l47.29-47.3A39.61,39.61,0,0,0,128,44.05,38.19,38.19,0,0,0,116.22,16.68ZM112,68.4,64.73,115.7a1,1,0,0,1-1.46,0L16,68.4A33.66,33.66,0,0,1,6,44.11,32.23,32.23,0,0,1,15.94,21c5.89-5.67,14.78-9,23.29-9a30.38,30.38,0,0,1,4.94.4c5,.82,11.67,3.32,15.42,10.56A5.06,5.06,0,0,0,64,25.68h0a4.92,4.92,0,0,0,4.34-2.58h0c3.89-7.2,10.82-9.66,15.94-10.46,9.77-1.52,20.9,1.84,27.7,8.37A32.23,32.23,0,0,1,122,44.11,33.66,33.66,0,0,1,112,68.4Z" />
+                    </svg>
+                    <span class="account__tabs-title">Избранные
+                      товары</span></a>
+                  <a href="orders.html" class="account__tabs" data-account="all-orders">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                      viewBox="0 0 24 24">
+                      <path
+                        d="M4 3C2.89 3 2 3.89 2 5V9C2 10.11 2.89 11 4 11H8C9.11 11 10 10.11 10 9V5C10 3.89 9.11 3 8 3M8.2 4.5L9.26 5.55L5.27 9.5L2.74 6.95L3.81 5.9L5.28 7.39M4 13C2.89 13 2 13.89 2 15V19C2 20.11 2.89 21 4 21H8C9.11 21 10 20.11 10 19V15C10 13.89 9.11 13 8 13M4 15H8V19H4M12 5H22V7H12M12 19V17H22V19M12 11H22V13H12Z" />
+                    </svg>
+                    <span class="account__tabs-title">Заказы</span></a>
+                </ul>
+                <div class="account__content none">
+                  <div class="account__tab-preview" data-account="data">
+                    <div class="account-data">
+                      <div class="account-data__wp-title">
+                        <h2 class="account-data__title">Профиль</h2>
+                        <span class="error-res"></span>
+                        <button class="account-data-back back"><span class="_icon-arrow">Назад</span></button>
+                      </div>
+                      <div class="account-data__content">
+                        <form class="account-data__form" id="updata">
+                          <div class="account-data__column img">
+                            <label for="img" class="account-data__wp-img">
+                              <img class="account-data__img" src="" alt="Аватар"></img>
+                              <input type="file" id="img" name="img" class="account-data__input-file" accept="image/*">
+                              <label for="img" class="account-data__img-name">Загрузить фото</label>
+                            </label>
+                          </div>
+                          <div class="account-data__column column-area">
+                            <div class="account-data__item">
+                              <label for="tel" class="account-data__label">Телефон</label>
+                              <input type="tel" id="tel" name="phone" class="account-data__input _input">
+                            </div>
+                            <div class="account-data__item">
+                              <label for="name" class="account-data__label">Имя</label>
+                              <input type="text" id="name" name="name" class="account-data__input _input">
+                            </div>
+                            <div class="account-data__item">
+                              <label for="surname" class="account-data__label">Фамилия</label>
+                              <input type="text" id="surname" name="surname" class="account-data__input _input">
+                            </div>
+                            <div class="account-data__item">
+                              <label for="email" class="account-data__label">Почта</label>
+                              <input type="text" id="email" name="email" class="account-data__input _input">
+                            </div>
+                          </div>
+                          <div class="account-data__column column-area2">
+                            <div class="account-data__item">
+                              <label for="region" class="account-data__label">Область</label>
+                              <input type="text" id="region" name="region" class="account-data__input _input">
+                            </div>
+                            <div class="account-data__item">
+                              <label for="city" class="account-data__label">Город</label>
+                              <input type="text" id="city" name="city" class="account-data__input _input">
+                            </div>
+                            <div class="account-data__item">
+                              <label for="gender" class="account-data__label">Пол</label>
+                              <input type="text" id="gender" name="gender" class="account-data__input _input">
+                            </div>
+                            <div class="account-data__item">
+                              <label for="date_birth" class="account-data__label">Дата рождения</label>
+                              <input type="date" id="date_birth" name="date_birth" class="account-data__input _input">
+                            </div>
+                            <div class="account-data__item">
+                              <label for="card_discount" class="account-data__label">Скидочная карта</label>
+                              <input type="text" id="card_discount" name="card_discount"
+                                class="account-data__input _input" disabled>
+                            </div>
+                            <button class="profile-button">Сохранить изменения</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="account__tab-preview" data-account="change-password">
+                    <div class="account-data__wp-title">
+                      <h2 class="account-data__title">Пароль</h2>
+                      <button class="account-data-back back"><span class="_icon-arrow">Назад</span></button>
+                    </div>
+                    <form action="#" id="updata-password">
+                      <div class="account__tab-item">
+                        <span class="input-title">Пароль</span>
+                        <input type="password" name="password" class="_input" autocomplete="off">
+                      </div>
+                      <div class="account__tab-item">
+                        <span class="input-title">Повторите пароль</span>
+                        <input type="password" name="confirm-password" class="_input" autocomplete="off">
+                      </div>
+                      <button type="submit" class="profile-button">Сохранить изменения</button>
+                    </form>
+                  </div>
+                  <div class="account__tab-preview" data-account="history-purchas">
+                    <div class="account-data__wp-title">
+                      <h2 class="account-data__title">Покупки</h2>
+                      <button class="account-data-back back"><span class="_icon-arrow">Назад</span></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    @@include("html/components/main/_footer.html",{})
+
+    <div class="menu-fixed"></div>
+    <div class="btn-up">↑</div>
+  </div>
+  @@include("html/components/main/_js.html",{})
+</body>
+
+</html>

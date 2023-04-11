@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+@@include("html/components/main/_head.html", {"title":"О компании"})
+
+<body>
+  <div class="wrapper">
+    @@include("html/components/main/_header.html", {})
+    <main class="main">
+      <div class="container">
+        <div class="main-body">
+          <nav class="main__navigation">
+            <ul class="main__navigation-list">
+              <a href="index.html" class="main__navigation-link">Главная</a>
+              <span class="main__navigation-span _icon-arrow"></span>
+              <a href="basket.html" class="main__navigation-link">О компании</a>
+            </ul>
+          </nav>
+          <div class="main__content">
+            <div class="about">
+              <div class="about__main">
+                <div class="about__main-block">
+                  <h1 class="main__title">О компании</h1>
+                  <p class="about__main-text">Мы непрерывно развиваемся и работаем над совершенствованием сервиса,
+                    заботимся о наших клиентах, стремимся к лучшему будущему.</p>
+                </div>
+                <div class="about__main-wrapper-img">
+                  <img src="img/about.png" alt="о компании" class="about__main-img">
+                </div>
+
+                <img src="img/Частицы/синий-эл.png" alt="Синий" class="particles particles-blue" data-kef="20">
+                <img src="img/Частицы/красный-эл.png" alt="красный" class="particles particles-red" data-kef="30">
+                <img src="img/Частицы/зеленый-эл.png" alt="зеленый" class="particles particles-green" data-kef="20">
+                <img src="img/Частицы/оранжевый-эл.png" alt="оранжевый" class="particles particles-orange"
+                  data-kef="10">
+
+                <img src="img/Частицы/синий-эл.png" alt="Синий" class="particles particles-blue-little" data-kef="50">
+                <img src="img/Частицы/красный-эл.png" alt="красный" class="particles particles-red-little"
+                  data-kef="40">
+                <img src="img/Частицы/зеленый-эл.png" alt="зеленый" class="particles particles-green-little"
+                  data-kef="60">
+                <img src="img/Частицы/оранжевый-эл.png" alt="оранжевый" class="particles particles-orange-little"
+                  data-kef="40">
+              </div>
+
+              <div class="about__description">
+                <div class="about__description-item">
+                  <img src="img/check.png" alt="чек" class="about__description-img">
+                  <h4 class="about__description-title">Мы занимаемся розничной торговлей</h4>
+                  <p class="about__description-subtitle">Более 20 лет.</p>
+                </div>
+                <div class="about__description-item">
+                  <img src="img/check.png" alt="чек" class="about__description-img">
+                  <h4 class="about__description-title">Основная миссия компании</h4>
+                  <p class="about__description-subtitle">Максимальное качество товаров и услуг по доступной цене.</p>
+                </div>
+                <div class="about__description-item">
+                  <img src="img/check.png" alt="чек" class="about__description-img">
+                  <h4 class="about__description-title">Отличительная черта нашей сети</h4>
+                  <p class="about__description-subtitle">Здоровая и полезная продукция местного производства внаших
+                    магазинах.</p>
+                </div>
+              </div>
+              <div class="about__thanks">
+                <div class="about__thanks-wrapper-logo">
+                  <img src="img/logo-previu.svg" alt="logo" class="about__thanks-logo"></img>
+                </div>
+                <div class="about__thanks-block">Спасибо за то, что вы с нами. Северяночка, везет всегда!</div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="" style="height: 1000px"></div> -->
+        </div>
+      </div>
+    </main>
+    @@include("html/components/main/_footer.html",{})
+  </div>
+  <script src="assets/libs/Paralax/paralax.js"></script>
+  @@include("html/components/main/_js.html",{})
+  <div class="menu-fixed"></div>
+
+  <div class="btn-up">↑</div>
+</body>
+
+</html>

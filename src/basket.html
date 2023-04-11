@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+@@include("html/components/main/_head.html", {"title":"Корзина"})
+
+<body>
+  <div class="wrapper">
+    @@include("html/components/main/_header.html", {})
+    <main class="main">
+      <div class="container">
+        <div class="main-body">
+          <nav class="main__navigation">
+            <ul class="main__navigation-list">
+              <a href="index.html" class="main__navigation-link">Главная</a>
+              <span class="main__navigation-span _icon-arrow"></span>
+              <a href="basket.html" class="main__navigation-link">Корзина</a>
+            </ul>
+          </nav>
+          <div class="main__content">
+            <div class="main-wrapper-title">
+              <h1 class="main__title">Корзина</h1>
+              <span class="main-title-quantity">1</span>
+            </div>
+            <!-- basket -->
+            <div class="basket">
+              <!-- basket__settings -->
+              <div class="basket__settings">
+                <div class="basket__settings-checkbox">
+                  <div class="basket__settings-block-check">
+                    <input type="checkbox" class="basket__card-check basket__settings-check" id="settings-check">
+                    <label for="settings-check" class="basket__settings-check-label">—</label>
+                  </div>
+                  <label for="settings-check" class="basket__settings-allot">Выделить всё</label>
+                </div>
+                <button class="basket__settings-button">Удалить выбранные</button>
+              </div>
+              <!-- basket__wrapper -->
+              <div class="basket__wrapper">
+                <!-- products-container -->
+                <div class="basket__content">
+                  <!-- Товар  здесь-->
+                </div>
+                <!-- basket-aside -->
+                <aside class="basket__aside">
+                  <form class="basket__aside-form">
+                    <div class="basket__aside-discount">
+                      <div class="basket__aside-wrapper-checkbox">
+                        <label for="basket-aside-discount" class="basket__aside-checkbox">
+                          <input type="checkbox" name="discount" id="basket-aside-discount" class="basket__aside-check">
+                          <label for="basket-aside-discount" class="basket__aside-check-label"></label>
+                        </label>
+                        <label for="basket-aside-discount" class="basket__aside-check-labels">Списать 200 ₽</label>
+                      </div>
+                      <p class="basket__aside-text-discount">На карте накоплено 200 ₽</p>
+                    </div>
+
+                    <div class="basket__aside-info">
+                      <!-- Информация о товаре -->
+                      <div class="basket__aside-info-block">
+                        <p class="basket__aside-info-text">Скидка</p>
+                        <span class="basket__aside-info-ptice-discount">-8.01 ₽</span>
+                      </div>
+                    </div>
+
+                    <div class="basket__aside-result">
+                      <div class="basket__aside-result-block">
+                        <p class="basket__aside-info-text">Итог</p>
+                        <span class="basket__aside-info-price-result">250.09 ₽</span>
+                      </div>
+                      <div class="basket__aside-result-bonus"><img src="img/img-card/bonus.png" alt=""><span>Вы
+                          получяете
+                          100 бонусов</span></div>
+                    </div>
+
+                    <div class="basket__aside-footer">
+
+                      <button class="basket__aside-button">Оформить заказ</button>
+                    </div>
+                  </form>
+                </aside>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    @@include("html/components/main/_footer.html",{})
+    <div class="menu-fixed"></div>
+    <div class="btn-up">↑</div>
+  </div>
+  @@include("html/components/main/_js.html",{})
+</body>
+
+</html>

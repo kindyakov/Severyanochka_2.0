@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+@@include("html/components/main/_head.html", {"title":"Избраное"})
+
+<body>
+  <div class="wrapper">
+    @@include("html/components/main/_header.html", {})
+    <main class="main">
+      <div class="container">
+        <div class="main-body">
+          <nav class="main__navigation">
+            <ul class="main__navigation-list">
+              <a href="index.html" class="main__navigation-link">Главная</a>
+              <span class="main__navigation-span _icon-arrow"></span>
+              <a href="favourites.html" class="main__navigation-link">Избраное</a>
+            </ul>
+          </nav>
+          <div class="main__content">
+            <div class="main-wrapper-title">
+              <h1 class="main__title-catalog">Избраное</h1>
+              <span class="main-title-quantity">1</span>
+            </div>
+            <div class="catalog-products">
+
+              <div class=" catalog-products__body">
+                <aside class="catalog-products__filters">
+                  <div class="catalog-products__filters_body">
+                    <div class="catalog-products__filters_wrapper-title">
+                      <h3 class="catalog-products__filters_title">Фильтр</h3>
+                      <div class="catalog-products__filters_close-filtres filtres-close"></div>
+                    </div>
+
+                    <div class="filters_box-paramets">
+                      <div class="filters_box-paramets__header">
+                        <span class="filters_box-paramets__price">Цена</span>
+                        <button class="filters_box-paramets__btn catalog-products-btn">Очистить</button>
+                      </div>
+                      <div class="filters_box-paramets__body">
+                        <input class="filters_box-paramets__input" type="number" id="min-price">
+                        <span></span>
+                        <input class="filters_box-paramets__input" type="number" id="max-price">
+                      </div>
+                      <div class="filters_box-paramets__sliders">
+
+                      </div>
+                    </div>
+
+                    <div class="filters__wrapper-checkbox">
+                      <label for="checkbox" class="filters__wrapper-checkbox__lable">
+                        <input id="checkbox" class="filters__wrapper-checkbox__checkbox" type="checkbox">
+                        <div class="filters__wrapper-checkbox__checkbox-item"></div>
+                      </label>
+                      <span class="filters__wrapper-checkbox__span">В наличие</span>
+                    </div>
+
+                    <button class="catalog-products__filters_button">Применить</и>
+
+                  </div>
+                </aside>
+                <div class="catalog-products__content">
+                  <nav class="filter-menu">
+                    <button class="filter-adaptive-active">Фильтр</button>
+                    <ul class="filter-menu__list">
+                      <li class="filter-menu__item filter-menu__item-clear none">
+                        <span class="filter-menu__item-span">Очистить фильтры</span>
+                        <span class="filter-menu__item-close"></span>
+                      </li>
+                    </ul>
+                  </nav>
+                  <div id="favourites-products" class="catalog-products__wrapper" data-products="favourites">
+                    <!-- Здесь выводятся карточки -->
+                  </div>
+                  <div class="catalog-products__footer">
+                    <!-- Здесь показать ещё 
+                      и li со страницами -->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    @@include("html/components/main/_footer.html",{})
+
+    <div class="menu-fixed"></div>
+    <div class="btn-up">↑</div>
+  </div>
+  <script src="assets/libs/nouiSlider/nouislider.min.js"></script>
+  @@include("html/components/main/_js.html",{})
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+@@include("html/components/main/_head.html", {"title":"Регистрация"})
+
+<body>
+  <div class="wrapper">
+    @@include("html/components/main/_header.html", {})
+    <main class="main">
+      <div class="container">
+        <div class="main-body">
+          <nav class="main__navigation">
+            <ul class="main__navigation-list">
+              <a href="index.html" class="main__navigation-link">Главная</a>
+              <span class="main__navigation-span _icon-arrow"></span>
+              <a href="registration.html" class="main__navigation-link">Регистрация</a>
+            </ul>
+          </nav>
+          <div class="registration">
+            <div class="wrapper-title">
+              <h1 class="registration__title">Регистрация</h1>
+              <span class="error-res"></span>
+            </div>
+            <div class="registration__body">
+              <form id="registration-form" class="registration__form" action="" method="">
+
+                <div class="registration__content">
+                  <h2 class="registration__subtitle">Обязательные поля</h2>
+                  <div class="registration__section">
+                    <div class="registration__column">
+                      <div class="registration__item">
+                        <span class="input-title">Телефон</span>
+
+                        <input type="tel" name="phone" data-valid="phone" class="registration__input _input"
+                          inputmode="numeric">
+                      </div>
+                      <div class="registration__item">
+                        <span class="input-title">Фамилия</span>
+
+                        <input type="text" name="surname" data-valid="name" class="registration__input _input">
+                      </div>
+                      <div class="registration__item">
+                        <span class="input-title">Имя</span>
+
+                        <input type="text" name="name" data-valid="name" class="registration__input _input">
+                      </div>
+                      <div class="registration__item">
+                        <span class="input-title">Пароль</span>
+
+                        <input type="password" name="password" data-valid="password" class="registration__input _input"
+                          autocomplete="off">
+                      </div>
+                      <div class="registration__item">
+                        <span class="input-title">Повторите пароль</span>
+
+                        <input type="password" name="confirm-password" data-valid="password"
+                          class="registration__input _input" autocomplete="off">
+                      </div>
+                    </div>
+                    <div class="registration__column">
+                      <div class="registration__item">
+                        <span class="input-title">Дата рождения</span>
+                        <input type="date" name="date_birth" data-valid="date" class="registration__input _input"
+                          inputmode="numeric">
+                      </div>
+
+                      <div class="registration__item">
+                        <span class="input-title">Область</span>
+                        <input type="text" name="region" data-valid="region" class="registration__input _input">
+                      </div>
+
+                      <div class="registration__item">
+                        <span class="input-title">Населенный пункт</span>
+                        <input type="text" name="city" data-valid="city" class="registration__input _input">
+                      </div>
+
+                      <div class="registration__item">
+                        <span class="input-title">Пол</span>
+                        <span class="info-error">Выберите пол !</span>
+                        <div class="registration__item-content">
+                          <label for="gender" class="registration__item-label" data-gender="Мужской">
+                            <input type="radio" id="gender" name="gender" value="Мужской"
+                              class="registration__input-radio" checked>
+                            <label for="gender" class="registration__item-label-check"><span>Мужской</span></label>
+                          </label>
+                          <label for="gender1" class="registration__item-label" data-gender="Женский">
+                            <input type="radio" id="gender1" name="gender" value="Женский"
+                              class="registration__input-radio">
+                            <label for="gender1" class="registration__item-label-check"><span>Женский</span></label>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="registration__content">
+                  <h2 class="registration__subtitle">Необязательные поля</h2>
+                  <div class="registration__section">
+                    <div class="registration__item">
+                      <span class="input-title">Номер карты</span>
+                      <span class="info-error"></span>
+                      <input type="text" name="card_discount" class="registration__input _input" disabled>
+                      <div class="registration__checkbox">
+                        <input type="checkbox" name="checkbox" id="check" class="registration__check" checked>
+                        <label for="check" class="registration__label">У меня нет карты лояльности</label>
+                      </div>
+                    </div>
+                    <div class="registration__item">
+                      <span class="input-title">E-mail</span>
+                      <span class="info-error"></span>
+                      <input type="text" name="email" class="registration__input _input">
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="registration__continue">Продолжить</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    @@include("html/components/main/_footer.html",{})
+    <div class="menu-fixed"></div>
+    <div class="btn-up">↑</div>
+  </div>
+  @@include("html/components/main/_js.html",{})
+</body>
+
+</html>

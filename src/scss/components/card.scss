@@ -1,0 +1,242 @@
+.card {
+	width: 100%;
+	height: 100%;
+	padding: 8px;
+	border-radius: 4px;
+	box-shadow: 1px 2px rgba(0, 0, 0, 0.1);
+	background-color: $white;
+	transition: box-shadow 0.2s;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	z-index: 1;
+
+	&:hover {
+		box-shadow: 1px 4px 14px 2px rgba(255, 102, 51, 0.2);
+
+		.card-img {
+			transform: scale(1.1);
+		}
+
+		.card-delete {
+			opacity: 1;
+		}
+	}
+}
+
+.card-wrapper-img {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	// min-height: 160px;
+	// max-height: 160px;
+	height: 160px;
+	width: 100%;
+	overflow: hidden;
+}
+
+.card-img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: cover;
+	transition: 0.3s;
+}
+
+.card-discount {
+	position: absolute;
+	padding: 4px 8px;
+	background-color: $orange;
+	color: $white;
+	border-radius: 4px;
+	bottom: 14px;
+	left: 0;
+	font-size: 16px;
+}
+
+.card-content {
+	margin-top: 10px;
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+}
+
+.card-wrapper__price {
+	margin-bottom: 26px;
+}
+
+.card-wrapper-price {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.card-price-text {
+	flex-direction: column;
+
+	.card-price__card {
+		font-weight: bold;
+	}
+
+	.card-price__ordinary {
+		color: #606060;
+	}
+
+	.card-price {
+		font-size: 18px;
+	}
+
+	i {
+		display: block;
+		font-size: 12px;
+		color: #bfbfbf;
+	}
+}
+
+.card-info {
+	margin: auto 0 10px 0;
+}
+
+.card-name-product {
+	transition: color 0.3s;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	margin-bottom: 10px;
+	font-size: 16px;
+
+	&:hover {
+		color: $orange;
+	}
+}
+
+.card-rating {
+	position: relative;
+	display: inline-block;
+
+	&__active {
+		position: absolute;
+		left: 0;
+		top: 0;
+		display: flex;
+		column-gap: 5px;
+		align-items: center;
+		overflow: hidden;
+		height: 100%;
+		align-items: flex-start;
+
+		.card-rating__item {
+			color: $orange;
+		}
+	}
+
+	&__items {
+		align-items: center;
+		display: flex;
+		column-gap: 5px;
+	}
+
+	&__item {
+		font-size: 16px;
+		color: #bfbfbf;
+	}
+}
+
+.card-button {
+	width: 100%;
+	text-align: center;
+	padding: 10px 0;
+	color: $green;
+	border-radius: 4px;
+	border: 1px solid $green;
+	background-color: transparent;
+	transition: 0.3s;
+	font-size: 16px;
+	// margin-top: auto;
+
+	&:hover {
+		border: 1px solid $orange;
+		background-color: $orange;
+		color: $white;
+	}
+}
+
+.add-btn {
+	&.disable {
+		color: $white !important;
+		background-color: #606060 !important;
+		opacity: 0.4 !important;
+		border: 1px solid #606060 !important;
+	}
+}
+
+.card-like {
+	position: absolute;
+	right: 8px;
+	top: 8px;
+	transition: color 0.2s;
+	padding: 5px;
+	background-color: rgba(243, 242, 241, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+
+	&::before {
+		font-size: 22px;
+	}
+
+	&:hover {
+		&::before {
+			color: $orange;
+			font-weight: 700;
+		}
+	}
+}
+
+.like {
+	cursor: pointer;
+
+	&.disable {
+		color: $orange;
+
+		&::before {
+			font-weight: 700;
+		}
+	}
+}
+
+.card-delete-wrapper {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+
+.card-delete {
+	position: absolute;
+	left: 8px;
+	top: 6px;
+	font-size: 22px;
+	cursor: pointer;
+	transition: 0.3s;
+	margin: 0;
+	pointer-events: visible;
+	opacity: 0;
+	padding: 0px 5px 0px 5px;
+	background-color: rgba(243, 242, 241, 0.6);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+
+	&:hover {
+		color: $orange;
+	}
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+@@include("components/catalog/_head_catalog.html", {"title":"Здоровое питание"})
+
+<body>
+  <div class="wrapper">
+    @@include("components/catalog/_header_catalog.html", {})
+    <main class="main">
+      <div class="container">
+        <div class="main-body">
+          <nav class="main__navigation">
+            <ul class="main__navigation-list">
+              <a href="../index.html" class="main__navigation-link">Главная</a>
+              <span class="main__navigation-span _icon-arrow"></span>
+              <a href="catalog.html" class="main__navigation-link">Каталог</a>
+              <span class="main__navigation-span _icon-arrow"></span>
+              <a href="catalog__healthy-eating.html" class="main__navigation-link">Здоровое питание</a>
+            </ul>
+          </nav>
+          <div class="main__content">
+            <h1 class="main__title-catalog">Здоровое питание</h1>
+            <div class="catalog-products">
+              <div class="catalog-products__quick-filters">
+                <button class="catalog-products__quick-filters_btn catalog-products-btn"">Товары нашего производства</button>
+                <button class=" catalog-products__quick-filters_btn catalog-products-btn"">Полезное питание</button>
+                <button class="catalog-products__quick-filters_btn catalog-products-btn"">Без ГМО</button>
+              </div>
+
+              <div class=" catalog-products__body">
+                  @@include("components/aside.html",{})
+                  @@include("components/products_content.html",{})
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    @@include("components/catalog/_footer_catalog.html",{})
+    <div class="menu-fixed"></div>
+    <div class="btn-up">↑</div>
+  </div>
+  @@include("components/catalog/_js_catalog.html",{})
+</body>
+
+</html>

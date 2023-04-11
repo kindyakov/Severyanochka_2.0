@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+@@include("html/components/main/_head.html", {"title":"Акции"})
+
+<body>
+  <div class="wrapper">
+    @@include("html/components/main/_header.html", {})
+    <main class="main">
+      <div class="container">
+        <div class="main-body">
+          <nav class="main__navigation">
+            <ul class="main__navigation-list">
+              <a href="index.html" class="main__navigation-link">Главная</a>
+              <span class="main__navigation-span _icon-arrow"></span>
+              <a href="discount.html" class="main__navigation-link">Акции</a>
+            </ul>
+          </nav>
+          <div class="main__content">
+            <div class="main-wrapper-title">
+              <h1 class="main__title-catalog">Акции</h1>
+            </div>
+            <!-- discount -->
+            <div class="grid-container discount_content" id="discount-content">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    @@include("html/components/main/_footer.html",{})
+
+    <div class="menu-fixed"></div>
+    <div class="btn-up">↑</div>
+  </div>
+  @@include("html/components/main/_js.html",{})
+</body>
+
+</html>

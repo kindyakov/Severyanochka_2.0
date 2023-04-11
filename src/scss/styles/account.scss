@@ -1,0 +1,320 @@
+.account {
+	padding-top: 40px;
+	width: 100%;
+	height: 100%;
+	&__body {
+		// overflow: hidden;
+		height: 100%;
+	}
+
+	&__tab-list {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		max-width: 800px;
+		margin: 0 auto;
+		gap: 40px;
+		transition: 0.2s;
+		@media (max-width: $md2) {
+			gap: 30px;
+		}
+		@media (max-width: $md3) {
+			gap: 20px;
+		}
+		&.none {
+			display: none;
+		}
+	}
+
+	&__tabs {
+		padding: 10px;
+		cursor: pointer;
+		background-color: $light_orange;
+		border-radius: 16px;
+		border: 3px solid $orange;
+		width: auto;
+		transition: 0.2s;
+		width: 200px;
+		height: 200px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		row-gap: 16px;
+		&:hover {
+			background-color: $orange;
+
+			span {
+				color: $light_orange;
+			}
+			svg {
+				fill: $light_orange;
+			}
+		}
+		svg {
+			width: 50%;
+			height: 50%;
+			fill: $orange;
+		}
+		@media (max-width: $md3) {
+			width: 150px;
+			height: 150px;
+		}
+	}
+
+	&__tabs-title {
+		color: $orange;
+		transition: 0.2s;
+	}
+
+	&__content {
+		width: 100%;
+		transition: 0.2s;
+		&.none {
+			display: none;
+		}
+	}
+
+	&__tab-preview {
+		width: 100%;
+		min-height: 500px;
+		display: none;
+
+		&.active {
+			display: block;
+		}
+	}
+
+	&__pesonal-account {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		row-gap: 25px;
+	}
+
+	&__tab-item {
+		width: 300px;
+	}
+
+	// &__input {}
+}
+
+// .input-title {}
+
+.save-date {
+	padding: 12px 24px;
+	background-color: $orange;
+	color: $light_orange;
+	font-size: 18px;
+	border-radius: 4px;
+	transition: 0.2s;
+
+	&:hover {
+		background-color: $light_orange;
+		color: $orange;
+	}
+}
+.account-data {
+	&__wp-title {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		.back {
+			position: absolute;
+			left: 10px;
+			top: 50%;
+			transform: translateY(-50%);
+			padding: 5px 5px 5px 0;
+			border-radius: 4px;
+			background-color: transparent;
+			border: 1px solid $orange;
+			transition: 0.2s;
+			&:hover {
+				background-color: $orange;
+				border: 1px solid transparent;
+				span {
+					color: $white;
+				}
+			}
+			span {
+				position: relative;
+				padding-left: 20px;
+				transition: 0.2s;
+				color: $orange;
+				font-weight: bold;
+				&::before {
+					position: absolute;
+					left: 0;
+					top: 2px;
+					transform: rotate(90deg);
+				}
+			}
+		}
+	}
+	&__title {
+		font-size: 28px;
+		font-weight: bold;
+		width: 100%;
+		text-align: center;
+		padding: 15px 0;
+		background-color: $light_orange;
+	}
+
+	&__content {
+		margin-top: 30px;
+	}
+
+	&__wp-img {
+		width: 300px;
+		height: 300px;
+		border-radius: 50%;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 2px solid $orange;
+		position: relative;
+		cursor: pointer;
+		input {
+			display: none;
+		}
+		&:hover {
+			&::before {
+				background-color: rgba(0, 0, 0, 0.3);
+			}
+			.account-data__img-name {
+				opacity: 1;
+			}
+		}
+		&::before {
+			content: '';
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			left: 0;
+			top: 0;
+			z-index: 2;
+			border-radius: 50%;
+			transition: 0.3s;
+			background-color: transparent;
+		}
+		@media (max-width: $md2) {
+			width: 230px;
+			height: 230px;
+		}
+		@media (max-width: $md2) {
+			margin: 0 auto;
+		}
+	}
+
+	&__img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		position: relative;
+		z-index: 1;
+		opacity: 0;
+		visibility: hidden;
+		&._is-img {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+	&__img-name {
+		position: absolute;
+		background-color: transparent;
+		z-index: 2;
+		transition: 0.3s;
+		text-align: center;
+		cursor: pointer;
+		opacity: 0;
+		transition: 0.2s;
+		color: $white;
+	}
+	&__form {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 30px;
+		@media (max-width: $md3) {
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-areas: 'img column' 'img columns';
+			.img {
+				grid-area: img;
+			}
+			.column-area {
+				grid-area: column;
+			}
+			.column-area2 {
+				grid-area: columns;
+			}
+		}
+		@media (max-width: 568px) {
+			grid-template-columns: repeat(1, 1fr);
+			grid-template-areas: 'img' 'column' 'columns';
+		}
+	}
+
+	&__column {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		row-gap: 20px;
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		position: relative;
+		width: 100%;
+	}
+
+	&__label {
+		color: #999;
+	}
+
+	// &__input {}
+}
+
+.profile-button {
+	width: 100%;
+	padding: 12px 0;
+	text-align: center;
+	background-color: $light_orange;
+	border: 2px solid $orange;
+	color: $orange;
+	transition: 0.2s;
+	border-radius: 4px;
+	transform: translateY(4px);
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 16px;
+	&.focus {
+		background-color: $orange;
+		box-shadow: 0 4px 0 0 $light_orange;
+		transform: translateY(-4px);
+		color: $white;
+		&:active {
+			transform: translateY(4px);
+			background-color: red;
+			box-shadow: 0 0 0 0 $light_orange;
+		}
+	}
+	&:hover {
+		background-color: $orange;
+		color: $white;
+	}
+}
+
+#updata-password {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 20px;
+	max-width: 300px;
+	margin: 60px auto 0 auto;
+}
