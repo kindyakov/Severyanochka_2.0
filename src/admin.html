@@ -1,16 +1,127 @@
 <!DOCTYPE html>
-<html lang='ru'>
-<!DOCTYPE html>
 <html lang="ru">
-@@include('html/components/main/_head.html', {'title':'Админ панель'})
+
+<head>
+  <title>Админ панель | Интернет-магазин Северяночка</title>
+  <meta charset="UTF-8">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" href="css/style.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
 <body>
-  <div class='wrapper'>
-    @@include('html/components/main/_header.html', {})
-    <main class='main'></main>
-    @@include('html/components/main/_footer.html',{})
+  <div class="admin">
+    <header class="admin__header">
+      <div class="admin__header-content">
+        <div class="admin__header-page">
+          <a href="admin.html" class="admin__header-link _active">Администрирование</a>
+          <a href="index.html" class="admin__header-link">Сайт</a>
+        </div>
+      </div>
+    </header>
+    <div class="admin__wrapper">
+      <aside class="admin__aside">
+        <div class="admin__aside-menu">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 284.929 284.929" xml:space="preserve">
+            <path d="M282.082,195.285L149.028,62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665,0.953-6.567,2.856L2.856,195.285
+		C0.95,197.191,0,199.378,0,201.853c0,2.474,0.953,4.664,2.856,6.566l14.272,14.271c1.903,1.903,4.093,2.854,6.567,2.854
+		c2.474,0,4.664-0.951,6.567-2.854l112.204-112.202l112.208,112.209c1.902,1.903,4.093,2.848,6.563,2.848
+		c2.478,0,4.668-0.951,6.57-2.848l14.274-14.277c1.902-1.902,2.847-4.093,2.847-6.566
+		C284.929,199.378,283.984,197.188,282.082,195.285z" />
+          </svg>
+        </div>
+        <ul class="admin__aside-list">
+          <th class="admin__aside-th"><a href="#product" class="admin__aside-tab _active">Продукты</a></th>
+          <th class="admin__aside-th"><a href="#brend" class="admin__aside-tab">Бренды</a></th>
+          <th class="admin__aside-th"><a href="#type" class="admin__aside-tab">Типы</a></th>
+          <th class="admin__aside-th"><a href="#fedback" class="admin__aside-tab">Отзывы</a></th>
+          <th class="admin__aside-th"><a href="#user" class="admin__aside-tab">Пользователи</a></th>
+        </ul>
+      </aside>
+      <main class="admin__main">
+        <div class="admin__content _active" id="product">
+          <h2 class="admin__title">Продукты</h2>
+          <div class="admin__menu">
+            <input type="text" name="search" id="search_product" class="admin__menu_input _input" autocomplete="off"
+              placeholder="поиск">
+            <button class="admin__menu_button">Добавить продукт</button>
+          </div>
+          <table class="admin__table">
+            <tr class="admin__table_head">
+              <th class="admin__table_title"><label for="checkbox0"><input type="checkbox" name="checkbox"
+                    id="checkbox0" class="admin__table_checkbox"></label></th>
+              <th class="admin__table_title _active" data-sorting="id">id<span class="_icon-arrow"></span></th>
+              <th class="admin__table_title" data-sorting="name">Название<span class="_icon-arrow"></span></th>
+              <th class="admin__table_title" data-sorting="price">Цена<span class="_icon-arrow"></span>
+              </th>
+              <th class="admin__table_title" data-sorting="price_card">Цена по карте<span class="_icon-arrow"></span>
+              </th>
+              <th class="admin__table_title" data-sorting="rating">Рейтинг<span class="_icon-arrow"></span></th>
+              <th class="admin__table_title" data-sorting="img">Изображение<span class="_icon-arrow"></span>
+              </th>
+              <th class="admin__table_title" data-sorting="discount">Скидка<span class="_icon-arrow"></span>
+              </th>
+              <th class="admin__table_title" data-sorting="typeId">Тип<span class="_icon-arrow"></span></th>
+              <th class="admin__table_title" data-sorting="brandId">Бренд<span class="_icon-arrow"></span></th>
+              <th class="admin__table_title" data-sorting="createdAt">Дата создание<span class="_icon-arrow"></span>
+              </th>
+              <th class="admin__table_title" data-sorting="updatedAt">Дата обновления<span class="_icon-arrow"></span>
+              </th>
+            </tr>
+            <tr class="admin__table_row">
+              <td class="admin__table_cell _checkbox"><label for="checkbox_1"><input type="checkbox" name="checkbox"
+                    id="checkbox_1" class="admin__table_checkbox"></label></td>
+              <td class="admin__table_cell">1</td>
+              <td class="admin__table_cell">Мука пшеничная СИНИЙ МОТИВ хлебопекарная высший сорт ГОСТ, 2кг, Россия, 2 кг
+              </td>
+              <td class="admin__table_cell">100.79 ₽</td>
+              <td class="admin__table_cell">95.89 ₽</td>
+              <td class="admin__table_cell">4.5</td>
+              <td class="admin__table_cell">30.02.2000</td>
+              <td class="admin__table_cell">Ивановск</td>
+              <td class="admin__table_cell">Игрик</td>
+              <td class="admin__table_cell">user</td>
+              <td class="admin__table_cell">12.03.2023</td>
+              <td class="admin__table_cell">12.03.2023</td>
+            </tr>
+          </table>
+        </div>
+        <div class="admin__content" id="user">
+          <table class="admin__table">
+            <thead class="admin__table_head">
+              <th class="admin__table_title _icon-arrow" data-sorting="id">id</th>
+              <th class="admin__table_title _icon-arrow" data-sorting="phone">Телефон</th>
+              <th class="admin__table_title _icon-arrow" data-sorting="name">Имя</th>
+              <th class="admin__table_title _icon-arrow" data-sorting="surname">Фамилия</th>
+              <th class="admin__table_title _icon-arrow" data-sorting="mail">Почта</th>
+              <th class="admin__table_title _icon-arrow" data-sorting="date_birth">Дата рождения</th>
+              <th class="admin__table_title _icon-arrow" data-sorting="region">Область</th>
+              <th class="admin__table_title _icon-arrow" data-sorting="city">Город</th>
+              <th class="admin__table_title">Скидочная карта</th>
+              <th class="admin__table_title _icon-arrow" data-sorting="role">Роль</th>
+              <th class="admin__table_title _icon-arrow" data-sorting="createdAt">Дата регистрации</th>
+              <th class="admin__table_title _icon-arrow" data-sorting="updatedAt">Дата обновления</th>
+            </thead>
+            <tr class="admin__table_row">
+              <td class="admin__table_cell">1</td>
+              <td class="admin__table_cell">+7 (908) 602-89-55</td>
+              <td class="admin__table_cell">Иван</td>
+              <td class="admin__table_cell">Иванов</td>
+              <td class="admin__table_cell">invanov@mail.ru</td>
+              <td class="admin__table_cell">30.02.2000</td>
+              <td class="admin__table_cell">Ивановск</td>
+              <td class="admin__table_cell">Игрик</td>
+              <td class="admin__table_cell">user</td>
+              <td class="admin__table_cell"></td>
+              <td class="admin__table_cell">12.03.2023</td>
+              <td class="admin__table_cell">12.03.2023</td>
+            </tr>
+          </table>
+        </div>
+      </main>
+    </div>
   </div>
-  @@include('html/components/main/_js.html',{})
 </body>
 
 </html>
