@@ -123,37 +123,58 @@
 		}
 		&_button {
 			text-align: center;
-			background-color: rgba(56, 138, 170, 0.6);
-			border: 2px solid #388aaa;
+
 			color: $white;
 			font-weight: bold;
 			padding: 15px 25px;
 			border-radius: 8px;
 			transition: 0.2s;
-			&:hover {
-				background-color: #388aaa;
+
+			&.add {
+				background-color: rgba(56, 138, 170, 0.6);
+				border: 2px solid #388aaa;
+				&:hover {
+					background-color: #388aaa;
+				}
+			}
+			&.update {
+				background-color: rgba(255, 102, 51, 0.6);
+				border: 2px solid $orange;
+				opacity: 0;
+				visibility: hidden;
+				&:hover {
+					background-color: $orange;
+				}
+				&._active {
+					opacity: 1;
+					visibility: visible;
+				}
 			}
 		}
 	}
 
-	&__table {
-		display: block;
+	&__wrapper-table {
 		overflow: auto;
 		width: 100%;
-		height: 600px;
-		border-collapse: collapse;
-		border: 3px solid $border_table;
+		max-height: 600px;
 		&::-webkit-scrollbar {
 			height: 6px;
 			width: 6px;
 		}
-		&_head {
+	}
+
+	&__table {
+		border-collapse: collapse;
+		border: 3px solid $border_table;
+		width: 100%;
+		&_thead {
 			border-bottom: 3px solid $border_table;
 		}
 		&_title {
 			white-space: nowrap;
 			padding: 10px;
 			cursor: pointer;
+			border-right: 2px solid $border_table;
 			._icon-arrow {
 				margin: 0 0 0 10px;
 				position: relative;
@@ -180,14 +201,26 @@
 					}
 				}
 			}
+			&._checkbox {
+				padding: 0;
+				label {
+					padding: 10px;
+					cursor: pointer;
+				}
+			}
 		}
+
+		// &_tbody {}
+
 		&_row {
 			border-bottom: 2px solid $border_table;
 		}
+
 		&_cell {
 			padding: 6px 10px;
 			cursor: pointer;
 			white-space: nowrap;
+			border-right: 2px solid $border_table;
 			// -webkit-line-clamp: 2;
 			// display: -webkit-box;
 			// -webkit-box-orient: vertical;
@@ -214,12 +247,13 @@
 				opacity: 0;
 			}
 			&:hover {
-				&::after {
-					opacity: 1;
-				}
-				&::before {
-					opacity: 1;
-				}
+				// &::after {
+				// 	opacity: 1;
+				// }
+				// &::before {
+				// 	opacity: 1;
+				// }
+				color: $orange;
 			}
 			&._checkbox {
 				padding: 0;

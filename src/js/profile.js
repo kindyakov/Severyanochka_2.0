@@ -30,6 +30,7 @@ if (account) {
   const submit = (e) => {
     updataForm.revalidate()
       .then(isValid => isValid && updataUser(updata))
+      .catch(error = console.error(error))
   }
 
   updata.addEventListener('submit', submit)

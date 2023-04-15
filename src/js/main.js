@@ -70,29 +70,53 @@ const btnUp = document.querySelector('.btn-up');
 //       AddDisableCardLike(cardsFavourites);
 //     });
 // }
-
-wrapper.addEventListener('mouseover', function (e) {
-  if (e.target.closest('.header-catalog__button')) {
-    catalogMenu.classList.add('open');
-    document.querySelector('.header-catalog__button').classList.add('active');
-  } else if (!e.target.closest('.wrpper-catalog__button') && !e.target.closest('.header-catalog')) {
-    catalogMenu.classList.remove('open')
-    document.querySelector('.header-catalog__button').classList.remove('active');
-  }
-});
-//mouseover
-//mouseout
-//mousemove
-if ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0) {
-  wrapper.addEventListener('click', (e) => {
+if (wrapper) {
+  wrapper.addEventListener('mouseover', function (e) {
     if (e.target.closest('.header-catalog__button')) {
-      e.preventDefault();
       catalogMenu.classList.add('open');
       document.querySelector('.header-catalog__button').classList.add('active');
-      document.body.classList.add('lock');
-      document.querySelector('html').classList.add('lock');
-    } else if (catalogMenu.classList.contains('open')) {
-      if (!e.target.closest('.wrpper-catalog__button') && !e.target.closest('.header-catalog')) {
+    } else if (!e.target.closest('.wrpper-catalog__button') && !e.target.closest('.header-catalog')) {
+      catalogMenu.classList.remove('open')
+      document.querySelector('.header-catalog__button').classList.remove('active');
+    }
+  });
+  //mouseover
+  //mouseout
+  //mousemove
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0) {
+    wrapper.addEventListener('click', (e) => {
+      if (e.target.closest('.header-catalog__button')) {
+        e.preventDefault();
+        catalogMenu.classList.add('open');
+        document.querySelector('.header-catalog__button').classList.add('active');
+        document.body.classList.add('lock');
+        document.querySelector('html').classList.add('lock');
+      } else if (catalogMenu.classList.contains('open')) {
+        if (!e.target.closest('.wrpper-catalog__button') && !e.target.closest('.header-catalog')) {
+          catalogMenu.classList.remove('open')
+          document.querySelector('.header-catalog__button').classList.remove('active');
+
+          document.body.classList.remove('lock');
+          document.querySelector('html').classList.remove('lock');
+        }
+      }
+    });
+    let touchY = null;
+
+    function touchStart(e) {
+      const touch = e.touches[0];
+      touchY = touch.clientY;
+    }
+    function touchMove(e) {
+      if (!touchY) {
+        return false;
+      }
+      let catalogMenuHeight = this.clientHeight;
+
+      let moveY = e.touches[0].clientY;
+      let yDiff = touchY - moveY;
+
+      if (yDiff > 150) {
         catalogMenu.classList.remove('open')
         document.querySelector('.header-catalog__button').classList.remove('active');
 
@@ -100,92 +124,68 @@ if ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxT
         document.querySelector('html').classList.remove('lock');
       }
     }
-  });
-  let touchY = null;
-
-  function touchStart(e) {
-    const touch = e.touches[0];
-    touchY = touch.clientY;
+    catalogMenu.addEventListener('touchstart', touchStart);
+    catalogMenu.addEventListener('touchmove', touchMove);
   }
-  function touchMove(e) {
-    if (!touchY) {
-      return false;
+
+  // Перемещение элементов
+  window.addEventListener('resize', function () {
+    const viewport_width = Math.max(document.documentElement.clientWidth, window.innerWidth);
+    if (viewport_width <= 645) {
+      if (!headerMenu.classList.contains('done')) {
+        headerClon.insertBefore(headerMenu, headerClon.children[1])
+        headerMenu.classList.add('done');
+        wrapper.style.paddingBottom = '57px';
+      }
+    } else {
+      if (headerMenu.classList.contains('done')) {
+        headerOriginal.insertBefore(headerMenu, headerOriginal.children[0])
+        headerMenu.classList.remove('done');
+        wrapper.style.paddingBottom = '';
+      }
     }
-    let catalogMenuHeight = this.clientHeight;
 
-    let moveY = e.touches[0].clientY;
-    let yDiff = touchY - moveY;
-
-    if (yDiff > 150) {
-      catalogMenu.classList.remove('open')
-      document.querySelector('.header-catalog__button').classList.remove('active');
-
-      document.body.classList.remove('lock');
-      document.querySelector('html').classList.remove('lock');
+    if (viewport_width <= 440) {
+      if (!profilButton.classList.contains('done')) {
+        headerMenu.insertBefore(profilButton, headerMenu.children[headerMenu.children.length])
+        profilButton.classList.add('done');
+      }
+    } else {
+      if (profilButton.classList.contains('done')) {
+        headerWrapper.insertBefore(profilButton, headerWrapper.children[headerWrapper.children.length])
+        profilButton.classList.remove('done');
+      }
     }
-  }
-  catalogMenu.addEventListener('touchstart', touchStart);
-  catalogMenu.addEventListener('touchmove', touchMove);
+  })
+  window.addEventListener('load', function () {
+    const viewport_width = Math.max(document.documentElement.clientWidth, window.innerWidth);
+    if (viewport_width <= 645) {
+      if (!headerMenu.classList.contains('done')) {
+        headerClon.insertBefore(headerMenu, headerClon.children[1])
+        headerMenu.classList.add('done');
+        wrapper.style.paddingBottom = '57px';
+      }
+    } else {
+      if (headerMenu.classList.contains('done')) {
+        headerOriginal.insertBefore(headerMenu, headerOriginal.children[0])
+        headerMenu.classList.remove('done');
+        wrapper.style.paddingBottom = '';
+      }
+    }
+
+    if (viewport_width <= 440) {
+      if (!profilButton.classList.contains('done')) {
+        headerMenu.insertBefore(profilButton, headerMenu.children[headerMenu.children.length])
+        profilButton.classList.add('done');
+      }
+    } else {
+      if (profilButton.classList.contains('done')) {
+        headerWrapper.insertBefore(profilButton, headerWrapper.children[headerWrapper.children.length - 1])
+        profilButton.classList.remove('done');
+      }
+    }
+  })
 }
-
-// Перемещение элементов
-window.addEventListener('resize', function () {
-  const viewport_width = Math.max(document.documentElement.clientWidth, window.innerWidth);
-  if (viewport_width <= 645) {
-    if (!headerMenu.classList.contains('done')) {
-      headerClon.insertBefore(headerMenu, headerClon.children[1])
-      headerMenu.classList.add('done');
-      wrapper.style.paddingBottom = '57px';
-    }
-  } else {
-    if (headerMenu.classList.contains('done')) {
-      headerOriginal.insertBefore(headerMenu, headerOriginal.children[0])
-      headerMenu.classList.remove('done');
-      wrapper.style.paddingBottom = '';
-    }
-  }
-
-  if (viewport_width <= 440) {
-    if (!profilButton.classList.contains('done')) {
-      headerMenu.insertBefore(profilButton, headerMenu.children[headerMenu.children.length])
-      profilButton.classList.add('done');
-    }
-  } else {
-    if (profilButton.classList.contains('done')) {
-      headerWrapper.insertBefore(profilButton, headerWrapper.children[headerWrapper.children.length])
-      profilButton.classList.remove('done');
-    }
-  }
-})
-window.addEventListener('load', function () {
-  const viewport_width = Math.max(document.documentElement.clientWidth, window.innerWidth);
-  if (viewport_width <= 645) {
-    if (!headerMenu.classList.contains('done')) {
-      headerClon.insertBefore(headerMenu, headerClon.children[1])
-      headerMenu.classList.add('done');
-      wrapper.style.paddingBottom = '57px';
-    }
-  } else {
-    if (headerMenu.classList.contains('done')) {
-      headerOriginal.insertBefore(headerMenu, headerOriginal.children[0])
-      headerMenu.classList.remove('done');
-      wrapper.style.paddingBottom = '';
-    }
-  }
-
-  if (viewport_width <= 440) {
-    if (!profilButton.classList.contains('done')) {
-      headerMenu.insertBefore(profilButton, headerMenu.children[headerMenu.children.length])
-      profilButton.classList.add('done');
-    }
-  } else {
-    if (profilButton.classList.contains('done')) {
-      headerWrapper.insertBefore(profilButton, headerWrapper.children[headerWrapper.children.length - 1])
-      profilButton.classList.remove('done');
-    }
-  }
-})
-
 
 function linkActive(selector, url) {
   for (let i = 0; i < selector.length; i++) {
