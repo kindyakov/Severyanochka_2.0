@@ -1,22 +1,10 @@
 import JustValidate from "just-validate";
-import {
-  Validated,
-  validate_login, validate_created_product,
-  validate_created_brand, validate_created_type
-} from "./validate.js";
+import { Validated } from "./validate.js";
 import { login } from "../user/login.js";
 import { created_product } from "../products/created_product.js";
 import { created_brand } from "../brands/brand.js";
 import { created_type } from "../types/type.js";
-import { renderTypes } from "../admin/render.js";
-
-const modalH = `<div class="modal" >
-<div class="modal__body">
-  <div class="modal__content">
-    <div class="modal__close"></div>
-  </div>
-</div>
-</div>`
+import { renderBrands, renderTypes } from "../admin/render.js";
 
 class Modal {
   constructor({ id, name, btnActive, btnClose, closeArea, title,
@@ -114,7 +102,6 @@ class Modal {
       },
     });
 
-    if (this.form.dataset.validate === 'login') validate_login(this.validateForm, this.form)
     const validateForm = Validated[`${this.form.dataset.validate}`]
     validateForm(this.validateForm, `#${this.idModal}`)
 
@@ -138,7 +125,11 @@ class Modal {
           }
           if (this.form.dataset.validate === 'created-brand') {
             created_brand(this.form)
-              .then(data => location.reload())
+              .then(data => {
+                const tbody = document.querySelector('#brand .admin__table_tbody')
+                renderBrands(tbody, data, false)
+                this.close()
+              })
               .catch((err) => console.log(err))
           }
           if (this.form.dataset.validate === 'created-type') {

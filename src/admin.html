@@ -32,11 +32,11 @@
           </svg>
         </div>
         <ul class="admin__aside-list">
-          <th class="admin__aside-th"><a href="#products" class="admin__aside-tab">Продукты</a></th>
-          <th class="admin__aside-th"><a href="#brand" class="admin__aside-tab">Бренды</a></th>
-          <th class="admin__aside-th"><a href="#type" class="admin__aside-tab">Типы</a></th>
-          <th class="admin__aside-th"><a href="#feedback" class="admin__aside-tab">Отзывы</a></th>
-          <th class="admin__aside-th"><a href="#user" class="admin__aside-tab">Пользователи</a></th>
+          <li class="admin__aside-th"><a href="#products" class="admin__aside-tab">Продукты</a></li>
+          <li class="admin__aside-th"><a href="#brand" class="admin__aside-tab">Бренды</a></li>
+          <li class="admin__aside-th"><a href="#type" class="admin__aside-tab">Типы</a></li>
+          <li class="admin__aside-th"><a href="#feedback" class="admin__aside-tab">Отзывы</a></li>
+          <li class="admin__aside-th"><a href="#user" class="admin__aside-tab">Пользователи</a></li>
         </ul>
       </aside>
       <main class="admin__main">
@@ -46,6 +46,7 @@
             <input type="text" name="search" id="search_product" class="admin__menu_input _input" autocomplete="off"
               placeholder="поиск">
             <div>
+              <button class="admin__menu_button delete" data-delete="product">Удалить</button>
               <button class="admin__menu_button update" data-updata="product">Изменить</button>
               <button class="admin__menu_button add" data-create="product">Добавить продукт</button>
             </div>
@@ -55,7 +56,7 @@
               <thead class="admin__table_thead">
                 <tr class="admin__table_row">
                   <th class="admin__table_title _checkbox"><label for="checkbox_product_th"><input type="checkbox"
-                        name="checkbox" id="checkbox_product_th" class="admin__table_checkbox"></label></th>
+                        name="checkbox" id="checkbox_product_th" class="admin__table_checkbox _all"></label></th>
                   <th class="admin__table_title _active" data-sorting="id">id<span class="_icon-arrow"></span></th>
                   <th class="admin__table_title" data-sorting="name">Название<span class="_icon-arrow"></span></th>
                   <th class="admin__table_title" data-sorting="price">Цена<span class="_icon-arrow"></span>
@@ -88,6 +89,7 @@
             <input type="text" name="search" id="search_brand" class="admin__menu_input _input" autocomplete="off"
               placeholder="поиск">
             <div>
+              <button class="admin__menu_button delete" data-delete="brand">Удалить</button>
               <button class="admin__menu_button update" data-updata="brand">Изменить</button>
               <button class="admin__menu_button add" data-create="brand">Добавить бренд</button>
             </div>
@@ -97,7 +99,7 @@
               <thead class="admin__table_thead">
                 <tr class="admin__table_row">
                   <th class="admin__table_title _checkbox"><label for="checkbox_brand_th"><input type="checkbox"
-                        name="checkbox" id="checkbox_brand_th" class="admin__table_checkbox"></label></th>
+                        name="checkbox" id="checkbox_brand_th" class="admin__table_checkbox _all"></label></th>
                   <th class="admin__table_title _active" data-sorting="id">id<span class="_icon-arrow"></span></th>
                   <th class="admin__table_title" data-sorting="img">Изображение<span class="_icon-arrow"></span></th>
                   <th class="admin__table_title" data-sorting="name">Название<span class="_icon-arrow"></span></th>
@@ -120,6 +122,7 @@
             <input type="text" name="search" id="search_type" class="admin__menu_input _input" autocomplete="off"
               placeholder="поиск">
             <div>
+              <button class="admin__menu_button delete" data-delete="brand">Удалить</button>
               <button class="admin__menu_button update" data-updata="type">Изменить</button>
               <button class="admin__menu_button add" data-create="type">Добавить тип</button>
             </div>
@@ -129,8 +132,9 @@
               <thead class="admin__table_thead">
                 <tr class="admin__table_row">
                   <th class="admin__table_title _checkbox"><label for="checkbox_type_th"><input type="checkbox"
-                        name="checkbox" id="checkbox_type_th" class="admin__table_checkbox"></label></th>
+                        name="checkbox" id="checkbox_type_th" class="admin__table_checkbox _all"></label></th>
                   <th class="admin__table_title _active" data-sorting="id">id<span class="_icon-arrow"></span></th>
+                  <th class="admin__table_title" data-sorting="img">Изображение<span class="_icon-arrow"></span></th>
                   <th class="admin__table_title" data-sorting="name">Название<span class="_icon-arrow"></span></th>
                   <th class="admin__table_title" data-sorting="createdAt">Дата создания<span class="_icon-arrow"></span>
                   </th>
@@ -156,7 +160,7 @@
               <thead class="admin__table_thead">
                 <tr class="admin__table_row">
                   <th class="admin__table_title _checkbox"><label for="checkbox_fedback_th"><input type="checkbox"
-                        name="checkbox" id="checkbox_fedback_th" class="admin__table_checkbox"></label></th>
+                        name="checkbox" id="checkbox_fedback_th" class="admin__table_checkbox _all"></label></th>
                   <th class="admin__table_title" data-sorting="id">id</th>
                   <th class="admin__table_title" data-sorting="name_user">Имя покупателя<span
                       class="_icon-arrow"></span>
@@ -187,6 +191,7 @@
             <input type="text" name="search" id="search_user" class="admin__menu_input _input" autocomplete="off"
               placeholder="поиск">
             <div>
+              <button class="admin__menu_button delete" data-delete="brand">Удалить</button>
               <button class="admin__menu_button update" data-updata="user">Изменить</button>
               <button class="admin__menu_button add" data-create="user">Добавить пользователи</button>
             </div>
@@ -196,7 +201,7 @@
               <thead class="admin__table_thead">
                 <tr class="admin__table_row">
                   <th class="admin__table_title _checkbox"><label for="checkbox_user_th"><input type="checkbox"
-                        name="checkbox" id="checkbox_user_th" class="admin__table_checkbox"></label></th>
+                        name="checkbox" id="checkbox_user_th" class="admin__table_checkbox _all"></label></th>
                   <th class="admin__table_title _active" data-sorting="id">id<span class="_icon-arrow"></span></th>
                   <th class="admin__table_title" data-sorting="phone">Телефон<span class="_icon-arrow"></span></th>
                   <th class="admin__table_title" data-sorting="name">Имя<span class="_icon-arrow"></span></th>

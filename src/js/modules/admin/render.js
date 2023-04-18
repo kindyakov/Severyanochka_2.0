@@ -8,9 +8,9 @@ export const renderProducts = (insert, arrayData, isArr = true) => {
   if (isArr) {
     insert.innerHTML = ''
     arrayData.forEach(data => {
-      insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row">
+      insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row tr_${data.id}">
     <td class="admin__table_cell _checkbox"><label for="checkbox_product_td_${data.id}"><input type="checkbox"
-          name="checkbox" id="checkbox_product_td_${data.id}" class="admin__table_checkbox"></label></td>
+          name="checkbox" id="checkbox_product_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
     <td class="admin__table_cell">${data.id}</td>
     <td class="admin__table_cell" data-updata="name">${data.name}</td>
     <td class="admin__table_cell" data-updata="price">${data.price} ₽</td>
@@ -26,9 +26,9 @@ export const renderProducts = (insert, arrayData, isArr = true) => {
     });
   } else {
     const data = arrayData;
-    insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row">
+    insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row tr_${data.id}">
     <td class="admin__table_cell _checkbox"><label for="checkbox_product_td_${data.id}"><input type="checkbox"
-          name="checkbox" id="checkbox_product_td_${data.id}" class="admin__table_checkbox"></label></td>
+          name="checkbox" id="checkbox_product_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
     <td class="admin__table_cell">${data.id}</td>
     <td class="admin__table_cell" data-updata="name">${data.name}</td>
     <td class="admin__table_cell" data-updata="price">${data.price} ₽</td>
@@ -50,9 +50,9 @@ export const renderBrands = (insert, arrayData, isArr = true) => {
   if (isArr) {
     insert.innerHTML = ''
     arrayData.forEach(data => {
-      insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row">
+      insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row tr_${data.id}">
     <td class="admin__table_cell _checkbox"><label for="checkbox_brand_td_${data.id}"><input type="checkbox"
-          name="checkbox" id="checkbox_brand_td_${data.id}" class="admin__table_checkbox"></label></td>
+          name="checkbox" id="checkbox_brand_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
     <td class="admin__table_cell">${data.id}</td>
     <td class="admin__table_cell" data-updata="img">${data.img}</td>
     <td class="admin__table_cell" data-updata="name">${data.name}</td>
@@ -62,9 +62,9 @@ export const renderBrands = (insert, arrayData, isArr = true) => {
     });
   } else {
     const data = arrayData;
-    insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row">
+    insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row tr_${data.id}">
     <td class="admin__table_cell _checkbox"><label for="checkbox_brand_td_${data.id}"><input type="checkbox"
-          name="checkbox" id="checkbox_brand_td_${data.id}" class="admin__table_checkbox"></label></td>
+          name="checkbox" id="checkbox_brand_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
     <td class="admin__table_cell">${data.id}</td>
     <td class="admin__table_cell" data-updata="img">${data.img}</td>
     <td class="admin__table_cell" data-updata="name">${data.name}</td>
@@ -79,10 +79,11 @@ export const renderTypes = (insert, arrayData, isArr = true) => {
   if (isArr) {
     insert.innerHTML = ''
     arrayData.forEach(data => {
-      insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row">
+      insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row tr_${data.id}">
       <td class="admin__table_cell _checkbox"><label for="checkbox_type_td_${data.id}"><input type="checkbox"
-            name="checkbox" id="checkbox_type_td_${data.id}" class="admin__table_checkbox"></label></td>
+            name="checkbox" id="checkbox_type_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
       <td class="admin__table_cell">${data.id}</td>
+      <td class="admin__table_cell" data-updata="img">${data.img}</td>
       <td class="admin__table_cell" data-updata="name">${data.name}</td>
       <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
       <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
@@ -90,10 +91,11 @@ export const renderTypes = (insert, arrayData, isArr = true) => {
     });
   } else {
     const data = arrayData;
-    insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row">
+    insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row tr_${data.id}">
       <td class="admin__table_cell _checkbox"><label for="checkbox_type_td_${data.id}"><input type="checkbox"
-            name="checkbox" id="checkbox_type_td_${data.id}" class="admin__table_checkbox"></label></td>
+            name="checkbox" id="checkbox_type_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
       <td class="admin__table_cell">${data.id}</td>
+      <td class="admin__table_cell" data-updata="img">${data.img}</td>
       <td class="admin__table_cell" data-updata="name">${data.name}</td>
       <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
       <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
@@ -101,13 +103,13 @@ export const renderTypes = (insert, arrayData, isArr = true) => {
   }
 }
 
-export const renderFeedback = (insert, arrayData) => {
+const renderFeedback = (insert, arrayData) => {
   if (!arrayData) return
   insert.innerHTML = ''
   arrayData.forEach(data => {
-    insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row">
+    insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row tr_${data.id}">
     <td class="admin__table_cell _checkbox"><label for="checkbox_feedback_td_${data.id}"><input type="checkbox"
-          name="checkbox" id="checkbox_feedback_td_${data.id}" class="admin__table_checkbox"></label></td>
+          name="checkbox" id="checkbox_feedback_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
     <td class="admin__table_cell">${data.id}</td>
     <td class="admin__table_cell">${data.user_name}</td>
     <td class="admin__table_cell">${data.feedback}</td>
@@ -124,9 +126,9 @@ export const renderUsers = (insert, arrayData, isArr = true) => {
   if (isArr) {
     insert.innerHTML = ''
     arrayData.forEach(data => {
-      insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row">
+      insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row tr_${data.id}">
     <td class="admin__table_cell _checkbox"><label for="checkbox_user_td_${data.id}"><input type="checkbox"
-          name="checkbox" id="checkbox_user_td_${data.id}" class="admin__table_checkbox"></label></td>
+          name="checkbox" id="checkbox_user_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
     <td class="admin__table_cell">${data.id}</td>
     <td class="admin__table_cell">${data.phone}</td>
     <td class="admin__table_cell">${data.name}</td>
@@ -144,9 +146,9 @@ export const renderUsers = (insert, arrayData, isArr = true) => {
     });
   } else {
     const data = arrayData;
-    insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row">
+    insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row tr_${data.id}">
     <td class="admin__table_cell _checkbox"><label for="checkbox_user_td_${data.id}"><input type="checkbox"
-          name="checkbox" id="checkbox_user_td_${data.id}" class="admin__table_checkbox"></label></td>
+          name="checkbox" id="checkbox_user_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
     <td class="admin__table_cell">${data.id}</td>
     <td class="admin__table_cell">${data.phone}</td>
     <td class="admin__table_cell">${data.name}</td>
@@ -163,3 +165,13 @@ export const renderUsers = (insert, arrayData, isArr = true) => {
   </tr>`)
   }
 }
+
+const RenderTable = {
+  products: renderProducts,
+  brand: renderBrands,
+  type: renderTypes,
+  feedback: renderFeedback,
+  user: renderUsers
+}
+
+export default RenderTable

@@ -1,16 +1,4 @@
-import Modal from "../modal/Modal.js";
-
-export const createdProduct = new Modal({
-  // speed: 400,
-  id: 'created-product',
-  btnActive: '[data-create="product"]',
-  name: '.modal',
-  title: 'Продукт',
-  btnClose: '.modal__close',
-  closeArea: 'modal__body',
-  insertHTML: document.querySelector('.admin'),
-  formH: `
-<form action="#" class="modal__form" data-validate="created-product">
+const product = `<form class="modal__form" data-validate="product">
 <div class="modal__flex">
   <div class="admin-column">
     <div class="modal__wrapper-input">
@@ -60,26 +48,15 @@ export const createdProduct = new Modal({
 <button class="admin__button">Добавить</button>
 </form>
 `
-})
-
-export const createdBrand = new Modal({
-  id: 'created-brand',
-  btnActive: '[data-create="brand"]',
-  name: '.modal',
-  title: 'Бренд',
-  btnClose: '.modal__close',
-  closeArea: 'modal__body',
-  insertHTML: document.querySelector('.admin'),
-  formH: `
-<form action="#" class="modal__form" data-validate="created-brand">
+const brand = `<form class="modal__form" data-validate="brand">
 <div class="modal__flex">
   <div class="admin-column">
     <div class="modal__wrapper-input">
       <label class="admin__label">Изображение</label>
-      <label class="admin__label-file" for="img-product">
-        <input type="file" accept="image/*" id="img-product" multiple name="img" class="admin__input _input">
+      <label class="admin__label-file" for="img-brand">
+        <input type="file" accept="image/*" id="img-brand" name="img" class="admin__input _input">
         <span class="file-name"></span>
-        <label class="file-download" for="img-product">Загрузить</label>
+        <label class="file-download" for="img-brand">Загрузить</label>
       </label>
     </div>
     <div class="admin__wrapper-img"></div>
@@ -92,21 +69,21 @@ export const createdBrand = new Modal({
   </div>
 </div>
 <button class="admin__button">Добавить</button>
-</form>
-`
-})
+</form>`
 
-export const createdType = new Modal({
-  id: 'created-type',
-  btnActive: '[data-create="type"]',
-  name: '.modal',
-  title: 'Тип',
-  btnClose: '.modal__close',
-  closeArea: 'modal__body',
-  insertHTML: document.querySelector('.admin'),
-  formH: `
-<form action="#" class="modal__form" data-validate="created-type">
+const type = `<form class="modal__form" data-validate="type">
 <div class="modal__flex">
+<div class="admin-column">
+    <div class="modal__wrapper-input">
+      <label class="admin__label">Изображение</label>
+      <label class="admin__label-file" for="img-type">
+        <input type="file" accept="image/*" id="img-type" name="img" class="admin__input _input">
+        <span class="file-name"></span>
+        <label class="file-download" for="img-type">Загрузить</label>
+      </label>
+    </div>
+    <div class="admin__wrapper-img"></div>
+  </div>
   <div class="admin-column">
     <div class="modal__wrapper-input">
       <label class="admin__label">Название</label>
@@ -115,6 +92,10 @@ export const createdType = new Modal({
   </div>
 </div>
 <button class="admin__button">Добавить</button>
-</form>
-`
-})
+</form>`
+
+const forms = {
+  product, brand, type
+}
+
+export default forms

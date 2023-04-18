@@ -1,5 +1,5 @@
 export const validate_login = (validate, form) => {
-  const tell = form.querySelector('input[type="tel"]')
+  const tell = document.querySelector(`${form} input[type="tel"]`)
   new Inputmask('+7 (999) 999-99-99').mask(tell);
 
   validate
@@ -130,6 +130,20 @@ export const validate_created_brand = (validate, id) => {
 
 export const validate_created_type = (validate, id) => {
   validate
+    .addField(`div${id} input[name="img"]`, [
+      {
+        rule: 'files',
+        value: {
+          files: {
+            extensions: ['jpeg', 'jpg', 'png', 'webp', 'jfif'],
+            // maxSize: 20000,
+            // minSize: 10000,
+            types: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/jfif',],
+          },
+        },
+        errorMessage: 'Изображение'
+      },
+    ])
     .addField(`div${id} input[name="name"]`, [
       {
         rule: 'required',
@@ -139,8 +153,8 @@ export const validate_created_type = (validate, id) => {
 }
 
 export const Validated = {
-  'login': validate_login,
-  'created-product': validate_created_product,
-  'created-brand': validate_created_brand,
-  'created-type': validate_created_type,
+  login: validate_login,
+  product: validate_created_product,
+  brand: validate_created_brand,
+  type: validate_created_type,
 }

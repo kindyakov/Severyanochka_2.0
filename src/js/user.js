@@ -7,6 +7,7 @@ import { formLoginH } from "./modules/modal/html.js";
 
 export const modal = new Modal({
   // speed: 400,
+  id: 'login',
   btnActive: '.profil-btn',
   name: '.modal',
   title: 'Вход',
