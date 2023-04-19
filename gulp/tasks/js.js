@@ -1,4 +1,5 @@
-import webpack from 'webpack-stream'
+import webpackStream from 'webpack-stream'
+import webpack from 'webpack'
 
 const js = () => {
   return (
@@ -9,12 +10,25 @@ const js = () => {
           message: 'Error: <%= error.message %>'
         })
       ))
-      .pipe(webpack({
+      .pipe(webpackStream({
         mode: app.isBuild ? 'production' : 'development',
+        // entry: ['@babel/polyfill', 'D:\Developer\Severyanochka_2.0/src/js/*.js'],
         output: {
           filename: 'main.min.js'
-        }
-      }))
+        },
+        module: {
+          rules: [
+            {
+              test: /\.(js)$/,
+              exclude: /(node_modules)/,
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env'],
+              },
+            }
+          ]
+        },
+      }), webpack)
       .pipe(app.gulp.dest(app.path.build.js))
       .pipe(app.plugins.browserSync.stream())
   )

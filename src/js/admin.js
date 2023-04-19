@@ -1,11 +1,11 @@
 import jwt_decode from "jwt-decode";
 import { url } from "./modules/API.js";
-import { createdProduct, createdBrand, createdType } from "./modules/admin/modal_create.js";
+import { createdProduct, createdBrand, createdType } from "./modules/admin/modal/modal_create.js";
 import getData from "./modules/admin/get_data.js";
 import RenderTable from "./modules/admin/render.js";
 import PreviewImg from "./modules/modal/previewImg.js";
 import checkbox from "./modules/admin/table.js";
-import forms from "./modules/admin/forms.js";
+// const __dirname = path.resolve()
 
 if (location.pathname === '/admin.html') {
   if (!localStorage.getItem('token')) location.assign(`${url}/index.html`)
@@ -45,7 +45,7 @@ if (location.pathname === '/admin.html') {
 
       getData(id)
         .then(data => {
-          const Renders = RenderTable[`${id}`]
+          const Renders = RenderTable[id]
           Renders(tbody, data)
         })
         .then(() => checkbox(table))

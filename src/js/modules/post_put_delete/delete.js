@@ -1,15 +1,15 @@
 import { $auth } from "../API.js"
 import { errorRes } from "../user/res/errorRes.js"
 
-export const created_product = async (form) => {
+const Delete = async (rout, id, modal) => {
   const token = localStorage.getItem('token')
   if (!token) return
   try {
-    let formData = new FormData(form)
-
-    const { data } = await $auth.post('api/product', formData)
+    const { data } = await $auth.delete(`api/${rout}`, id)
     return data
   } catch (error) {
-    errorRes(error, form)
+    errorRes(error, modal)
   }
 }
+
+export default Delete

@@ -9,7 +9,6 @@ const PreviewImg = (id, multiple = false) => {
   const input__img = modal.querySelector('input[type="file"]');
   const fileName = modal.querySelector('.file-name')
   let files, file
-
   function labelSccess() {
     admin__labelFile.classList.add('success')
     admin__labelFile.classList.remove('invalide')

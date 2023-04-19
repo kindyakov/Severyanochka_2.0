@@ -1,5 +1,5 @@
-export const errorRes = (error, forma, isClear = true) => {
-  const span = document.querySelector('.error-res')
+export const errorRes = (error, modal, isClear = true) => {
+  const span = modal.querySelector('.error-res')
   if (error.response) {
     span.textContent = error.response.data.message;
     span.classList.add('err')
@@ -10,7 +10,7 @@ export const errorRes = (error, forma, isClear = true) => {
     behavior: "smooth"
   });
   if (isClear) {
-    forma.querySelectorAll('input').forEach(input => {
+    modal.querySelectorAll('input').forEach(input => {
       input.value = ''
       input.classList.remove('just-validate-success-field')
     })

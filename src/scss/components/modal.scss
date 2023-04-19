@@ -277,6 +277,19 @@
 		}
 	}
 
+	&__wrapper-button {
+		display: flex;
+		align-items: center;
+		margin: 25px auto 0 auto;
+		column-gap: 15px;
+		justify-content: center;
+		button {
+			margin: 0;
+			width: auto;
+			padding: 15px 25px;
+		}
+	}
+
 	&__button {
 		text-align: center;
 		color: $white;
@@ -292,5 +305,17 @@
 		&:hover {
 			background-color: $green;
 		}
+		&.cancel {
+			background-color: rgba(65, 65, 65, 0.5);
+			border: 2px solid #414141;
+			&:hover {
+				background-color: #414141;
+			}
+		}
+	}
+	&__info-text {
+		text-align: center;
+		font-size: 18px;
+		color: #dd8e74;
 	}
 }

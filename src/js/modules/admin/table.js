@@ -1,5 +1,5 @@
-import $update from "./update.js";
-import $delete from "./delete.js";
+import handlerBtnUpdate from "./handlerBtnUpdate.js";
+import handlerBtnDelete from "./handlerBtnDelete.js";
 
 const table = (tables) => {
   const table = tables;
@@ -47,8 +47,8 @@ const table = (tables) => {
   }
 
   window.addEventListener('click', hendlerClick)
-  btnUpdate.addEventListener('click', e => $update(e, activeCheckbox))
-  btnDelete.addEventListener('click', e => $delete)
+  btnUpdate.addEventListener('click', e => handlerBtnUpdate(e, activeCheckbox))
+  btnDelete.addEventListener('click', e => handlerBtnDelete(e, checkbox))
 }
 
 export default table

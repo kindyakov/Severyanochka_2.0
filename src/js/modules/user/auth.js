@@ -7,8 +7,6 @@ const profile__img = document.querySelector('.profile__img')
 const profile_name = document.querySelector('.profile__name')
 
 export const getProfile = async () => {
-  const token = localStorage.getItem('token')
-  if (!token) return
   try {
     const { data } = await $auth.get('api/user/profile')
     return data

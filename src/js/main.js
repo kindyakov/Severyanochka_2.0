@@ -1,4 +1,6 @@
 import checkSupportWebP from "./modules/checkSupportWebP.js"
+checkSupportWebP()
+
 // import UpdateNav from "./modules/header/UpdateNav.js";
 // import Request from "./modules/Request.js";
 // import CreateSliderCards from "./modules/slider/CreateSliderCards.js";
@@ -9,7 +11,7 @@ import checkSupportWebP from "./modules/checkSupportWebP.js"
 // import CardsFromLS from "./modules/card/CardsFromLS.js";
 // import LoadingSwiper from "./modules/slider/LoadingSwiper.js";
 
-checkSupportWebP()
+
 
 // const [cardsBasket, cardsFavourites] = CardsFromLS();
 

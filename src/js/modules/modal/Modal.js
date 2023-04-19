@@ -1,10 +1,8 @@
 import JustValidate from "just-validate";
 import { Validated } from "./validate.js";
 import { login } from "../user/login.js";
-import { created_product } from "../products/created_product.js";
-import { created_brand } from "../brands/brand.js";
-import { created_type } from "../types/type.js";
-import { renderBrands, renderTypes } from "../admin/render.js";
+import Create from "../post_put_delete/create.js";
+import RenderTable from "../admin/render.js";
 
 class Modal {
   constructor({ id, name, btnActive, btnClose, closeArea, title,
@@ -113,33 +111,19 @@ class Modal {
       this.validateForm.revalidate()
         .then(isValid => {
           if (!isValid) return
-          if (this.form.dataset.validate === 'login') {
+          const formName = this.form.dataset.validate
+          const renderTable = RenderTable[formName]
+          const tbody = document.querySelector(`#${formName} .admin__table_tbody`)
+
+          if (formName === 'login') {
             login(this.form)
               .then(isLogin => isLogin && window.location.reload())
               .catch((err) => console.log(err))
-          }
-          if (this.form.dataset.validate === 'created-product') {
-            created_product(this.form)
-              .then(data => location.reload())
-              .catch((err) => console.log(err))
-          }
-          if (this.form.dataset.validate === 'created-brand') {
-            created_brand(this.form)
-              .then(data => {
-                const tbody = document.querySelector('#brand .admin__table_tbody')
-                renderBrands(tbody, data, false)
-                this.close()
-              })
-              .catch((err) => console.log(err))
-          }
-          if (this.form.dataset.validate === 'created-type') {
-            created_type(this.form)
-              .then(data => {
-                const tbody = document.querySelector('#type .admin__table_tbody')
-                renderTypes(tbody, data, false)
-                this.close()
-              })
-              .catch((err) => console.log(err))
+          } else {
+            Create(this.form, formName, this.modal)
+              .then(data => renderTable(tbody, data, false))
+              .then(() => this.close())
+              .catch(err => console.log(err))
           }
         })
     })

@@ -12,14 +12,14 @@ export const renderProducts = (insert, arrayData, isArr = true) => {
     <td class="admin__table_cell _checkbox"><label for="checkbox_product_td_${data.id}"><input type="checkbox"
           name="checkbox" id="checkbox_product_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
     <td class="admin__table_cell">${data.id}</td>
-    <td class="admin__table_cell" data-updata="name">${data.name}</td>
-    <td class="admin__table_cell" data-updata="price">${data.price} ₽</td>
-    <td class="admin__table_cell" data-updata="price_card">${data.price_card} ₽</td>
+    <td class="admin__table_cell" data-update="name">${data.name}</td>
+    <td class="admin__table_cell" data-update="price">${data.price} ₽</td>
+    <td class="admin__table_cell" data-update="price_card">${data.price_card} ₽</td>
     <td class="admin__table_cell">${data.rating}</td>
-    <td class="admin__table_cell" data-updata="img">${data.img}</td>
-    <td class="admin__table_cell" data-updata="discount">${data.discount}%</td>
-    <td class="admin__table_cell" data-updata="type">${data.type}</td>
-    <td class="admin__table_cell" data-updata="brand">${data.brand}</td>
+    <td class="admin__table_cell" data-update="img">${data.img}</td>
+    <td class="admin__table_cell" data-update="discount">${data.discount}%</td>
+    <td class="admin__table_cell" data-update="type">${data.type}</td>
+    <td class="admin__table_cell" data-update="brand">${data.brand}</td>
     <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
     <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
   </tr>`)
@@ -30,14 +30,14 @@ export const renderProducts = (insert, arrayData, isArr = true) => {
     <td class="admin__table_cell _checkbox"><label for="checkbox_product_td_${data.id}"><input type="checkbox"
           name="checkbox" id="checkbox_product_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
     <td class="admin__table_cell">${data.id}</td>
-    <td class="admin__table_cell" data-updata="name">${data.name}</td>
-    <td class="admin__table_cell" data-updata="price">${data.price} ₽</td>
-    <td class="admin__table_cell" data-updata="price_card">${data.price_card} ₽</td>
+    <td class="admin__table_cell" data-update="name">${data.name}</td>
+    <td class="admin__table_cell" data-update="price">${data.price} ₽</td>
+    <td class="admin__table_cell" data-update="price_card">${data.price_card} ₽</td>
     <td class="admin__table_cell">${data.rating}</td>
-    <td class="admin__table_cell" data-updata="img">${data.img}</td>
-    <td class="admin__table_cell" data-updata="discount">${data.discount}%</td>
-    <td class="admin__table_cell" data-updata="type">${data.type}</td>
-    <td class="admin__table_cell" data-updata="brand">${data.brand}</td>
+    <td class="admin__table_cell" data-update="img">${data.img}</td>
+    <td class="admin__table_cell" data-update="discount">${data.discount}%</td>
+    <td class="admin__table_cell" data-update="type">${data.type}</td>
+    <td class="admin__table_cell" data-update="brand">${data.brand}</td>
     <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
     <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
   </tr>`)
@@ -54,8 +54,8 @@ export const renderBrands = (insert, arrayData, isArr = true) => {
     <td class="admin__table_cell _checkbox"><label for="checkbox_brand_td_${data.id}"><input type="checkbox"
           name="checkbox" id="checkbox_brand_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
     <td class="admin__table_cell">${data.id}</td>
-    <td class="admin__table_cell" data-updata="img">${data.img}</td>
-    <td class="admin__table_cell" data-updata="name">${data.name}</td>
+    <td class="admin__table_cell" data-update="img">${data.img}</td>
+    <td class="admin__table_cell" data-update="name">${data.name}</td>
     <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
     <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
   </tr>`)
@@ -66,8 +66,8 @@ export const renderBrands = (insert, arrayData, isArr = true) => {
     <td class="admin__table_cell _checkbox"><label for="checkbox_brand_td_${data.id}"><input type="checkbox"
           name="checkbox" id="checkbox_brand_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
     <td class="admin__table_cell">${data.id}</td>
-    <td class="admin__table_cell" data-updata="img">${data.img}</td>
-    <td class="admin__table_cell" data-updata="name">${data.name}</td>
+    <td class="admin__table_cell" data-update="img">${data.img}</td>
+    <td class="admin__table_cell" data-update="name">${data.name}</td>
     <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
     <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
   </tr>`)
@@ -83,8 +83,8 @@ export const renderTypes = (insert, arrayData, isArr = true) => {
       <td class="admin__table_cell _checkbox"><label for="checkbox_type_td_${data.id}"><input type="checkbox"
             name="checkbox" id="checkbox_type_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
       <td class="admin__table_cell">${data.id}</td>
-      <td class="admin__table_cell" data-updata="img">${data.img}</td>
-      <td class="admin__table_cell" data-updata="name">${data.name}</td>
+      <td class="admin__table_cell" data-update="img">${data.img}</td>
+      <td class="admin__table_cell" data-update="name">${data.name}</td>
       <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
       <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
     </tr>`)
@@ -95,8 +95,8 @@ export const renderTypes = (insert, arrayData, isArr = true) => {
       <td class="admin__table_cell _checkbox"><label for="checkbox_type_td_${data.id}"><input type="checkbox"
             name="checkbox" id="checkbox_type_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
       <td class="admin__table_cell">${data.id}</td>
-      <td class="admin__table_cell" data-updata="img">${data.img}</td>
-      <td class="admin__table_cell" data-updata="name">${data.name}</td>
+      <td class="admin__table_cell" data-update="img">${data.img}</td>
+      <td class="admin__table_cell" data-update="name">${data.name}</td>
       <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
       <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
     </tr>`)

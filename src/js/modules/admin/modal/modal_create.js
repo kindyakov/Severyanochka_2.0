@@ -1,5 +1,5 @@
-import Modal from "../modal/Modal.js";
-import forms from "./forms.js";
+import Modal from "../../modal/Modal.js";
+import forms from "../forms.js";
 
 export const createdProduct = new Modal({
   // speed: 400,
