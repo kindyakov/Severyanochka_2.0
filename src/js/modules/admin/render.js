@@ -7,7 +7,7 @@ export const renderProducts = (insert, arrayData, isArr = true) => {
   if (!arrayData || arrayData.length < 1) return
   if (isArr) {
     insert.innerHTML = ''
-    arrayData.forEach(data => {
+    arrayData.rows.forEach(data => {
       insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row tr_${data.id}">
     <td class="admin__table_cell _checkbox"><label for="checkbox_product_td_${data.id}"><input type="checkbox"
           name="checkbox" id="checkbox_product_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
@@ -167,7 +167,7 @@ export const renderUsers = (insert, arrayData, isArr = true) => {
 }
 
 const RenderTable = {
-  products: renderProducts,
+  product: renderProducts,
   brand: renderBrands,
   type: renderTypes,
   feedback: renderFeedback,

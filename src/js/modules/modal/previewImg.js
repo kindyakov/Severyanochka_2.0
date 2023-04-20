@@ -52,7 +52,7 @@ const PreviewImg = (id, multiple = false) => {
 
       if (multiple) {
         files = files.filter(file => file.name !== name)
-        input__img.value = files
+        // input__img.value = files
 
         if (files.length == 0) {
           fileName.textContent = ''

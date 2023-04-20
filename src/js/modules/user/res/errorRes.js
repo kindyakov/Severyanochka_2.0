@@ -3,7 +3,7 @@ export const errorRes = (error, modal, isClear = true) => {
   if (error.response) {
     span.textContent = error.response.data.message;
     span.classList.add('err')
-  }
+  } else return
   setTimeout(() => span.classList.remove('err'), 3000)
   window.scrollTo({
     top: 0,

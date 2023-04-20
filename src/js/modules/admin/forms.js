@@ -29,19 +29,16 @@ const product = `<form class="modal__form" data-validate="product">
     <div class="modal__wrapper-input">
       <label class="admin__label">Тип</label>
       <select class="admin__select" name="typeId">
-        <option value="1">Молоко, яйца, сыр</option>
       </select>
     </div>
     <div class="modal__wrapper-input">
       <label class="admin__label">Бренд</label>
       <select class="admin__select" name="brandId">
-        <option value="1">Простоквашино</option>
-        <option value="DANON">DANON</option>
       </select>
     </div>
     <div class="modal__wrapper-input">
       <label class="admin__label">Скидка</label>
-      <input type="text" name="discount" class="admin__input _input">
+      <input type="text" name="discount" class="admin__input _input" value="0">
     </div>
   </div>
 </div>

@@ -6,7 +6,7 @@ const productHtml = () => {
   <h3 class="modal__title">Продукты</h3>
   <span class="error-res"></span>
 </div>
-<form class="modal__form">
+<form class="modal__form" data-validate="product">
   <div class="modal__flex">
     <div class="admin-column">
       <p class="admin__info-text">Вы дествительно хотите удалить выбранные продукты</p>
@@ -23,7 +23,7 @@ const brandHtml = () => {
   <h3 class="modal__title">Бренды</h3>
   <span class="error-res"></span>
 </div>
-<form class="modal__form">
+<form class="modal__form" data-validate="brand">
   <div class="modal__flex">
     <div class="admin-column">
       <p class="admin__info-text">Вы дествительно хотите удалить выбранные бренды</p>
@@ -40,7 +40,7 @@ const typeHtml = () => {
   <h3 class="modal__title">Типы</h3>
   <span class="error-res"></span>
 </div>
-<form class="modal__form">
+<form class="modal__form" data-validate="type">
   <div class="modal__flex">
     <div class="admin-column">
       <p class="admin__info-text">Вы дествительно хотите удалить выбранные типы</p>
@@ -57,7 +57,7 @@ const userHtml = () => {
   <h3 class="modal__title">Пользователи</h3>
   <span class="error-res"></span>
 </div>
-<form class="modal__form">
+<form class="modal__form" data-validate="user">
   <div class="modal__flex">
     <div class="admin-column">
       <p class="admin__info-text">Вы дествительно хотите удалить выбранных пользователей</p>
@@ -82,7 +82,7 @@ const modalDelete = (key, id) => {
   const formHtml = html[KEY]
   const admin = document.querySelector('.admin')
   const modalId = 'modal-delete'
-  let modal, content, form
+  let modal, content, form, formName
 
   const hendleClick = (e) => {
     if (e.target.classList.contains('modal__body') || e.target.closest('.modal__close')) {
@@ -95,6 +95,8 @@ const modalDelete = (key, id) => {
     content = modal.querySelector('.modal__content')
     content.insertAdjacentHTML('beforeend', formHtml())
     form = modal.querySelector('.modal__form')
+    formName = form.dataset.validate
+
     setTimeout(() => open(), 10)
     submit()
   }
@@ -111,9 +113,15 @@ const modalDelete = (key, id) => {
   }
   const remove = () => modal.remove()
   const submit = () => {
-    form.addEventListener('submit', () => {
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      if (e.submitter.classList.contains('cancel')) {
+        close()
+        return
+      }
+
       Delete(formName, ID, modal)
-        .then(data => location.reload())
+        .then(data => console.log(data))
         .catch(err => console.log(err))
     })
   }

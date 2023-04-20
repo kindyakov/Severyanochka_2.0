@@ -5,7 +5,7 @@ import getData from "./modules/admin/get_data.js";
 import RenderTable from "./modules/admin/render.js";
 import PreviewImg from "./modules/modal/previewImg.js";
 import checkbox from "./modules/admin/table.js";
-// const __dirname = path.resolve()
+import modalProduct from "./modules/admin/modal/modal_product.js";
 
 if (location.pathname === '/admin.html') {
   if (!localStorage.getItem('token')) location.assign(`${url}/index.html`)
@@ -15,6 +15,7 @@ if (location.pathname === '/admin.html') {
   createdProduct.createModal()
   createdProduct.validate()
   PreviewImg('#created-product', true)
+  modalProduct('#created-product')
 
   createdBrand.createModal()
   createdBrand.validate()
@@ -78,8 +79,8 @@ if (location.pathname === '/admin.html') {
       table.classList.add('_active')
 
     } else {
-      document.querySelector('.admin__aside-tab[href="#products"]').classList.add('_active')
-      const table = document.querySelector('#products')
+      document.querySelector('.admin__aside-tab[href="#product"]').classList.add('_active')
+      const table = document.querySelector('#product')
       table.classList.add('_active')
       checkbox(table)
     }
