@@ -18,8 +18,8 @@ export const renderProducts = (insert, arrayData, isArr = true) => {
     <td class="admin__table_cell">${data.rating}</td>
     <td class="admin__table_cell" data-update="img">${data.img}</td>
     <td class="admin__table_cell" data-update="discount">${data.discount}%</td>
-    <td class="admin__table_cell" data-update="type">${data.type}</td>
-    <td class="admin__table_cell" data-update="brand">${data.brand}</td>
+    <td class="admin__table_cell" data-update="type">${data.typeId}</td>
+    <td class="admin__table_cell" data-update="brand">${data.brandId}</td>
     <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
     <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
   </tr>`)
@@ -36,8 +36,8 @@ export const renderProducts = (insert, arrayData, isArr = true) => {
     <td class="admin__table_cell">${data.rating}</td>
     <td class="admin__table_cell" data-update="img">${data.img}</td>
     <td class="admin__table_cell" data-update="discount">${data.discount}%</td>
-    <td class="admin__table_cell" data-update="type">${data.type}</td>
-    <td class="admin__table_cell" data-update="brand">${data.brand}</td>
+    <td class="admin__table_cell" data-update="type">${data.typeId}</td>
+    <td class="admin__table_cell" data-update="brand">${data.brandId}</td>
     <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
     <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
   </tr>`)

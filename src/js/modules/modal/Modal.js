@@ -1,8 +1,6 @@
 import JustValidate from "just-validate";
 import { Validated } from "./validate.js";
 import { login } from "../user/login.js";
-import Create from "../post_put_delete/create.js";
-import RenderTable from "../admin/render.js";
 
 class Modal {
   constructor({ id, name, btnActive, btnClose, closeArea, title,
@@ -112,18 +110,11 @@ class Modal {
         .then(isValid => {
           if (!isValid) return
           const formName = this.form.dataset.validate
-          const renderTable = RenderTable[formName]
-          const tbody = document.querySelector(`#${formName} .admin__table_tbody`)
 
           if (formName === 'login') {
             login(this.form)
               .then(isLogin => isLogin && window.location.reload())
               .catch((err) => console.log(err))
-          } else {
-            Create(this.form, formName, this.modal)
-              .then(data => renderTable(tbody, data, false))
-              .then(() => this.close())
-              .catch(err => console.log(err))
           }
         })
     })

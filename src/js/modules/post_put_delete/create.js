@@ -1,9 +1,15 @@
 import { $auth } from "../API.js"
 import { errorRes } from "../user/res/errorRes.js"
 
-const Create = async (form, rout, modal) => {
+const Create = async (form, rout, modal, characteristicData) => {
   try {
     let formData = new FormData(form)
+    if (rout === 'product') {
+      formData.delete('title')
+      formData.delete('description')
+      formData.append('characteristic', JSON.stringify(characteristicData))
+    }
+
     const { data } = await $auth.post(`api/${rout}`, formData)
     return data
   } catch (error) {

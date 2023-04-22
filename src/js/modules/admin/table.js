@@ -1,8 +1,10 @@
 import handlerBtnUpdate from "./handlerBtnUpdate.js";
 import handlerBtnDelete from "./handlerBtnDelete.js";
+import modalCreate from "./modal/modal_create.js";
 
 const table = (tables) => {
   const table = tables;
+  const btnCreate = table.querySelector('.admin__menu_button.create')
   const btnUpdate = table.querySelector('.admin__menu_button.update')
   const btnDelete = table.querySelector('.admin__menu_button.delete')
   const all_checkbox = table.querySelector('.admin__table_checkbox._all')
@@ -47,8 +49,15 @@ const table = (tables) => {
   }
 
   window.addEventListener('click', hendlerClick)
-  btnUpdate.addEventListener('click', e => handlerBtnUpdate(e, activeCheckbox))
-  btnDelete.addEventListener('click', e => handlerBtnDelete(e, checkbox))
+  if (btnUpdate) {
+    btnUpdate.addEventListener('click', e => handlerBtnUpdate(e, activeCheckbox))
+  }
+  if (btnDelete) {
+    btnDelete.addEventListener('click', e => handlerBtnDelete(e, checkbox))
+  }
+  if (btnCreate) {
+    btnCreate.addEventListener('click', e => modalCreate(e))
+  }
 }
 
 export default table

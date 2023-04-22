@@ -131,7 +131,7 @@
 			border-radius: 8px;
 			transition: 0.2s;
 
-			&.add {
+			&.create {
 				background-color: rgba(56, 138, 170, 0.6);
 				border: 2px solid #388aaa;
 				&:hover {
@@ -171,6 +171,7 @@
 		overflow: auto;
 		width: 100%;
 		max-height: 600px;
+		padding-bottom: 4px;
 		&::-webkit-scrollbar {
 			height: 6px;
 			width: 6px;

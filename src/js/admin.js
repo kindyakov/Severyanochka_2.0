@@ -4,26 +4,24 @@ import { createdProduct, createdBrand, createdType } from "./modules/admin/modal
 import getData from "./modules/admin/get_data.js";
 import RenderTable from "./modules/admin/render.js";
 import PreviewImg from "./modules/modal/previewImg.js";
-import checkbox from "./modules/admin/table.js";
-import modalProduct from "./modules/admin/modal/modal_product.js";
+import Table from "./modules/admin/table.js";
 
 if (location.pathname === '/admin.html') {
   if (!localStorage.getItem('token')) location.assign(`${url}/index.html`)
   const t_User = jwt_decode(localStorage.getItem('token'))
   if (t_User.role !== 'admin') location.assign(`${url}/index.html`)
 
-  createdProduct.createModal()
-  createdProduct.validate()
-  PreviewImg('#created-product', true)
-  modalProduct('#created-product')
+  // createdProduct.createModal()
+  // createdProduct.validate()
+  // PreviewImg('#created-product', true)
 
-  createdBrand.createModal()
-  createdBrand.validate()
-  PreviewImg('#created-brand')
+  // createdBrand.createModal()
+  // createdBrand.validate()
+  // PreviewImg('#created-brand')
 
-  createdType.createModal()
-  createdType.validate()
-  PreviewImg('#created-type')
+  // createdType.createModal()
+  // createdType.validate()
+  // PreviewImg('#created-type')
   // ======================================================
   //  =====================================================
 
@@ -44,13 +42,12 @@ if (location.pathname === '/admin.html') {
       target.classList.add('_active')
       table.classList.add('_active')
 
+      const Renders = RenderTable[id]
+
       getData(id)
-        .then(data => {
-          const Renders = RenderTable[id]
-          Renders(tbody, data)
-        })
-        .then(() => checkbox(table))
-        .catch(error => console.error(error))
+        .then(data => Renders(tbody, data))
+        .then(() => Table(table))
+        .catch(error => console.log(error))
     }
   }
 
@@ -72,17 +69,28 @@ if (location.pathname === '/admin.html') {
           return res
         })
         .then(data => Renders(tbody, data))
-        .then(() => checkbox(table))
-        .catch(error => console.error(error))
+        .then(() => Table(table))
+        .catch(error => console.log(error))
 
       tab.classList.add('_active')
       table.classList.add('_active')
 
     } else {
-      document.querySelector('.admin__aside-tab[href="#product"]').classList.add('_active')
-      const table = document.querySelector('#product')
+      const productID = 'product'
+      document.querySelector(`.admin__aside-tab[href="#${productID}"]`).classList.add('_active')
+      const table = document.querySelector(`#${productID}`)
       table.classList.add('_active')
-      checkbox(table)
+      const tbody = table.querySelector('.admin__table_tbody')
+      const Renders = RenderTable[productID]
+
+      getData(productID)
+        .then(res => {
+          if (!res) throw new Error(`Ошибка: пусто`)
+          return res
+        })
+        .then(data => Renders(tbody, data))
+        .then(() => Table(table))
+        .catch(error => console.error(error))
     }
   }
 
