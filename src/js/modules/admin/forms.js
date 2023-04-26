@@ -1,4 +1,9 @@
-const product = `<form class="modal__form" data-validate="product">
+const product = `
+<div class="modal-wrapper-title">
+    <h3 class="modal__title">Продукт</h3>
+    <span class="error-res"></span>
+  </div>
+<form class="modal__form" data-validate="product">
 <div class="modal__flex">
   <div class="admin-column">
     <div class="modal__wrapper-input">
@@ -57,8 +62,14 @@ const product = `<form class="modal__form" data-validate="product">
 </div>
 <button class="admin__button">Добавить</button>
 </form>
-`
-const brand = `<form class="modal__form" data-validate="brand">
+<div class="modal__close"></div>`
+
+const brand = `
+<div class="modal-wrapper-title">
+    <h3 class="modal__title">Бренд</h3>
+    <span class="error-res"></span>
+  </div>
+<form class="modal__form" data-validate="brand">
 <div class="modal__flex">
   <div class="admin-column">
     <div class="modal__wrapper-input">
@@ -79,9 +90,15 @@ const brand = `<form class="modal__form" data-validate="brand">
   </div>
 </div>
 <button class="admin__button">Добавить</button>
-</form>`
+</form>
+<div class="modal__close"></div>`
 
-const type = `<form class="modal__form" data-validate="type">
+const type = `
+<div class="modal-wrapper-title">
+    <h3 class="modal__title">Тип</h3>
+    <span class="error-res"></span>
+  </div>
+<form class="modal__form" data-validate="type">
 <div class="modal__flex">
 <div class="admin-column">
     <div class="modal__wrapper-input">
@@ -102,7 +119,8 @@ const type = `<form class="modal__form" data-validate="type">
   </div>
 </div>
 <button class="admin__button">Добавить</button>
-</form>`
+</form>
+<div class="modal__close"></div>`
 
 const forms = {
   product, brand, type

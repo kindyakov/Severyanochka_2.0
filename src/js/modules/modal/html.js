@@ -21,7 +21,7 @@ export const modalHtml = (id) => {
   return `<div class="modal" id="${id}">
   <div class="modal__body">
     <div class="modal__content">
-      <div class="modal__close"></div>
+
     </div>
   </div>
   </div>`

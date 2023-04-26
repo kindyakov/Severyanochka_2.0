@@ -170,8 +170,8 @@
 	&__wrapper-table {
 		overflow: auto;
 		width: 100%;
-		max-height: 600px;
 		padding-bottom: 4px;
+		max-height: 550px;
 		&::-webkit-scrollbar {
 			height: 6px;
 			width: 6px;
@@ -278,4 +278,34 @@
 			cursor: pointer;
 		}
 	}
+	&__wrapper-pagination {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		margin-top: -20px;
+	}
+
+	&__pagination {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		height: 30px;
+		border-radius: 8px;
+		border: 2px solid $orange;
+		background-color: $light_orange;
+		transition: 0.2s;
+		color: $white;
+		cursor: pointer;
+		&:hover {
+			color: $orange;
+		}
+		&._active {
+			background-color: $orange;
+			color: $white;
+		}
+	}
+
+	// &__pagination-count {
+	// }
 }

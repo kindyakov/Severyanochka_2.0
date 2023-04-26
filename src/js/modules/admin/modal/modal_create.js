@@ -25,6 +25,7 @@ const modalCreate = (e) => {
     admin.insertAdjacentHTML('beforeend', modalHtml(modalId))
     modal = document.querySelector(`#${modalId}`)
     content = modal.querySelector('.modal__content')
+    content.innerHTML = ''
     content.insertAdjacentHTML('beforeend', formHtml)
 
     filling() // 1 выполняется после создания
@@ -88,13 +89,13 @@ const modalCreate = (e) => {
           if (key === 'product') {
             characteristic()
             Create(form, formName, modal, characteristicArr)
-              .then(data => renderTable(tbody, data, false))
-              .then(() => close())
+              .then(data => data && location.reload())
+              // .then(() => close())
               .catch(err => console.log(err))
           } else {
             Create(form, formName, modal)
-              .then(data => renderTable(tbody, data, false))
-              .then(() => close())
+              .then(data => data && location.reload())
+              // .then(() => close())
               .catch(err => console.log(err))
           }
         })

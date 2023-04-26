@@ -1,9 +1,15 @@
 import { $auth } from "../API.js"
 import { errorRes } from "../user/res/errorRes.js"
 
-export const Update = async (form, rout, id, modal) => {
+export const Update = async (form, rout, id, modal, characteristicData) => {
   try {
     let formData = new FormData(form)
+    if (rout === 'product') {
+      formData.delete('title')
+      formData.delete('description')
+      if (formData.get('price_card').length === 0) formData.delete('price_card')
+      formData.append('characteristic', JSON.stringify(characteristicData))
+    }
     const { data } = await $auth.put(`api/${rout}/${id}`, formData)
     return data
   } catch (error) {

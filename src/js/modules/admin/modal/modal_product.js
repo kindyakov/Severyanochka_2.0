@@ -1,4 +1,4 @@
-import getData from "../get_data.js";
+import { getDataAll } from "../get_data.js";
 
 const characteristicHtml = () => {
   return `<div class="admin__characteristic-row">
@@ -27,14 +27,13 @@ const modalProduct = (modalId) => {
     });
   }
 
-  getData('type')
+  getDataAll('type')
     .then(data => renderSelect(selectType, data))
     .catch(err => console.log(err))
 
-  getData('brand')
+  getDataAll('brand')
     .then(data => renderSelect(selectBrand, data))
     .catch(err => console.log(err))
-
 
   btmCharacteristic.addEventListener('click', () => {
     wrapperCharacteristic.insertAdjacentHTML('beforeend', characteristicHtml())

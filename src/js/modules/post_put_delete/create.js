@@ -7,6 +7,7 @@ const Create = async (form, rout, modal, characteristicData) => {
     if (rout === 'product') {
       formData.delete('title')
       formData.delete('description')
+      if (formData.get('price_card').length === 0) formData.delete('price_card')
       formData.append('characteristic', JSON.stringify(characteristicData))
     }
 

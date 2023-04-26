@@ -4,7 +4,7 @@ export const errorRes = (error, modal, isClear = true) => {
     span.textContent = error.response.data.message;
     span.classList.add('err')
   } else return
-  setTimeout(() => span.classList.remove('err'), 3000)
+  setTimeout(() => span.classList.remove('err'), 5000)
   window.scrollTo({
     top: 0,
     behavior: "smooth"

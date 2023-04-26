@@ -1,28 +1,15 @@
 import jwt_decode from "jwt-decode";
 import { url } from "./modules/API.js";
-import { createdProduct, createdBrand, createdType } from "./modules/admin/modal/modal_create.js";
-import getData from "./modules/admin/get_data.js";
+import { getData } from "./modules/admin/get_data.js";
 import RenderTable from "./modules/admin/render.js";
-import PreviewImg from "./modules/modal/previewImg.js";
 import Table from "./modules/admin/table.js";
+import pagination from "./modules/admin/pagination.js";
 
 if (location.pathname === '/admin.html') {
   if (!localStorage.getItem('token')) location.assign(`${url}/index.html`)
   const t_User = jwt_decode(localStorage.getItem('token'))
   if (t_User.role !== 'admin') location.assign(`${url}/index.html`)
 
-  // createdProduct.createModal()
-  // createdProduct.validate()
-  // PreviewImg('#created-product', true)
-
-  // createdBrand.createModal()
-  // createdBrand.validate()
-  // PreviewImg('#created-brand')
-
-  // createdType.createModal()
-  // createdType.validate()
-  // PreviewImg('#created-type')
-  // ======================================================
   //  =====================================================
 
   const admin__aside = document.querySelector('.admin__aside')
@@ -35,63 +22,52 @@ if (location.pathname === '/admin.html') {
       admin__content.forEach(content => content.classList.remove('_active'))
       admin__asideTab.forEach(tab => tab.classList.remove('_active'))
 
-      const id = target.getAttribute('href').replace('#', '')
-      const table = document.querySelector(`#${id}`)
+      const id = target.getAttribute('href')
+      const table = document.querySelector(`${id}`)
       const tbody = table.querySelector('.admin__table_tbody')
-
+      const rout = id.replace('#', '')
+      let page = 1, limit = 15
       target.classList.add('_active')
       table.classList.add('_active')
 
-      const Renders = RenderTable[id]
+      const Renders = RenderTable[rout]
 
-      getData(id)
-        .then(data => Renders(tbody, data))
-        .then(() => Table(table))
+      getData({ rout, page, limit })
+        .then(data => {
+          Renders(tbody, data)
+          pagination(data.count, rout)
+          Table(table)
+        })
         .catch(error => console.log(error))
     }
   }
 
   const asideLoad = e => {
-    if (location.hash) {
-      admin__content.forEach(content => content.classList.remove('_active'))
-      admin__asideTab.forEach(tab => tab.classList.remove('_active'))
+    admin__content.forEach(content => content.classList.remove('_active'))
+    admin__asideTab.forEach(tab => tab.classList.remove('_active'))
 
-      const id = location.hash
-      const [tab] = Array.from(admin__asideTab).filter(tab => tab.getAttribute('href') === id)
-      const table = document.querySelector(`${id}`)
-      const tbody = table.querySelector('.admin__table_tbody')
-      const rout = id.replace('#', '')
-      const Renders = RenderTable[`${rout}`]
+    const id = location.hash || '#product'
+    const [tab] = Array.from(admin__asideTab).filter(tab => tab.getAttribute('href') === id)
+    const table = document.querySelector(`${id}`)
+    const tbody = table.querySelector('.admin__table_tbody')
+    const rout = id.replace('#', '')
+    const Renders = RenderTable[rout]
+    let page = 1, limit = 15
 
-      getData(rout)
-        .then(res => {
-          if (!res) throw new Error(`Ошибка: пусто`)
-          return res
-        })
-        .then(data => Renders(tbody, data))
-        .then(() => Table(table))
-        .catch(error => console.log(error))
+    getData({ rout, page, limit })
+      .then(res => {
+        if (!res) throw new Error(`Ошибка: пусто`)
+        return res
+      })
+      .then(data => {
+        Renders(tbody, data)
+        Table(table)
+        pagination(data.count, rout)
+      })
+      .catch(error => console.log(error))
 
-      tab.classList.add('_active')
-      table.classList.add('_active')
-
-    } else {
-      const productID = 'product'
-      document.querySelector(`.admin__aside-tab[href="#${productID}"]`).classList.add('_active')
-      const table = document.querySelector(`#${productID}`)
-      table.classList.add('_active')
-      const tbody = table.querySelector('.admin__table_tbody')
-      const Renders = RenderTable[productID]
-
-      getData(productID)
-        .then(res => {
-          if (!res) throw new Error(`Ошибка: пусто`)
-          return res
-        })
-        .then(data => Renders(tbody, data))
-        .then(() => Table(table))
-        .catch(error => console.error(error))
-    }
+    tab.classList.add('_active')
+    table.classList.add('_active')
   }
 
   admin__aside.addEventListener('click', asideClick)

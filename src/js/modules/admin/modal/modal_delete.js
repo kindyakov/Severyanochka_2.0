@@ -121,8 +121,9 @@ const modalDelete = (key, id) => {
       }
 
       Delete(formName, ID, modal)
-        .then(data => console.log(data))
-        .catch(err => console.log(err))
+        .then(data => location.reload())
+        .catch(err => console.log(err)
+        )
     })
   }
   create()
