@@ -7,6 +7,7 @@ const profile__img = document.querySelector('.profile__img')
 const profile_name = document.querySelector('.profile__name')
 
 export const getProfile = async () => {
+  if (!localStorage.getItem('token')) return
   try {
     const { data } = await $auth.get('api/user/profile')
     return data
@@ -22,8 +23,8 @@ export const HeaderProfile = (user) => {
   if (user.img) profile__img.src = `${apiImgUsers}${user.img}`
 
   const t_User = jwt_decode(localStorage.getItem('token'))
+  const header__admin = document.querySelector('.header__admin')
   if (t_User.role === 'admin') {
-    const header__admin = document.querySelector('.header__admin')
     header__admin.classList.remove('disable')
   } else header__admin.classList.add('disable')
 }

@@ -21,7 +21,7 @@
     </header>
     <div class="admin__wrapper">
       <aside class="admin__aside">
-        <div class="admin__aside-menu">
+        <!-- <div class="admin__aside-menu">
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             viewBox="0 0 284.929 284.929" xml:space="preserve">
             <path d="M282.082,195.285L149.028,62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665,0.953-6.567,2.856L2.856,195.285
@@ -30,7 +30,7 @@
 		c2.478,0,4.668-0.951,6.57-2.848l14.274-14.277c1.902-1.902,2.847-4.093,2.847-6.566
 		C284.929,199.378,283.984,197.188,282.082,195.285z" />
           </svg>
-        </div>
+        </div> -->
         <ul class="admin__aside-list">
           <li class="admin__aside-th"><a href="#product" class="admin__aside-tab">Продукты</a></li>
           <li class="admin__aside-th"><a href="#brand" class="admin__aside-tab">Бренды</a></li>
@@ -160,6 +160,10 @@
           <div class="admin__menu">
             <input type="text" name="search" id="search_fedback" class="admin__menu_input _input" autocomplete="off"
               placeholder="поиск">
+            <div>
+              <button class="admin__menu_button delete" data-delete="type">Удалить</button>
+              <button class="admin__menu_button update" data-updata="type">Редактировать</button>
+            </div>
           </div>
           <div class="admin__wrapper-table">
             <table class="admin__table">
@@ -246,5 +250,6 @@
 </body>
 <script src="assets/libs/inputMask/inputmask.min.js"></script>
 <script src="js/main.min.js"></script>
+<script src="js/admin.min.js"></script>
 
 </html>

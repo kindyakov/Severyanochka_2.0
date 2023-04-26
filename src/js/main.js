@@ -10,9 +10,9 @@ checkSupportWebP()
 // import { AddDisableCardBtn, AddDisableCardLike } from "./modules/AddDisableClass.js";
 // import CardsFromLS from "./modules/card/CardsFromLS.js";
 // import LoadingSwiper from "./modules/slider/LoadingSwiper.js";
+import user from "./modules/user/user.js";
 
-
-
+user()
 // const [cardsBasket, cardsFavourites] = CardsFromLS();
 
 const catalogMenu = document.querySelector('.header-catalog');
@@ -221,4 +221,3 @@ window.addEventListener('scroll', function () {
     btnUp.classList.remove('visible');
   }
 })
-

@@ -12,9 +12,15 @@ const js = () => {
       ))
       .pipe(webpackStream({
         mode: app.isBuild ? 'production' : 'development',
-        // entry: ['@babel/polyfill', 'D:\Developer\Severyanochka_2.0/src/js/*.js'],
+        entry: {
+          main: 'D:/Developer/Severyanochka_2.0/src/js/main.js',
+          admin: 'D:/Developer/Severyanochka_2.0/src/js/admin.js',
+          catalog_product: 'D:/Developer/Severyanochka_2.0/src/js/catalog_product.js',
+          profile: 'D:/Developer/Severyanochka_2.0/src/js/profile.js',
+          registration: 'D:/Developer/Severyanochka_2.0/src/js/registration.js',
+        },
         output: {
-          filename: 'main.min.js'
+          filename: '[name].min.js'
         },
         module: {
           rules: [

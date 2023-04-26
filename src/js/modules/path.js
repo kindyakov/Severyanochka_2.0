@@ -1,4 +1,3 @@
-// import path from 'path'
 // const url = window.location.origin + '/severyanochka';
 const url = window.location.origin;
 const urlImg = url + '/img';

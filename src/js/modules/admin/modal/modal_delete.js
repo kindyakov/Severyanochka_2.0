@@ -93,7 +93,7 @@ const modalDelete = (key, id) => {
     admin.insertAdjacentHTML('beforeend', modalHtml(modalId))
     modal = document.querySelector(`#${modalId}`)
     content = modal.querySelector('.modal__content')
-    content.insertAdjacentHTML('beforeend', formHtml())
+    content.innerHTML = formHtml()
     form = modal.querySelector('.modal__form')
     formName = form.dataset.validate
 

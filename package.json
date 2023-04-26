@@ -57,5 +57,10 @@
     "inputmask": "^5.0.8",
     "just-validate": "^4.2.0",
     "jwt-decode": "^3.1.2"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
   }
 }

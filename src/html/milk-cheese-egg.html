@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
-@@include("components/catalog/_head_catalog.html", {"title":"Замороженные продукты"})
+@@include("components/catalog/_head_catalog.html", {"title":"Молоко, сыр, яйцо"})
 
 <body>
   <div class="wrapper">
@@ -14,11 +14,11 @@
               <span class="main__navigation-span _icon-arrow"></span>
               <a href="catalog.html" class="main__navigation-link">Каталог</a>
               <span class="main__navigation-span _icon-arrow"></span>
-              <a href="catalog__frozen-foods.html" class="main__navigation-link">Замороженные продукты</a>
+              <a href="catalog__milk-cheese-egg.html" class="main__navigation-link">Молоко, сыр, яйцо</a>
             </ul>
           </nav>
           <div class="main__content">
-            <h1 class="main__title-catalog">Замороженные продукты</h1>
+            <h1 class="main__title-catalog">Молоко, сыр, яйцо</h1>
             <div class="catalog-products">
               <div class="catalog-products__quick-filters">
                 <button class="catalog-products__quick-filters_btn catalog-products-btn"">Товары нашего производства</button>
@@ -28,7 +28,7 @@
 
               <div class=" catalog-products__body">
                   @@include("components/aside.html",{})
-                  @@include("components/products_content.html",{})
+                  @@include("components/products_content.html",{id: '1'})
               </div>
 
             </div>

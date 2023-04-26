@@ -43,7 +43,7 @@ const product = `
     </div>
     <div class="modal__wrapper-input">
       <label class="admin__label">Скидка</label>
-      <input type="text" name="discount" class="admin__input _input" value="0">
+      <input type="text" name="discount" class="admin__input _input">
     </div>
   </div>
 </div>

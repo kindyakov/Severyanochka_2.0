@@ -18,7 +18,7 @@ if (location.pathname === '/admin.html') {
 
   const asideClick = e => {
     const target = e.target
-    if (target.closest('.admin__aside-tab')) {
+    if (target.closest('.admin__aside-tab:not(._active)')) {
       admin__content.forEach(content => content.classList.remove('_active'))
       admin__asideTab.forEach(tab => tab.classList.remove('_active'))
 

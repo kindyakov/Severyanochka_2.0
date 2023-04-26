@@ -15,7 +15,10 @@ const table = (tables) => {
     if (target.checked === true) checkbox.forEach(input => input.checked = true)
     else checkbox.forEach(input => input.checked = false);
   }
-
+  const disableBtn = () => {
+    btnDelete.classList.remove('_active')
+    btnUpdate.classList.remove('_active')
+  }
   const activeBtn = () => {
     let checkedInput = []
 
@@ -25,8 +28,7 @@ const table = (tables) => {
         btnDelete.classList.add('_active')
         if (checkedInput.length === checkbox.length) all_checkbox.checked = true
       } else if (checkedInput.length === 0) {
-        btnDelete.classList.remove('_active')
-        btnUpdate.classList.remove('_active')
+        disableBtn()
         table.querySelector('.admin__table_checkbox._all').checked = false;
       }
       if (checkedInput.length === 1) {
@@ -45,6 +47,9 @@ const table = (tables) => {
     if (target.closest('.admin__table_checkbox._all')) {
       main_checkbox(target)
       activeBtn()
+    }
+    if (target.closest('.admin__aside-tab')) {
+      disableBtn()
     }
   }
 

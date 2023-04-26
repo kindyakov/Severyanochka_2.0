@@ -25,8 +25,7 @@ const modalCreate = (e) => {
     admin.insertAdjacentHTML('beforeend', modalHtml(modalId))
     modal = document.querySelector(`#${modalId}`)
     content = modal.querySelector('.modal__content')
-    content.innerHTML = ''
-    content.insertAdjacentHTML('beforeend', formHtml)
+    content.innerHTML = formHtml
 
     filling() // 1 выполняется после создания
 
@@ -57,7 +56,9 @@ const modalCreate = (e) => {
     modal.classList.remove('active');
     setTimeout(() => remove(), 200)
   }
-  const remove = () => modal.remove()
+  const remove = () => {
+    modal.remove()
+  }
   const validate = () => {
     validateForm = new JustValidate(`div#${modalId} .modal__form`, {
       errorLabelStyle: {

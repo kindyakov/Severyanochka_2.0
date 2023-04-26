@@ -1,5 +1,5 @@
 import { $user } from "../API.js";
-import { modal } from "../../user.js";
+import { modalLogin } from "./user.js";
 import { errorRes } from "./res/errorRes.js";
 
 export const registration = async (forma, phone) => {
@@ -15,7 +15,7 @@ export const registration = async (forma, phone) => {
     const res = await $user.post('api/user/register', data)
 
     document.cookie = `user=Bearer ${res.data.token}`;
-    modal.call()
+    modalLogin.call()
     forma.querySelectorAll('input').forEach(input => input.value = '')
   } catch (error) {
     errorRes(error, forma)
