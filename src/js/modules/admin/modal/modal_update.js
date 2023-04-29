@@ -96,11 +96,11 @@ const modalUpdate = (key, id) => {
           if (rout === 'product') {
             characteristic()
             Update(form, rout, ID, modal, characteristicArr)
-              .then(data => location.reload())
+              .then(data => data && location.reload())
               .catch(err => console.log(err))
           } else {
             Update(form, rout, ID, modal)
-              .then(data => location.reload())
+              .then(data => data && location.reload())
               .catch(err => console.log(err))
           }
         })

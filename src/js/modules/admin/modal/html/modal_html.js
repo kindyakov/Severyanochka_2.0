@@ -82,7 +82,7 @@ const productHtml = (data) => {
     </div>
     <div class="modal__wrapper-input">
       <label class="admin__label">Скидка</label>
-      <input type="text" name="discount" class="admin__input _input" value="${data.discount}">
+      <input type="text" name="discount" class="admin__input _input" value="${data.discount ? data.discount : ''}">
     </div>
   </div>
 </div>

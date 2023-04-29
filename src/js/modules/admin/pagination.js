@@ -36,9 +36,10 @@ const pagination = (counts, id) => {
     if (e.target.closest('.admin__pagination:not(._active)')) {
       const pagin = e.target.closest('.admin__pagination')
       page = pagin.dataset.page
+      const params = { page, limit }
       activePagin(page)
 
-      getData({ rout, page, limit })
+      getData({ rout, params })
         .then(data => Renders(tbody, data))
         .catch(err => console.log(err))
     }

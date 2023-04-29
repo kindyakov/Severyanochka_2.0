@@ -1,8 +1,8 @@
 import { $auth } from "../API.js"
 
-export const getData = async ({ rout, page, limit }) => {
+export const getData = async ({ rout, params }) => {
   try {
-    const { data } = await $auth.get(`api/${rout}`, { params: { page, limit } })
+    const { data } = await $auth.get(`api/${rout}`, { params })
     return data
   } catch (error) {
     console.log(error)

@@ -7,7 +7,8 @@ export const Update = async (form, rout, id, modal, characteristicData) => {
     if (rout === 'product') {
       formData.delete('title')
       formData.delete('description')
-      if (formData.get('price_card').length === 0) formData.delete('price_card')
+      if (!formData.get('price_card')) formData.delete('price_card')
+      if (!formData.get('discount')) formData.delete('discount')
       formData.append('characteristic', JSON.stringify(characteristicData))
     }
     const { data } = await $auth.put(`api/${rout}/${id}`, formData)

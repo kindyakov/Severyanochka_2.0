@@ -26,13 +26,15 @@ if (location.pathname === '/admin.html') {
       const table = document.querySelector(`${id}`)
       const tbody = table.querySelector('.admin__table_tbody')
       const rout = id.replace('#', '')
-      let page = 1, limit = 15
+      let params = {
+        page: 1, limit: 15
+      }
       target.classList.add('_active')
       table.classList.add('_active')
 
       const Renders = RenderTable[rout]
 
-      getData({ rout, page, limit })
+      getData({ rout, params })
         .then(data => {
           Renders(tbody, data)
           pagination(data.count, rout)
@@ -52,9 +54,11 @@ if (location.pathname === '/admin.html') {
     const tbody = table.querySelector('.admin__table_tbody')
     const rout = id.replace('#', '')
     const Renders = RenderTable[rout]
-    let page = 1, limit = 15
+    let params = {
+      page: 1, limit: 15
+    }
 
-    getData({ rout, page, limit })
+    getData({ rout, params })
       .then(res => {
         if (!res) throw new Error(`Ошибка: пусто`)
         return res
