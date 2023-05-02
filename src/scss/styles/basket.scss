@@ -37,6 +37,7 @@
 		height: 24px;
 		background-color: $white;
 		border-radius: 4px;
+		outline: 1px solid #bfbfbf;
 	}
 
 	&__settings-check {
@@ -73,9 +74,14 @@
 		padding: 4px 8px;
 		border-radius: 4px;
 		border: 1px solid transparent;
-
+		opacity: 0;
+		visibility: hidden;
 		&:hover {
 			border: 1px solid $orange;
+		}
+		&._active {
+			opacity: 1;
+			visibility: visible;
 		}
 	}
 
@@ -327,7 +333,6 @@
 	&__card-counter-price-old {
 		color: #8f8f8f;
 		font-size: 16px;
-		text-decoration: line-through;
 		white-space: nowrap;
 	}
 

@@ -1,6 +1,6 @@
 import { productHtml, productError } from "./productHtml.js"
 import { getData } from "../admin/get_data.js"
-import { Get } from "./request/request.js"
+import { Get } from "./request.js"
 import rating from "./rating.js"
 import { disableCardButtons } from "./disableCardBtn.js"
 

@@ -1,4 +1,5 @@
 import checkSupportWebP from "./modules/checkSupportWebP.js"
+import headerData from "./modules/headerData.js";
 checkSupportWebP()
 
 // import UpdateNav from "./modules/header/UpdateNav.js";
@@ -13,6 +14,7 @@ checkSupportWebP()
 import user from "./modules/user/user.js";
 
 user()
+headerData()
 // const [cardsBasket, cardsFavourites] = CardsFromLS();
 
 const catalogMenu = document.querySelector('.header-catalog');

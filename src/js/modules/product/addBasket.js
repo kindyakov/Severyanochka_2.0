@@ -1,12 +1,16 @@
-import { Add } from "./request/request.js"
+import { Add } from "./request.js"
 
 const addBasket = () => {
+  const menuBasket = document.querySelector('#menu-basket')
   const rout = 'basket'
   let productId
+  let counterProduct = Number(menuBasket.textContent)
 
   const disableBtn = e => {
     const cardBtn = e.target.closest('.card-button.add-btn')
     cardBtn.classList.add('disable')
+    ++counterProduct
+    menuBasket.textContent = counterProduct
   }
 
   const clickBtn = e => {

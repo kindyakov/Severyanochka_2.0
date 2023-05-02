@@ -1,12 +1,16 @@
-import { Add } from "./request/request.js"
+import { Add } from "./request.js"
 
 const addFavourite = () => {
+  const menuFavourite = document.querySelector('#menu-favourites')
   const rout = 'favourite'
   let productId
+  let counterProduct = Number(menuFavourite.textContent)
 
   const disableBtn = e => {
     const cardBtn = e.target.closest('.card-like')
     cardBtn.classList.add('disable')
+    ++counterProduct
+    menuFavourite.textContent = counterProduct
   }
 
   const clickBtn = e => {

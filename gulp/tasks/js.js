@@ -13,11 +13,13 @@ const js = () => {
       .pipe(webpackStream({
         mode: app.isBuild ? 'production' : 'development',
         entry: {
-          main: 'D:/Developer/Severyanochka_2.0/src/js/main.js',
-          admin: 'D:/Developer/Severyanochka_2.0/src/js/admin.js',
-          catalog_product: 'D:/Developer/Severyanochka_2.0/src/js/catalog_product.js',
-          profile: 'D:/Developer/Severyanochka_2.0/src/js/profile.js',
-          registration: 'D:/Developer/Severyanochka_2.0/src/js/registration.js',
+          main: `./src/js/main.js`,
+          admin: `./src/js/admin.js`,
+          catalog_product: `./src/js/catalog_product.js`,
+          profile: `./src/js/profile.js`,
+          registration: `./src/js/registration.js`,
+          basket: `./src/js/basket.js`,
+          favourite: `./src/js/favourite.js`,
         },
         output: {
           filename: '[name].min.js'

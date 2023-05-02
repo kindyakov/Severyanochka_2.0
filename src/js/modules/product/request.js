@@ -1,4 +1,4 @@
-import { $auth } from "../../API.js";
+import { $auth } from "../API.js";
 
 export const Add = async (rout, productId) => {
   try {
@@ -18,9 +18,9 @@ export const Get = async (rout) => {
   }
 }
 
-export const Delete = async (rout) => {
+export const Delete = async (rout, idArr) => {
   try {
-    const { data } = await $auth.get(`api/${rout}`)
+    const { data } = await $auth.post(`api/${rout}/delete`, idArr)
     return data
   } catch (error) {
     console.log(error)
