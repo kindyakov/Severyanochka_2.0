@@ -5,7 +5,6 @@ import { Get } from "./modules/product/request.js";
 const titleQuantity = document.querySelector('.main-title-quantity')
 const favourites__content = document.querySelector('#favourites-products')
 
-
 favourites__content.innerHTML = loader()
 
 const renderProduct = (products) => {
