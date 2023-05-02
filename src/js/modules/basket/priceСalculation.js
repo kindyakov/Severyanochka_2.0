@@ -15,6 +15,7 @@ const priceCalculation = products => {
 
   asidePriceResult.textContent = priceResult + ' ₽'
   basketInfo.innerHTML = ''
+  basketInfo.removeAttribute('style')
 
   products.forEach(product => {
     basketInfo.insertAdjacentHTML('beforeend', infoProductHtml(product))

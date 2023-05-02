@@ -1,12 +1,14 @@
 import deleteAnimate from './deleteAnimate.js'
 import { Delete } from '../product/request.js'
 import NumberProducts from './numberProducts.js'
+import loader from '../loader.js'
 
 const deleteProduct = () => {
   const titleQuantity = document.querySelector('.main-title-quantity')
   const menuBasket = document.querySelector('#menu-basket')
   const deleteBtn = document.querySelector('.basket__settings-button')
   const all_checkbox = document.querySelector('.basket__card-check.basket__settings-check')
+  const asideInfo = document.querySelector('.basket__aside-info')
   let checkbox = document.querySelectorAll('.basket__card-check:not(.basket__settings-check)')
 
   let idArr = [], wCardsDel = []
@@ -17,6 +19,7 @@ const deleteProduct = () => {
     wCardsDel = []
     idArr = []
     checkbox = document.querySelectorAll('.basket__card-check:not(.basket__settings-check)')
+    asideInfo.innerHTML = loader(50)
   }
   const productCounter = products => {
     titleQuantity.textContent = products.length

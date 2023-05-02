@@ -25,7 +25,6 @@ const renderProduct = new Promise((resolve, reject) => {
       console.log(error)
     }
   }
-
   const getBasket = async () => {
     try {
       const basket = await Get('basket')
@@ -43,6 +42,7 @@ const renderProduct = new Promise((resolve, reject) => {
     }
   }
   const render = (data) => {
+    product_container.innerHTML = ''
     if (data.count > 0) {
       data.rows.forEach(data => {
         product_container.insertAdjacentHTML('beforeend', productHtml(data))
@@ -50,7 +50,6 @@ const renderProduct = new Promise((resolve, reject) => {
       returnData.isProduct = true
     } else {
       product_container.innerHTML = productError()
-      product_container.style.height = `100%`
     }
   }
 

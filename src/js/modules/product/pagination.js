@@ -1,3 +1,4 @@
+import loader from "../loader.js";
 import { getData } from "../admin/get_data.js";
 import { productHtml } from "./productHtml.js";
 import { disableCardButtons } from "./disableCardBtn.js";
@@ -17,20 +18,19 @@ const paginationProduct = (counts, basket, favourite) => {
   const getProduct = async () => {
     try {
       const data = await getData({ rout, params })
-      if (data) {
-        renderProduct(data)
-        rating()
-      }
       return data
     } catch (error) {
       console.log(error)
     }
   }
-  const renderProduct = (data) => {
+
+  const renderProduct = (data, isClear = true) => {
+    if (isClear) product__container.innerHTML = ''
     data.rows.forEach(data => {
       product__container.insertAdjacentHTML('beforeend', productHtml(data))
     });
   }
+
   const renderPagination = () => {
     products__footer.classList.remove('novisible')
     pagination__list.innerHTML = ''
@@ -41,12 +41,14 @@ const paginationProduct = (counts, basket, favourite) => {
     paginations = pagination__list.querySelectorAll('.module-pagination__item')
     activePagin(params.page)
   }
+
   const disableBtn = () => {
     if (counts <= params.limit) return
     if (numberPages === params.page) {
       more__btn.classList.add('disable')
     } else more__btn.classList.remove('disable')
   }
+
   const disableArrows = () => {
     const pagination__span = products__footer.querySelectorAll('.module-pagination__span')
     pagination__span.forEach(paginSpan => paginSpan.classList.remove('disable'))
@@ -63,6 +65,7 @@ const paginationProduct = (counts, basket, favourite) => {
       next.classList.add('disable')
     }
   }
+
   const activePagin = () => {
     paginations.forEach(pagin => pagin.classList.remove('_active'));
     activePages.forEach(_page => {
@@ -70,10 +73,14 @@ const paginationProduct = (counts, basket, favourite) => {
       pagination.classList.add('_active')
     })
   }
-  const mainLogic = (page) => {
+
+  const mainLogic = (page, isClear = true) => {
+    if (isClear) product__container.innerHTML = loader()
     activePagin(page)
     getProduct()
-      .then(() => {
+      .then(data => {
+        renderProduct(data, isClear)
+        rating()
         disableCardButtons(basket, '.card-button.add-btn')
         disableCardButtons(favourite, '.card-like')
       })
@@ -83,11 +90,10 @@ const paginationProduct = (counts, basket, favourite) => {
   const clickBtn = () => {
     params.page = ++params.page
     activePages.push(params.page)
-    mainLogic(params.page)
+    mainLogic(params.page, false)
   }
 
   const clickPagin = e => {
-    product__container.innerHTML = ''
     const pagin = e.target.closest('.module-pagination__item')
     params.page = Number(pagin.dataset.page)
     activePages = [params.page]
@@ -95,7 +101,6 @@ const paginationProduct = (counts, basket, favourite) => {
   }
 
   const clickArrows = e => {
-    product__container.innerHTML = ''
     const page = e.target.dataset.page
     const arrow = e.target
     if (page === 'first') {
