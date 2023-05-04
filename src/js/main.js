@@ -14,7 +14,7 @@ checkSupportWebP()
 import user from "./modules/user/user.js";
 
 user()
-headerData()
+
 // const [cardsBasket, cardsFavourites] = CardsFromLS();
 
 const catalogMenu = document.querySelector('.header-catalog');
@@ -28,6 +28,7 @@ const headerClon = document.querySelector('.menu-fixed')
 const headerMenu = document.querySelector('.header-menu')
 const headerWrapper = document.querySelector('.header-wrapper')
 
+if (headerMenu) headerData()
 //
 const menuLinks = document.querySelectorAll('.header-menu__item');
 const footerLinks = document.querySelectorAll('.footer__menu-link');
@@ -203,7 +204,7 @@ window.addEventListener('load', function () {
   let url = document.location.href;
   linkActive(footerLinks, url);
   linkActive(menuLinks, url);
-  UpdateNav();
+  // UpdateNav();
 })
 
 if (btnUp) {

@@ -240,4 +240,7 @@
 	&:hover {
 		color: $orange;
 	}
+	&._visible {
+		opacity: 1;
+	}
 }

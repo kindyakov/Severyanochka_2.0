@@ -3,23 +3,16 @@ import { getData } from "../admin/get_data.js"
 import { Get } from "./request.js"
 import rating from "./rating.js"
 import { disableCardButtons } from "./disableCardBtn.js"
+import { Params } from "./queryParams.js"
 
 const renderProduct = new Promise((resolve, reject) => {
   const product_container = document.querySelector('#products-container')
   const rout = 'product'
-
-  let returnData = { isProduct: false }
-  let isLoad = true
-  let params = {
-    page: 1,
-    limit: 6,
-    typeId: product_container.dataset.typeid
-  }
+  const params = Params
 
   const getProduct = async () => {
     try {
       const data = await getData({ rout, params })
-      isLoad = false
       return data
     } catch (error) {
       console.log(error)
@@ -41,13 +34,12 @@ const renderProduct = new Promise((resolve, reject) => {
       console.log(error)
     }
   }
-  const render = (data) => {
+  const render = (products) => {
     product_container.innerHTML = ''
-    if (data.count > 0) {
-      data.rows.forEach(data => {
-        product_container.insertAdjacentHTML('beforeend', productHtml(data))
+    if (products.count > 0) {
+      products.rows.forEach(product => {
+        product_container.insertAdjacentHTML('beforeend', productHtml(product))
       });
-      returnData.isProduct = true
     } else {
       product_container.innerHTML = productError()
     }
@@ -56,15 +48,19 @@ const renderProduct = new Promise((resolve, reject) => {
   Promise.all([getProduct(), getBasket(), getFavourite()])
     .then(data => {
       const [product, basket, favourite] = data
+      const returnData = {
+        product: product,
+        basket: basket, favourite: favourite,
+        filter: product.filter
+      }
       render(product)
-      if (returnData.isProduct) {
+
+      if (product.count > 0) {
         disableCardButtons(basket, '.card-button.add-btn')
         disableCardButtons(favourite, '.card-like')
         rating()
       }
-      returnData.product = product
-      returnData.basket = basket
-      returnData.favourite = favourite
+
       resolve(returnData)
     })
     .catch(err => console.log(err))

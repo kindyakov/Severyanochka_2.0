@@ -9,7 +9,7 @@ const renderImgProduct = (arr, name) => {
 }
 
 let isFavorites = false
-if (location.pathname === 'favourites.html') {
+if (location.pathname === '/favourites.html') {
   isFavorites = true
 }
 

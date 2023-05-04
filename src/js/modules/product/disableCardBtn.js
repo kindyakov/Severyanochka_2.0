@@ -1,5 +1,5 @@
-export const disableCardButtons = (basket, btnSelector) => {
-  basket.forEach(obj => {
+export const disableCardButtons = (products, btnSelector) => {
+  products.forEach(obj => {
     const wCards = document.querySelectorAll(`.wrapper-card[data-productid="${obj.productId}"]`)
     wCards.forEach(card => {
       const cardBtn = card.querySelector(`${btnSelector}`)

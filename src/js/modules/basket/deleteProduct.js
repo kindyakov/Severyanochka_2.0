@@ -2,10 +2,9 @@ import deleteAnimate from './deleteAnimate.js'
 import { Delete } from '../product/request.js'
 import NumberProducts from './numberProducts.js'
 import loader from '../loader.js'
+import countProducts from '../countProducts.js'
 
 const deleteProduct = () => {
-  const titleQuantity = document.querySelector('.main-title-quantity')
-  const menuBasket = document.querySelector('#menu-basket')
   const deleteBtn = document.querySelector('.basket__settings-button')
   const all_checkbox = document.querySelector('.basket__card-check.basket__settings-check')
   const asideInfo = document.querySelector('.basket__aside-info')
@@ -20,10 +19,6 @@ const deleteProduct = () => {
     idArr = []
     checkbox = document.querySelectorAll('.basket__card-check:not(.basket__settings-check)')
     asideInfo.innerHTML = loader(50)
-  }
-  const productCounter = products => {
-    titleQuantity.textContent = products.length
-    menuBasket.textContent = products.length
   }
   const clickAllImput = () => {
     if (all_checkbox.checked === true) {
@@ -63,7 +58,7 @@ const deleteProduct = () => {
     Delete('basket', idArr)
       .then((products) => {
         disableBtn()
-        productCounter(products)
+        countProducts('.main-title-quantity', '#menu-basket', products)
         new NumberProducts(products).quantityLoad()
       })
   }

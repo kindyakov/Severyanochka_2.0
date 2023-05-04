@@ -16,7 +16,7 @@ export const renderProducts = (insert, arrayData) => {
     <td class="admin__table_cell" data-update="price_card">${data.price_card ? data.price_card + ' ₽' : ''}</td >
     <td class="admin__table_cell">${data.rating}</td>
     <td class="admin__table_cell" data-update="img">${JSON.parse(data.img).join(', ')}</td>
-    <td class="admin__table_cell" data-update="discount">${data.discount ? data.discount + ' %' : ''}</td>
+    <td class="admin__table_cell" data-update="discount">${data.discount ? data.discount + '%' : ''}</td>
     <td class="admin__table_cell" data-update="type">${data.typeId}</td>
     <td class="admin__table_cell" data-update="brand">${data.brandId}</td>
     <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>

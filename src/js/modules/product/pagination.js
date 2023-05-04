@@ -3,6 +3,7 @@ import { getData } from "../admin/get_data.js";
 import { productHtml } from "./productHtml.js";
 import { disableCardButtons } from "./disableCardBtn.js";
 import rating from "./rating.js";
+import { Params } from "./queryParams.js";
 
 const paginationProduct = (counts, basket, favourite) => {
   const product__container = document.querySelector('#products-container')
@@ -11,7 +12,7 @@ const paginationProduct = (counts, basket, favourite) => {
   const more__btn = products__footer.querySelector('.products__more-btn')
 
   const rout = 'product'
-  let params = { page: 1, limit: 6, typeId: product__container.dataset.typeid }
+  let params = Params
   const numberPages = Math.ceil(counts / params.limit)
   let paginations, activePages = [params.page]
 
@@ -43,8 +44,7 @@ const paginationProduct = (counts, basket, favourite) => {
   }
 
   const disableBtn = () => {
-    if (counts <= params.limit) return
-    if (numberPages === params.page) {
+    if (numberPages === params.page || counts <= params.limit) {
       more__btn.classList.add('disable')
     } else more__btn.classList.remove('disable')
   }
@@ -138,6 +138,7 @@ const paginationProduct = (counts, basket, favourite) => {
     }
     if (e.target.closest('.module-pagination__span:not(.disable)')) {
       clickArrows(e)
+      console.log(e.target)
     }
     disableArrows()
   }
