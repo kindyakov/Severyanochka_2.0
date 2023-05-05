@@ -171,17 +171,29 @@
 	border-radius: 4px;
 	width: 128px;
 	display: none;
-	margin-right: 8px;
 	min-width: 80px;
 }
 .filter__menu {
 	display: flex;
 	gap: 15px;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
+}
+.filter__select {
+	background-color: $white;
+	border-radius: 4px;
+	padding: 8px 12px;
+	white-space: nowrap;
+	cursor: pointer;
+	&:focus {
+		outline: 1px solid $orange;
+	}
 }
 .filter-menu {
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 15px;
+	margin-bottom: 20px;
 	&__list {
 		display: flex;
 		align-items: center;

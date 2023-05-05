@@ -47,7 +47,7 @@
 
                     <div class="filters__wrapper-checkbox">
                       <label for="checkbox" class="filters__wrapper-checkbox__lable">
-                        <input id="checkbox" class="filters__wrapper-checkbox__checkbox" type="checkbox">
+                        <input id="checkbox" class="filters__wrapper-checkbox__checkbox" type="checkbox" checked>
                         <div class="filters__wrapper-checkbox__checkbox-item"></div>
                       </label>
                       <span class="filters__wrapper-checkbox__span">В наличие</span>
@@ -60,19 +60,48 @@
                 <div class="catalog-products__content">
                   <nav class="filter-menu">
                     <button class="filter-adaptive-active">Фильтр</button>
-                    <ul class="filter-menu__list">
-                      <li class="filter-menu__item filter-menu__item-clear none">
+                    <select name="sorting" class="filter__select">
+                      <option value="price-ASC">По цене 👇</option>
+                      <option value="price-DESC">По цене 👆</option>
+                      <option value="rating-DESC">По рейтингу</option>
+                      <option value="rating-DESC" selected>По популярности</option>
+                    </select>
+                    <!-- selected -->
+                    <menu class="filter__menu">
+                      <ul class="filter-menu__list">
+                      </ul>
+                      <button class="filter-menu__item filter-menu__item-clear none">
                         <span class="filter-menu__item-span">Очистить фильтры</span>
                         <span class="filter-menu__item-close"></span>
-                      </li>
-                    </ul>
+                      </button>
+                    </menu>
                   </nav>
-                  <div id="favourites-products" class="catalog-products__wrapper" data-products="favourites">
+                  <div id="products-container" class="catalog-products__wrapper">
                     <!-- Здесь выводятся карточки -->
                   </div>
-                  <div class="catalog-products__footer">
-                    <!-- Здесь показать ещё 
-                      и li со страницами -->
+                  <div class="catalog-products__footer novisible">
+                    <div class="more-wrapper">
+                      <button class="products__more-btn disable">Показать ещё</button>
+                    </div>
+                    <div class="module-pagination">
+                      <nav class="module-pagination__nav">
+                        <div class="module-pagination__prev-block module-pagination__block">
+                          <span class="module-pagination__duble-prev module-pagination__span _icon-duble-arrows"
+                            data-page="first"></span>
+                          <span class="module-pagination__prev module-pagination__span _icon-arrow"
+                            data-page="prev"></span>
+                        </div>
+                        <ul class="module-pagination__list">
+
+                        </ul>
+                        <div class="module-pagination__next-block module-pagination__block">
+                          <span class="module-pagination__next module-pagination__span _icon-arrow"
+                            data-page="next"></span>
+                          <span class="module-pagination__duble-next module-pagination__span _icon-duble-arrows"
+                            data-page="last"></span>
+                        </div>
+                      </nav>
+                    </div>
                   </div>
                 </div>
               </div>

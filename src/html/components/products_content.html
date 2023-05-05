@@ -1,6 +1,13 @@
 <div class="catalog-products__content">
   <nav class="filter-menu">
     <button class="filter-adaptive-active">Фильтр</button>
+    <select name="sorting" class="filter__select">
+      <option value="price-ASC">По цене 👇</option>
+      <option value="price-DESC">По цене 👆</option>
+      <option value="rating-DESC">По рейтингу</option>
+      <option value="rating-DESC" selected>По популярности</option>
+    </select>
+    <!-- selected -->
     <menu class="filter__menu">
       <ul class="filter-menu__list">
       </ul>

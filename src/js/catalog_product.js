@@ -8,15 +8,15 @@ import filters from "./modules/product/filter.js";
 
 const productsContainer = document.querySelector('#products-container')
 productsContainer.innerHTML = loader()
+const Rout = 'product'
 
-
-renderProduct.then(({ product, basket, favourite, filter }) => {
+renderProduct.then(({ product, basket, favourite, filter, count }) => {
   sideBar(product)
-  if (product.count > 0) {
+  if (count > 0) {
     addBasket()
     addFavourite()
-    paginationProduct(product.count, basket, favourite)
-    filters(filter, basket, favourite)
+    paginationProduct({ count, basket, favourite, Rout })
+    filters({ filter, basket, favourite, Rout })
   }
 })
 

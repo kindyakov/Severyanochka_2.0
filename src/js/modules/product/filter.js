@@ -7,15 +7,16 @@ import rating from "./rating.js";
 import { disableCardButtons } from "./disableCardBtn.js";
 import { Params } from "./queryParams.js";
 
-const filters = (filter, basket, favourite) => {
+const filters = ({ filter, basket, favourite, Rout }) => {
   const footer = document.querySelector('.catalog-products__footer')
-  const filter__menu = document.querySelector('.filter__menu')
   const inputCheckbox = document.querySelector('.filters__wrapper-checkbox__checkbox');
   const filterMenuList = document.querySelector('.filter-menu__list');
   const filterItemClear = document.querySelector('.filter-menu__item-clear');
   const product_container = document.querySelector('#products-container')
+  const filter__select = document.querySelector('.filter__select')
   const rangeSlider = new RangeSlider(filter.min, filter.max)
-  // F3F2F1
+  const rout = Rout
+
   const clearFilter = () => {
     rangeSlider.clear()
     inputCheckbox.checked = true
@@ -31,11 +32,11 @@ const filters = (filter, basket, favourite) => {
   }
 
   const stackFun = (products) => {
-    renderFilter(products.filter)
+    const count = products.count
     rating()
     disableCardButtons(basket, '.card-button.add-btn')
     disableCardButtons(favourite, '.card-like')
-    paginationProduct(products.count, basket, favourite)
+    paginationProduct({ count, basket, favourite, Rout })
   }
 
   const renderProduct = (products) => {
@@ -53,20 +54,23 @@ const filters = (filter, basket, favourite) => {
   }
 
   const renderFilter = (filter) => {
-    filterMenuList.insertAdjacentHTML('beforeend', `<li class="filter-menu__item filterss__items filters__item-price active"><span class="filter-menu__item-span filters__item-price_text">${filter.min} ₽ - ${filter.max} ₽</span><span
-    class="filter-menu__item-close"></span></li>`)
-    product_container.style.marginTop = '20px'
+    filterMenuList.innerHTML = `<li class="filter-menu__item filterss__items filters__item-price active" data-filter="price"><span class="filter-menu__item-span filters__item-price_text">${++filter.min} ₽ - ${--filter.max} ₽</span><span
+    class="filter-menu__item-close"></span></li>`
     filterItemClear.classList.remove('none')
   }
 
   const createParams = () => {
     const minPriceInput = document.querySelector('#min-price');
     const maxPriceInput = document.querySelector('#max-price');
+    const [name, type] = filter__select.value.split('-');
 
     let params = Params
+    params.page = 1
     params.filters = {
       min: +minPriceInput.value,
       max: +maxPriceInput.value,
+      sort_name: name,
+      sort_type: type
     }
 
     return params
@@ -76,7 +80,23 @@ const filters = (filter, basket, favourite) => {
     const params = createParams()
     product_container.innerHTML = loader()
 
-    getProduct('product', params)
+    getProduct(rout, params)
+      .then(data => {
+        renderProduct(data)
+        renderFilter(data.filter)
+      })
+      .catch(err => console.log(err))
+  }
+
+  const select = () => {
+    let params = createParams()
+    const [name, type] = filter__select.value.split('-');
+
+    product_container.innerHTML = loader()
+    params.filters.sort_name = name
+    params.filters.sort_type = type
+
+    getProduct(rout, params)
       .then(data => renderProduct(data))
       .catch(err => console.log(err))
   }
@@ -89,10 +109,13 @@ const filters = (filter, basket, favourite) => {
       submint()
     }
     if (e.target.closest('.filter-menu__item-clear')) {
-
+      filterMenuList.innerHTML = ''
+      filterItemClear.classList.add('none')
+      clearFilter()
+      select()
     }
   }
-
+  filter__select.addEventListener('change', select)
   window.addEventListener('click', handlerClick)
 }
 

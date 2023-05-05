@@ -28,7 +28,6 @@ const sideBar = () => {
 
   if (viewport_width <= 768) {
     filters.classList.add('dev');
-    catalogWrapper.classList.add('add-margin');
   }
 
   const handlerScroll = () => {
@@ -57,11 +56,8 @@ const sideBar = () => {
       filters_body.classList.remove('fixed');
       filters_body.classList.remove('absolute');
       filters_body.style.cssText = '';
-
-      catalogWrapper.classList.add('add-margin');
     } else {
       filters.classList.remove('dev')
-      catalogWrapper.classList.remove('add-margin');
 
       if (filters_body.classList.contains('fixed')) {
         filters_body.style.cssText = `left: ${OffsetLeft}px; width: ${widthFilters}px; `;

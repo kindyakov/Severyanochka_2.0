@@ -51,7 +51,7 @@ const renderProduct = new Promise((resolve, reject) => {
       const returnData = {
         product: product,
         basket: basket, favourite: favourite,
-        filter: product.filter
+        filter: product.filter, count: product.count
       }
       render(product)
 

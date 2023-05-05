@@ -5,15 +5,15 @@ import { disableCardButtons } from "./disableCardBtn.js";
 import rating from "./rating.js";
 import { Params } from "./queryParams.js";
 
-const paginationProduct = (counts, basket, favourite) => {
+const paginationProduct = ({ count, basket, favourite, Rout }) => {
   const product__container = document.querySelector('#products-container')
   const products__footer = document.querySelector(`.catalog-products__footer`)
   const pagination__list = products__footer.querySelector('.module-pagination__list')
   const more__btn = products__footer.querySelector('.products__more-btn')
 
-  const rout = 'product'
+  const rout = Rout
   let params = Params
-  const numberPages = Math.ceil(counts / params.limit)
+  const numberPages = Math.ceil(count / params.limit)
   let paginations, activePages = [params.page]
 
   const getProduct = async () => {
@@ -44,7 +44,7 @@ const paginationProduct = (counts, basket, favourite) => {
   }
 
   const disableBtn = () => {
-    if (numberPages === params.page || counts <= params.limit) {
+    if (numberPages === params.page || count <= params.limit) {
       more__btn.classList.add('disable')
     } else more__btn.classList.remove('disable')
   }
@@ -138,7 +138,6 @@ const paginationProduct = (counts, basket, favourite) => {
     }
     if (e.target.closest('.module-pagination__span:not(.disable)')) {
       clickArrows(e)
-      console.log(e.target)
     }
     disableArrows()
   }
