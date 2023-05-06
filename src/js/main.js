@@ -1,5 +1,5 @@
 import checkSupportWebP from "./modules/checkSupportWebP.js"
-import headerData from "./modules/headerData.js";
+import headerData from './modules/headerData.js'
 checkSupportWebP()
 
 // import UpdateNav from "./modules/header/UpdateNav.js";
@@ -28,13 +28,13 @@ const headerClon = document.querySelector('.menu-fixed')
 const headerMenu = document.querySelector('.header-menu')
 const headerWrapper = document.querySelector('.header-wrapper')
 
-if (headerMenu) headerData()
 //
 const menuLinks = document.querySelectorAll('.header-menu__item');
 const footerLinks = document.querySelectorAll('.footer__menu-link');
 //
 const btnUp = document.querySelector('.btn-up');
 //
+if (headerMenu) headerData()
 // if (_slides_cards) {
 //   Request(urlOrigin)
 //     .then(data => {

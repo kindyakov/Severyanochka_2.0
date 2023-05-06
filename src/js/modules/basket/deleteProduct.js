@@ -3,8 +3,10 @@ import { Delete } from '../product/request.js'
 import NumberProducts from './numberProducts.js'
 import loader from '../loader.js'
 import countProducts from '../countProducts.js'
+import { productError } from './productHtml.js'
 
 const deleteProduct = () => {
+  const basket__content = document.querySelector('.basket__content')
   const deleteBtn = document.querySelector('.basket__settings-button')
   const all_checkbox = document.querySelector('.basket__card-check.basket__settings-check')
   const asideInfo = document.querySelector('.basket__aside-info')
@@ -57,9 +59,14 @@ const deleteProduct = () => {
 
     Delete('basket', idArr)
       .then((products) => {
-        disableBtn()
-        countProducts('.main-title-quantity', '#menu-basket', products)
-        new NumberProducts(products).quantityLoad()
+        if (products.length > 0) {
+          disableBtn()
+          countProducts('.main-title-quantity', '#menu-basket', products)
+          new NumberProducts(products).quantityLoad()
+        } else {
+          basket__content.innerHTML = productError()
+          asideInfo.innerHTML = ''
+        }
       })
   }
   const handlerClick = e => {

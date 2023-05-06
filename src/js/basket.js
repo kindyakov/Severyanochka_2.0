@@ -23,6 +23,7 @@ const renderProduct = (products) => {
     return products
   } else {
     basket__content.innerHTML = productError()
+    asideInfo.innerHTML = ''
     titleQuantity.textContent = 0
     return false
   }

@@ -24,9 +24,9 @@ const headerData = () => {
     const menuOrders = document.querySelector('#menu-orders')
     const menuBasket = document.querySelector('#menu-basket')
 
-    menuFavourites.textContent = favourite.length
-    menuOrders.textContent = 1
-    menuBasket.textContent = basket.length
+    favourite ? menuFavourites.textContent = favourite.length : menuFavourites.remove()
+    menuOrders.remove()
+    basket ? menuBasket.textContent = basket.length : menuBasket.remove()
   }
 
   Promise.all([getBasket(), getFavourite()])

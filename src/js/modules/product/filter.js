@@ -115,6 +115,7 @@ const filters = ({ filter, basket, favourite, Rout }) => {
       select()
     }
   }
+
   filter__select.addEventListener('change', select)
   window.addEventListener('click', handlerClick)
 }

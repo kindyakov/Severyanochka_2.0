@@ -18,11 +18,14 @@ const user = () => {
 
   if (exit_account) {
     getProfile()
-      .then(user => HeaderProfile(user))
+      .then(user => {
+        HeaderProfile(user)
+      })
       .catch(err => console.error(err))
 
     exit_account.addEventListener('click', exit)
   }
+
 }
 
 export default user
