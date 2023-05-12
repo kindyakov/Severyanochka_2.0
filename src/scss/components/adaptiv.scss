@@ -297,7 +297,10 @@
 	}
 }
 
-@media (max-width: 960px) {
+@media (max-width: $md2) {
+	.catalog-products__wrapper {
+		grid-template-columns: repeat(2, 1fr);
+	}
 	.header-logo__span {
 		display: none;
 	}

@@ -5,6 +5,7 @@ import addFavourite from "./modules/product/addFavourit.js";
 import paginationProduct from "./modules/product/pagination.js";
 import sideBar from "./modules/product/sideBar.js";
 import filters from "./modules/product/filter.js";
+import { useDynamicAdapt } from "./modules/dynamicAdapt.js";
 
 const productsContainer = document.querySelector('#products-container')
 productsContainer.innerHTML = loader()
@@ -17,6 +18,7 @@ renderProduct.then(({ product, basket, favourite, filter, count }) => {
     addFavourite()
     paginationProduct({ count, basket, favourite, Rout })
     filters({ filter, basket, favourite, Rout })
+    useDynamicAdapt()
   }
 })
 
