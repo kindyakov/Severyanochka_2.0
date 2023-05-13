@@ -1,6 +1,7 @@
 import handlerBtnUpdate from "./handlerBtnUpdate.js";
 import handlerBtnDelete from "./handlerBtnDelete.js";
 import modalCreate from "./modal/modal_create.js";
+import sortingTabble from "./sortingTable.js";
 
 const table = (tables) => {
   const table = tables;

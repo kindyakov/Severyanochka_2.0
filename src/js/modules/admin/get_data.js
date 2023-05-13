@@ -2,7 +2,7 @@ import { $auth } from "../API.js"
 
 export const getData = async ({ rout, params }) => {
   try {
-    const { data } = await $auth.get(`api/${rout}`, { params })
+    const { data } = await $auth.get(`api/${rout}/admin`, { params })
     return data
   } catch (error) {
     console.log(error)

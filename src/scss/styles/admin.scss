@@ -226,12 +226,21 @@
 			&:hover {
 				color: $orange;
 			}
-			&._active {
+			&._active-1 {
 				background-color: $orange;
 				color: $white;
 				._icon-arrow {
 					&::before {
 						transform: rotate(0);
+					}
+				}
+			}
+			&._active-2 {
+				background-color: $orange;
+				color: $white;
+				._icon-arrow {
+					&::before {
+						transform: rotateZ(180deg);
 					}
 				}
 			}

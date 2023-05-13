@@ -7,5 +7,4 @@ const t_User = jwt_decode(localStorage.getItem('token'))
 if (t_User.role !== 'admin') location.assign(`${url}/index.html`)
 
 //  =====================================================
-
 aside()

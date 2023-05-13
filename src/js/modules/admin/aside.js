@@ -4,6 +4,7 @@ import { getData } from "./get_data.js"
 import pagination from "./pagination.js"
 import Table from "./table.js"
 import loader from "../loader.js"
+import sortingTabble from "./sortingTable.js"
 
 const aside = () => {
   const admin__content = document.querySelectorAll('.admin__content')
@@ -23,13 +24,13 @@ const aside = () => {
   const renderTable = async ({ tbody, table, rout }) => {
     try {
       Loader()
-
       const Renders = RenderTable[rout]
       const data = await getData({ rout, params })
       Loader(true)
       Renders(tbody, data)
       pagination(data.count, rout)
       Table(table)
+      sortingTabble()
     } catch (error) {
       console.log(error)
     }
@@ -49,15 +50,17 @@ const aside = () => {
     admin__asideTab.forEach(tab => tab.classList.remove('_active'))
   }
 
+  const addActive = (tab, table) => {
+    tab.classList.add('_active')
+    table.classList.add('_active')
+  }
+
   const handlerClick = e => {
-    if (e.target.closest('.admin__aside-tab:not(._active')) {
+    if (e.target.closest('.admin__aside-tab:not(._active)')) {
       const { table, tbody, rout } = assign(e)
 
       removeActive()
-
-      e.target.classList.add('_active')
-      table.classList.add('_active')
-
+      addActive(e.target, table)
       renderTable({ tbody, table, rout })
     }
   }
@@ -67,10 +70,7 @@ const aside = () => {
     const [tab] = Array.from(admin__asideTab).filter(tab => tab.getAttribute('href') === id)
 
     removeActive()
-
-    tab.classList.add('_active')
-    table.classList.add('_active')
-
+    addActive(tab, table)
     renderTable({ tbody, table, rout })
   }
 

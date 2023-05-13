@@ -55,15 +55,15 @@ const productHtml = (data) => {
   <div class="admin-column">
     <div class="modal__wrapper-input">
       <label class="admin__label">Название</label>
-      <input type="text" name="name" class="admin__input _input" autocomplete="off" value="${data.name}">
+      <input type="text" name="name" class="admin__input _input" value="${data.name}" autocomplete="off">
     </div>
     <div class="modal__wrapper-input">
       <label class="admin__label">Цена</label>
-      <input type="text" name="price" class="admin__input _input" value="${data.price}">
+      <input type="text" name="price" class="admin__input _input" value="${data.price}" autocomplete="off">
     </div>
     <div class="modal__wrapper-input">
       <label class="admin__label">Цена по карте</label>
-      <input type="text" name="price_card" class="admin__input _input" value="${data.price_card ? data.price_card : ''}">
+      <input type="text" name="price_card" class="admin__input _input" value="${data.price_card ? data.price_card : ''}" autocomplete="off">
     </div>
   </div>
   <div class="admin-column">
@@ -82,7 +82,7 @@ const productHtml = (data) => {
     </div>
     <div class="modal__wrapper-input">
       <label class="admin__label">Скидка</label>
-      <input type="text" name="discount" class="admin__input _input" value="${data.discount ? data.discount : ''}">
+      <input type="text" name="discount" class="admin__input _input" value="${data.discount ? data.discount : ''}" autocomplete="off">
     </div>
   </div>
 </div>
@@ -115,7 +115,7 @@ const brandHtml = (data) => {
     <div class="modal__wrapper-input">
       <label class="admin__label">Изображение</label>
       <label class="admin__label-file" for="img-update-brand">
-        <input type="file" accept="image/*" id="img-update-brand" name="img" class="admin__input _input">
+        <input type="file" accept="image/*" id="img-update-brand" name="img" class="admin__input _input" autocomplete="off">
         <span class="file-name"></span>
         <label class="file-download" for="img-update-brand">Загрузить</label>
       </label>

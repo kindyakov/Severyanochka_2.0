@@ -9,9 +9,10 @@ const Create = async (form, rout, modal, characteristicData) => {
       formData.delete('description')
       if (formData.get('price_card').length === 0) formData.delete('price_card')
       if (formData.get('discount').length === 0) formData.delete('discount')
-      formData.append('characteristic', JSON.stringify(characteristicData))
+      if (characteristicData[0].title && characteristicData[0].description) {
+        formData.append('characteristic', JSON.stringify(characteristicData))
+      }
     }
-
     const { data } = await $auth.post(`api/${rout}`, formData)
     return data
   } catch (error) {
