@@ -1,11 +1,11 @@
 import RangeSlider from "./rangeSlider.js";
-import { getData } from "../admin/get_data.js";
 import { productHtml, productError } from "./productHtml.js";
 import loader from "../loader.js";
 import paginationProduct from "./pagination.js";
 import rating from "./rating.js";
 import { disableCardButtons } from "./disableCardBtn.js";
 import { Params } from "./queryParams.js";
+import { GetProduct } from "./request.js";
 
 const filters = ({ filter, basket, favourite, Rout }) => {
   const footer = document.querySelector('.catalog-products__footer')
@@ -24,7 +24,7 @@ const filters = ({ filter, basket, favourite, Rout }) => {
 
   const getProduct = async (rout, params) => {
     try {
-      const data = await getData({ rout, params })
+      const data = await GetProduct({ rout, params })
       return data
     } catch (error) {
       console.log(error)

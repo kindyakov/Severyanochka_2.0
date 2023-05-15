@@ -1,4 +1,4 @@
-import { $auth } from "../API.js";
+import { $auth, $api } from "../API.js";
 
 export const Add = async (rout, productId) => {
   try {
@@ -11,7 +11,16 @@ export const Add = async (rout, productId) => {
 
 export const Get = async (rout) => {
   try {
-    const { data } = await $auth.get(`api/${rout}`)
+    const { data } = await $api.get(`api/${rout}`)
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const GetProduct = async ({ rout, params }) => {
+  try {
+    const { data } = await $api.get(`api/${rout}`, { params })
     return data
   } catch (error) {
     console.log(error)

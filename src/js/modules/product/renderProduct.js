@@ -1,6 +1,5 @@
 import { productHtml, productError } from "./productHtml.js"
-import { getData } from "../admin/get_data.js"
-import { Get } from "./request.js"
+import { Get, GetProduct } from "./request.js"
 import rating from "./rating.js"
 import { disableCardButtons } from "./disableCardBtn.js"
 import { Params } from "./queryParams.js"
@@ -12,7 +11,7 @@ const renderProduct = new Promise((resolve, reject) => {
 
   const getProduct = async () => {
     try {
-      const data = await getData({ rout, params })
+      const data = await GetProduct({ rout, params })
       return data
     } catch (error) {
       console.log(error)
@@ -20,16 +19,20 @@ const renderProduct = new Promise((resolve, reject) => {
   }
   const getBasket = async () => {
     try {
-      const basket = await Get('basket')
-      return basket
+      if (localStorage.getItem('token')) {
+        const basket = await Get('basket')
+        return basket
+      } else return null
     } catch (error) {
       console.log(error)
     }
   }
   const getFavourite = async () => {
     try {
-      const favourite = await Get('favourite')
-      return favourite
+      if (localStorage.getItem('token')) {
+        const favourite = await Get('favourite')
+        return favourite
+      } else return null
     } catch (error) {
       console.log(error)
     }

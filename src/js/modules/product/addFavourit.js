@@ -1,6 +1,7 @@
 import { Add } from "./request.js"
 
 const addFavourite = () => {
+  if (!localStorage.getItem('token')) return
   const menuFavourite = document.querySelector('#menu-favourites')
   const rout = 'favourite'
   let productId

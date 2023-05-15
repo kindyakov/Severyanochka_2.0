@@ -8,7 +8,7 @@ export const apiImgPosts = api + 'img/img_posts/'
 export const apiImgBrands = api + 'img/img_brands/'
 export const apiImgTypes = api + 'img/img_types/'
 
-export const $user = axios.create({
+export const $api = axios.create({
   baseURL: api
 })
 

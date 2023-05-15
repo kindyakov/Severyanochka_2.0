@@ -1,6 +1,7 @@
 import { Add } from "./request.js"
 
 const addBasket = () => {
+  if (!localStorage.getItem('token')) return
   const menuBasket = document.querySelector('#menu-basket')
   const rout = 'basket'
   let productId

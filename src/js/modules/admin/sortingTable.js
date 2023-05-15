@@ -41,31 +41,43 @@ const sortingTabble = () => {
     }
   }
 
-  const removeActive = (table) => {
+  const removeActive = (table, dataAttribute) => {
     const table_title = table.querySelectorAll('.admin__table_title')
-    table_title.forEach(title => title.classList.remove('_active-1'))
-    table_title.forEach(title => title.classList.remove('_active-2'))
+    table_title.forEach(title => {
+      if (title.dataset.sorting === dataAttribute) return
+      title.classList.remove('_active-1')
+      title.classList.remove('_active-2')
+    })
   }
 
   const addActive = (title) => {
-    title.classList.add('_active-1')
-    return 'ASC'
+    if (title.classList.contains('_active-1')) {
+      title.classList.add('_active-2')
+      title.classList.remove('_active-1')
+      return 'DESC'
+    } else if (title.classList.contains('_active-2')) {
+      title.classList.add('_active-1')
+      title.classList.remove('_active-2')
+      return 'ASC'
+    } else {
+      title.classList.add('_active-1')
+      return 'ASC'
+    }
   }
 
 
   const handlerClick = e => {
-    if (e.target.closest('.admin__table_title')) {
+    if (e.target.closest('.admin__table_title:not(._checkbox)')) {
       const th = e.target.closest('.admin__table_title')
       const dataSorting = th.dataset.sorting
       const { table, tbody, rout } = assign()
 
-      removeActive(table)
+      removeActive(table, dataSorting)
       const attribute = addActive(th)
 
       params.sorting = { data: dataSorting, type: attribute }
 
       renderTable({ tbody, table, rout })
-
     }
   }
 

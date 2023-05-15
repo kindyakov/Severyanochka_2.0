@@ -1,4 +1,4 @@
-import { $user } from "../API.js";
+import { $api } from "../API.js";
 import { modalLogin } from "./user.js";
 import { errorRes } from "./res/errorRes.js";
 
@@ -12,7 +12,7 @@ export const registration = async (forma, phone) => {
       data[key] = value
       data.role = 'user'
     });
-    const res = await $user.post('api/user/register', data)
+    const res = await $api.post('api/user/register', data)
 
     document.cookie = `user=Bearer ${res.data.token}`;
     modalLogin.call()

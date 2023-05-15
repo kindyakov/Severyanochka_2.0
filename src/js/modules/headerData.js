@@ -3,16 +3,20 @@ import { Get } from "./product/request.js";
 const headerData = () => {
   const getBasket = async () => {
     try {
-      const basket = await Get('basket')
-      return basket
+      if (localStorage.getItem('token')) {
+        const basket = await Get('basket')
+        return basket
+      } else return null
     } catch (error) {
       console.log(error)
     }
   }
   const getFavourite = async () => {
     try {
-      const favourite = await Get('favourite')
-      return favourite
+      if (localStorage.getItem('token')) {
+        const favourite = await Get('favourite')
+        return favourite
+      } else return null
     } catch (error) {
       console.log(error)
     }
@@ -24,9 +28,11 @@ const headerData = () => {
     const menuOrders = document.querySelector('#menu-orders')
     const menuBasket = document.querySelector('#menu-basket')
 
-    favourite ? menuFavourites.textContent = favourite.length : menuFavourites.remove()
+    favourite ? menuFavourites.textContent = favourite.length
+      : menuFavourites.remove()
     menuOrders.remove()
-    basket ? menuBasket.textContent = basket.length : menuBasket.remove()
+    basket ? menuBasket.textContent = basket.length
+      : menuBasket.remove()
   }
 
   Promise.all([getBasket(), getFavourite()])
