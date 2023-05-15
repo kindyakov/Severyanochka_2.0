@@ -35,7 +35,14 @@ const mainLogic = (products) => {
   new NumberProducts(products)
 }
 
-Get('basket/product')
-  .then(products => renderProduct(products))
-  .then(products => mainLogic(products))
-  .catch(err => console.log(err))
+const getBasket = async () => {
+  try {
+    const data = await Get('basket/product')
+    renderProduct(data)
+    mainLogic(data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+getBasket()

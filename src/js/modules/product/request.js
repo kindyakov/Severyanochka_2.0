@@ -11,7 +11,7 @@ export const Add = async (rout, productId) => {
 
 export const Get = async (rout) => {
   try {
-    const { data } = await $api.get(`api/${rout}`)
+    const { data } = await $auth.get(`api/${rout}`)
     return data
   } catch (error) {
     console.log(error)

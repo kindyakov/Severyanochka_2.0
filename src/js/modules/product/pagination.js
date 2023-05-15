@@ -1,9 +1,9 @@
 import loader from "../loader.js";
-import { getData } from "../admin/get_data.js";
 import { productHtml } from "./productHtml.js";
 import { disableCardButtons } from "./disableCardBtn.js";
 import rating from "./rating.js";
 import { Params } from "./queryParams.js";
+import { GetProduct } from "./request.js";
 
 const paginationProduct = ({ count, basket, favourite, Rout }) => {
   const product__container = document.querySelector('#products-container')
@@ -18,7 +18,7 @@ const paginationProduct = ({ count, basket, favourite, Rout }) => {
 
   const getProduct = async () => {
     try {
-      const data = await getData({ rout, params })
+      const data = await GetProduct({ rout, params })
       return data
     } catch (error) {
       console.log(error)
