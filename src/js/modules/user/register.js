@@ -14,7 +14,7 @@ export const registration = async (forma, phone) => {
     });
     const res = await $api.post('api/user/register', data)
 
-    document.cookie = `user=Bearer ${res.data.token}`;
+    localStorage.setItem('token', `Bearer ${res.data.token}`)
     modalLogin.call()
     forma.querySelectorAll('input').forEach(input => input.value = '')
   } catch (error) {

@@ -4,10 +4,14 @@ import { Get } from "./modules/product/request.js";
 import deleteProduct from "./modules/basket/deleteProduct.js";
 import priceCalculation from "./modules/basket/priceСalculation.js";
 import NumberProducts from "./modules/basket/numberProducts.js";
+import { changeAuth } from "./modules/user/isAuth.js";
+import { GetProductLocalStorage } from "./modules/product/request.js";
 
 const titleQuantity = document.querySelector('.main-title-quantity')
 const basket__content = document.querySelector('.basket__content')
 const asideInfo = document.querySelector('.basket__aside-info')
+const isAuth = changeAuth()
+const basketLocalData = GetProductLocalStorage('basket')
 
 basket__content.innerHTML = loader()
 asideInfo.innerHTML = loader(50)
@@ -37,9 +41,18 @@ const mainLogic = (products) => {
 
 const getBasket = async () => {
   try {
-    const data = await Get('basket/product')
-    renderProduct(data)
-    mainLogic(data)
+    if (isAuth) {
+      const data = await Get('basket/product')
+      renderProduct(data)
+      mainLogic(data)
+    } else if (basketLocalData.length > 0) {
+      renderProduct(basketLocalData)
+      mainLogic(basketLocalData)
+    } else {
+      basket__content.innerHTML = productError()
+      asideInfo.innerHTML = ''
+      titleQuantity.textContent = 0
+    }
   } catch (error) {
     console.log(error)
   }

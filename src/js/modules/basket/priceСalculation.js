@@ -8,6 +8,11 @@ const priceCalculation = products => {
   const minSum = 1000
   let priceResult, asideMinsum = document.querySelector('.basket__aside-minsum')
 
+  if (products.length === 0) {
+    asidePriceResult.textContent = '0 ₽'
+    return
+  }
+
   if (products[0].count) priceResult = products.reduce((sumPrice,
     product) => sumPrice + +product.priceSum, 0).toFixed(2)
   else priceResult = products.reduce((sumPrice,

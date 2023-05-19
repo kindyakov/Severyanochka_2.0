@@ -4,6 +4,8 @@ import NumberProducts from './numberProducts.js'
 import loader from '../loader.js'
 import countProducts from '../countProducts.js'
 import { productError } from './productHtml.js'
+import { changeAuth } from '../user/isAuth.js'
+import { GetProductLocalStorage } from '../product/request.js'
 
 const deleteProduct = () => {
   const basket__content = document.querySelector('.basket__content')
@@ -11,7 +13,7 @@ const deleteProduct = () => {
   const all_checkbox = document.querySelector('.basket__card-check.basket__settings-check')
   const asideInfo = document.querySelector('.basket__aside-info')
   let checkbox = document.querySelectorAll('.basket__card-check:not(.basket__settings-check)')
-
+  const isAuth = changeAuth()
   let idArr = [], wCardsDel = []
 
   const activeBtn = () => deleteBtn.classList.add('_active')
@@ -46,6 +48,41 @@ const deleteProduct = () => {
     })
     if (checkedInputs.length !== checkbox.length) all_checkbox.checked = false
   }
+
+  const filterBasketLocal = (basket) => {
+    let newBasketLocalData = basket
+    for (const id of idArr) {
+      newBasketLocalData = newBasketLocalData.filter(obj => obj.id !== id)
+    }
+    return newBasketLocalData
+  }
+  const mainLogic = (products) => {
+    disableBtn()
+    new NumberProducts(products).quantityLoad()
+    countProducts('.main-title-quantity', '#menu-basket', products)
+  }
+  const deleteProduct = async () => {
+    try {
+      const products = isAuth ? await Delete('basket', idArr) : deleteProductLocalStorage()
+      if (products.length > 0) {
+        mainLogic(products)
+      } else {
+        basket__content.innerHTML = productError()
+        asideInfo.innerHTML = ''
+        mainLogic(products)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const deleteProductLocalStorage = () => {
+    const basketLocalData = GetProductLocalStorage('basket')
+    const newBasketLocalData = filterBasketLocal(basketLocalData)
+    localStorage.setItem('basket', JSON.stringify(newBasketLocalData))
+    return newBasketLocalData
+  }
+
   const clickDeleteBtn = () => {
     assign()
 
@@ -56,19 +93,9 @@ const deleteProduct = () => {
       .querySelector(`.basket__wrapper-cards[data-id="${id}"]`)))
 
     deleteAnimate(wCardsDel)
-
-    Delete('basket', idArr)
-      .then((products) => {
-        if (products.length > 0) {
-          disableBtn()
-          countProducts('.main-title-quantity', '#menu-basket', products)
-          new NumberProducts(products).quantityLoad()
-        } else {
-          basket__content.innerHTML = productError()
-          asideInfo.innerHTML = ''
-        }
-      })
+    deleteProduct()
   }
+
   const handlerClick = e => {
     if (e.target.closest('.basket__card-check.basket__settings-check')) {
       clickAllImput()

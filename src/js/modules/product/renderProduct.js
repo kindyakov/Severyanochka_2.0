@@ -3,11 +3,16 @@ import { Get, GetProduct } from "./request.js"
 import rating from "./rating.js"
 import { disableCardButtons } from "./disableCardBtn.js"
 import { Params } from "./queryParams.js"
+import { changeAuth } from "../user/isAuth.js"
+import { GetProductLocalStorage } from "./request.js"
 
 const renderProduct = new Promise((resolve, reject) => {
   const product_container = document.querySelector('#products-container')
   const rout = 'product'
   const params = Params
+  const isAuth = changeAuth()
+  const basketLocalData = GetProductLocalStorage('basket')
+  const favouriteLocalData = GetProductLocalStorage('favourite')
 
   const getProduct = async () => {
     try {
@@ -37,6 +42,19 @@ const renderProduct = new Promise((resolve, reject) => {
       console.log(error)
     }
   }
+
+  const disableCardBtn = (basket, favourite) => {
+    const btnBasket = '.card-button.add-btn'
+    const btnFavourite = '.card-like'
+    if (isAuth) {
+      disableCardButtons(basket, btnBasket)
+      disableCardButtons(favourite, btnFavourite)
+    } else {
+      disableCardButtons(basketLocalData, btnBasket)
+      disableCardButtons(favouriteLocalData, btnFavourite)
+    }
+  }
+
   const render = (products) => {
     product_container.innerHTML = ''
     if (products.count > 0) {
@@ -59,8 +77,7 @@ const renderProduct = new Promise((resolve, reject) => {
       render(product)
 
       if (product.count > 0) {
-        disableCardButtons(basket, '.card-button.add-btn')
-        disableCardButtons(favourite, '.card-like')
+        disableCardBtn(basket, favourite)
         rating()
       }
 
