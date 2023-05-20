@@ -23,7 +23,7 @@
             <div class="account">
               <div class="account__body">
                 <ul class="account__tab-list">
-                  <li class="account__tabs account-tabs" data-account="data">
+                  <a href="#personal-data" class="account__tabs account-tabs" data-account="data">
                     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                       <g>
                         <path
@@ -35,8 +35,8 @@
                     </svg>
                     <span class="account__tabs-title">Личные
                       данные</span>
-                  </li>
-                  <li class="account__tabs account-tabs" data-account="change-password">
+                  </a>
+                  <a href="#change-password" class="account__tabs account-tabs" data-account="change-password">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <g>
                         <path
@@ -44,8 +44,8 @@
                         <path d="M12,14a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V15A1,1,0,0,0,12,14Z" />
                       </g>
                     </svg><span class="account__tabs-title">Сменить пароль</span>
-                  </li>
-                  <li href="#" class="account__tabs account-tabs" data-account="history-purchas">
+                  </a>
+                  <a href="#history-purchas" class="account__tabs account-tabs" data-account="history-purchas">
                     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                       <g>
                         <path
@@ -55,7 +55,7 @@
                       </g>
                     </svg><span class="account__tabs-title">История
                       покупок</span>
-                  </li>
+                  </a>
                   <a href="basket.html" class="account__tabs" data-account="basket">
                     <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                       <g>
@@ -86,7 +86,7 @@
                     <span class="account__tabs-title">Заказы</span></a>
                 </ul>
                 <div class="account__content none">
-                  <div class="account__tab-preview" data-account="data">
+                  <div id="personal-data" class="account__tab-preview" data-account="data">
                     <div class="account-data">
                       <div class="account-data__wp-title">
                         <h2 class="account-data__title">Профиль</h2>
@@ -148,15 +148,19 @@
                       </div>
                     </div>
                   </div>
-                  <div class="account__tab-preview" data-account="change-password">
+                  <div id="change-password" class="account__tab-preview" data-account="change-password">
                     <div class="account-data__wp-title">
                       <h2 class="account-data__title">Пароль</h2>
                       <button class="account-data-back back"><span class="_icon-arrow">Назад</span></button>
                     </div>
                     <form action="#" id="updata-password">
                       <div class="account__tab-item">
-                        <span class="input-title">Пароль</span>
-                        <input type="password" name="password" class="_input" autocomplete="off">
+                        <span class="input-title">Старый пароль</span>
+                        <input type="password" name="old-password" class="_input" autocomplete="off">
+                      </div>
+                      <div class="account__tab-item">
+                        <span class="input-title">Новый пароль</span>
+                        <input type="password" name="new-password" class="_input" autocomplete="off">
                       </div>
                       <div class="account__tab-item">
                         <span class="input-title">Повторите пароль</span>
@@ -165,7 +169,7 @@
                       <button type="submit" class="profile-button">Сохранить изменения</button>
                     </form>
                   </div>
-                  <div class="account__tab-preview" data-account="history-purchas">
+                  <div id="history-purchas" class="account__tab-preview" data-account="history-purchas">
                     <div class="account-data__wp-title">
                       <h2 class="account-data__title">Покупки</h2>
                       <button class="account-data-back back"><span class="_icon-arrow">Назад</span></button>

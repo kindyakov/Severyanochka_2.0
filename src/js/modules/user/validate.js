@@ -1,4 +1,4 @@
-export const Validate = (forma, form) => {
+export const ValidateRegistration = (forma, form) => {
   const inputPhone = form.querySelector('input[type="tel"]');
   const inputCard = form.querySelector('input[name="card_discount"]');
 
@@ -242,4 +242,44 @@ export const ValidateProfile = (forma, form) => {
   //     errorMessage: 'Не верный формат',
   //   }
   // ])
+}
+
+export const ValidatePassvord = (forma, form) => {
+  forma
+    .addField('input[name="old-password"]', [
+      {
+        rule: 'required',
+        errorMessage: 'Введите пароль',
+      },
+      {
+        rule: 'minLength',
+        value: 6,
+        errorMessage: 'Пароль должен содержать минимум 6 символов',
+      },
+    ])
+    .addField('input[name="new-password"]', [
+      {
+        rule: 'required',
+        errorMessage: 'Введите пароль',
+      },
+      {
+        rule: 'minLength',
+        value: 6,
+        errorMessage: 'Пароль должен содержать минимум 6 символов',
+      },
+    ])
+    .addField('input[name="confirm-password"]', [
+      {
+        rule: 'required',
+        value: '/[а-яА-яa-zA-z]/gi',
+        errorMessage: 'Повторите пароль',
+      },
+      {
+        validator: value => {
+          const pass = form.querySelector('input[name="new-password"]')
+          return value === pass.value
+        },
+        errorMessage: 'Пароли не совпадают',
+      }
+    ])
 }

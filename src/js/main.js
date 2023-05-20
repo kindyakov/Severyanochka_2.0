@@ -3,14 +3,7 @@ import headerData from './modules/headerData.js'
 import { useDynamicAdapt } from "./modules/dynamicAdapt.js";
 checkSupportWebP()
 useDynamicAdapt()
-// import UpdateNav from "./modules/header/UpdateNav.js";
-// import Request from "./modules/Request.js";
 // import CreateSliderCards from "./modules/slider/CreateSliderCards.js";
-// import { urlOrigin } from "./modules/Links.js";
-// import GetAllCards from "./modules/card/GetAllCards.js";
-// import Rating from "./modules/rating/Rating.js";
-// import { AddDisableCardBtn, AddDisableCardLike } from "./modules/AddDisableClass.js";
-// import CardsFromLS from "./modules/card/CardsFromLS.js";
 // import LoadingSwiper from "./modules/slider/LoadingSwiper.js";
 import user from "./modules/user/user.js";
 
@@ -147,7 +140,6 @@ window.addEventListener('load', function () {
   let url = document.location.href;
   linkActive(footerLinks, url);
   linkActive(menuLinks, url);
-  // UpdateNav();
 })
 
 if (btnUp) {

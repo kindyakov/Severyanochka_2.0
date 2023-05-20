@@ -58,7 +58,6 @@ const aside = () => {
   const handlerClick = e => {
     if (e.target.closest('.admin__aside-tab:not(._active)')) {
       const { table, tbody, rout } = assign(e)
-
       removeActive()
       addActive(e.target, table)
       renderTable({ tbody, table, rout })

@@ -3,14 +3,14 @@ import { Get, GetProduct } from "./request.js"
 import rating from "./rating.js"
 import { disableCardButtons } from "./disableCardBtn.js"
 import { Params } from "./queryParams.js"
-import { changeAuth } from "../user/isAuth.js"
+import { checkAuth } from "../user/isAuth.js"
 import { GetProductLocalStorage } from "./request.js"
 
 const renderProduct = new Promise((resolve, reject) => {
   const product_container = document.querySelector('#products-container')
   const rout = 'product'
   const params = Params
-  const isAuth = changeAuth()
+  const isAuth = checkAuth()
   const basketLocalData = GetProductLocalStorage('basket')
   const favouriteLocalData = GetProductLocalStorage('favourite')
 

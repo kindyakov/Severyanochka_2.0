@@ -46,6 +46,9 @@
 		flex: 0 1 23.24%;
 		min-height: 100%;
 		position: relative;
+		&.not-authorized {
+			display: none;
+		}
 
 		&_body {
 			display: flex;
@@ -138,6 +141,19 @@
 		flex: 0 1 76.58%;
 		display: flex;
 		flex-direction: column;
+		&.not-authorized {
+			flex: 0 1 100%;
+			width: 100%;
+			.catalog-products__wrapper {
+				grid-template-columns: repeat(4, 1fr);
+				@media (max-width: $md2) {
+					grid-template-columns: repeat(3, 1fr);
+				}
+				@media (max-width: $md3) {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+		}
 	}
 
 	&__wrapper {
@@ -158,6 +174,9 @@
 			margin: 0;
 			opacity: 0;
 			visibility: hidden;
+		}
+		&.not-authorized {
+			display: none;
 		}
 	}
 }
@@ -194,6 +213,9 @@
 	flex-wrap: wrap;
 	gap: 15px;
 	margin-bottom: 20px;
+	&.not-authorized {
+		display: none;
+	}
 	&__list {
 		display: flex;
 		align-items: center;

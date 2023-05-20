@@ -1,24 +1,23 @@
 import { Add, GetProductId, GetProductLocalStorage } from "./request.js"
-import { changeAuth } from '../user/isAuth.js'
+import { checkAuth } from '../user/isAuth.js'
 
-const addBasket = () => {
-  const menuBasket = document.querySelector('#menu-basket')
-  const rout = 'basket'
+const addProducts = (rout, selectorBtn) => {
+  const menuCount = document.querySelector(`#menu-${rout}`)
   let productId
-  let counterProduct = Number(menuBasket.textContent)
-  const isAuth = changeAuth()
+  let counterProduct = Number(menuCount.textContent)
+  const isAuth = checkAuth()
 
   const disableBtn = e => {
-    const cardBtn = e.target.closest('.card-button.add-btn')
+    const cardBtn = e.target.closest(selectorBtn)
     cardBtn.classList.add('disable')
     ++counterProduct
-    menuBasket.textContent = counterProduct
+    menuCount.textContent = counterProduct
   }
 
   const addBasketLocal = (products) => {
-    const basketLocalData = GetProductLocalStorage('basket')
+    const basketLocalData = GetProductLocalStorage(rout)
     basketLocalData.push(products)
-    localStorage.setItem('basket', JSON.stringify(basketLocalData))
+    localStorage.setItem(rout, JSON.stringify(basketLocalData))
   }
 
   const clickBtn = e => {
@@ -40,7 +39,7 @@ const addBasket = () => {
   }
 
   const handlerClick = (e) => {
-    if (e.target.closest('.card-button.add-btn:not(.disable)')) {
+    if (e.target.closest(`${selectorBtn}:not(.disable)`)) {
       clickBtn(e)
     }
   }
@@ -48,4 +47,4 @@ const addBasket = () => {
   window.addEventListener('click', handlerClick)
 }
 
-export default addBasket
+export default addProducts

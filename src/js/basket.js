@@ -4,13 +4,13 @@ import { Get } from "./modules/product/request.js";
 import deleteProduct from "./modules/basket/deleteProduct.js";
 import priceCalculation from "./modules/basket/priceСalculation.js";
 import NumberProducts from "./modules/basket/numberProducts.js";
-import { changeAuth } from "./modules/user/isAuth.js";
+import { checkAuth } from "./modules/user/isAuth.js";
 import { GetProductLocalStorage } from "./modules/product/request.js";
 
 const titleQuantity = document.querySelector('.main-title-quantity')
 const basket__content = document.querySelector('.basket__content')
 const asideInfo = document.querySelector('.basket__aside-info')
-const isAuth = changeAuth()
+const isAuth = checkAuth()
 const basketLocalData = GetProductLocalStorage('basket')
 
 basket__content.innerHTML = loader()

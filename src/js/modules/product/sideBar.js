@@ -110,7 +110,6 @@ const sideBar = () => {
     let xDiff = touchX - moveX;
 
     if (xDiff > (filtersWidth / 2.5)) sideBarClose()
-
   }
 
   filters.addEventListener('touchstart', touchStart);

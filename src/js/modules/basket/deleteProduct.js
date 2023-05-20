@@ -4,7 +4,7 @@ import NumberProducts from './numberProducts.js'
 import loader from '../loader.js'
 import countProducts from '../countProducts.js'
 import { productError } from './productHtml.js'
-import { changeAuth } from '../user/isAuth.js'
+import { checkAuth } from '../user/isAuth.js'
 import { GetProductLocalStorage } from '../product/request.js'
 
 const deleteProduct = () => {
@@ -13,7 +13,7 @@ const deleteProduct = () => {
   const all_checkbox = document.querySelector('.basket__card-check.basket__settings-check')
   const asideInfo = document.querySelector('.basket__aside-info')
   let checkbox = document.querySelectorAll('.basket__card-check:not(.basket__settings-check)')
-  const isAuth = changeAuth()
+  const isAuth = checkAuth()
   let idArr = [], wCardsDel = []
 
   const activeBtn = () => deleteBtn.classList.add('_active')
