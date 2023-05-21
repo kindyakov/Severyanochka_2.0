@@ -246,7 +246,7 @@ export const ValidateProfile = (forma, form) => {
 
 export const ValidatePassvord = (forma, form) => {
   forma
-    .addField('input[name="old-password"]', [
+    .addField('input[name="old_password"]', [
       {
         rule: 'required',
         errorMessage: 'Введите пароль',
@@ -257,7 +257,7 @@ export const ValidatePassvord = (forma, form) => {
         errorMessage: 'Пароль должен содержать минимум 6 символов',
       },
     ])
-    .addField('input[name="new-password"]', [
+    .addField('input[name="new_password"]', [
       {
         rule: 'required',
         errorMessage: 'Введите пароль',
@@ -268,7 +268,7 @@ export const ValidatePassvord = (forma, form) => {
         errorMessage: 'Пароль должен содержать минимум 6 символов',
       },
     ])
-    .addField('input[name="confirm-password"]', [
+    .addField('input[name="confirm_password"]', [
       {
         rule: 'required',
         value: '/[а-яА-яa-zA-z]/gi',
@@ -276,7 +276,7 @@ export const ValidatePassvord = (forma, form) => {
       },
       {
         validator: value => {
-          const pass = form.querySelector('input[name="new-password"]')
+          const pass = form.querySelector('input[name="new_password"]')
           return value === pass.value
         },
         errorMessage: 'Пароли не совпадают',

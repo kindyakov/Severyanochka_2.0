@@ -76,7 +76,7 @@ class Modal {
     this.validateForm.refresh()
   }
   call() {
-    if (this.isCreate) {
+    if (!this.isCreate) {
       this.createModal()
       this.isCreate = false;
       this.validate()

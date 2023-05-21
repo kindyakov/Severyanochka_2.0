@@ -1,5 +1,7 @@
 import JustValidate from "just-validate"
 import { ValidatePassvord } from "../user/validate.js"
+import { $auth } from "../API.js"
+import { exit } from "../user/auth.js"
 
 const updataPassword = () => {
   const updataPasswordForm = document.querySelector('#updata-password')
@@ -14,17 +16,20 @@ const updataPassword = () => {
 
   const updataPass = async () => {
     try {
-      // const data = await
-      // Forma.showErrors({ 'input[name="old-password"]': 'The email is invalid' })
-      // Forma.showSuccessLabels({ '#email': 'The email looks good!' })
+      let formData = new FormData(updataPasswordForm)
+      const res = await $auth.put('api/user/password', formData)
+      exit()
     } catch (error) {
-      console.log(error)
+      const { response } = error
+      Forma.showErrors({
+        [`input[name="${response.data.name}"]`]: response.data.message
+      })
     }
   }
 
   const submit = () => {
     Forma.revalidate()
-      .then(isValid => updataPass())
+      .then(isValid => isValid && updataPass())
       .catch(error => console.error(error))
   }
 

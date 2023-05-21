@@ -1,9 +1,10 @@
 import { $auth } from "../API.js"
 import { errorRes } from "./res/errorRes.js"
+import { checkAuth } from "./isAuth.js"
 
 export const updataUser = async (forma) => {
-  const token = localStorage.getItem('token')
-  if (!token) return
+  const isAuth = checkAuth()
+  if (!isAuth) return
   try {
     const phone = forma.querySelector('input[name="phone"]')
     let formData = new FormData(forma)

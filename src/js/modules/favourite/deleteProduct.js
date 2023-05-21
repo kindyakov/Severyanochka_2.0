@@ -13,7 +13,7 @@ const deleteProduct = () => {
       remove('favourite', id)
         .then(products => {
           wCard.remove()
-          countProducts('.main-title-quantity', '#menu-favourites', products)
+          countProducts('.main-title-quantity', '#menu-favourite', products)
           if (products.length === 0) products__container.innerHTML = productError()
         })
         .catch(err => console.log(err))

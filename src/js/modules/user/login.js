@@ -7,12 +7,12 @@ export const login = async (form) => {
     const phone = '7' + form.querySelector('.modal-phone').inputmask.unmaskedvalue();
     const password = form.querySelector('.modal-password').value;
 
-    const { data } = await $api.post('api/user/login', { phone, password })
+    const { data: token } = await $api.post('api/user/login', { phone, password })
 
-    localStorage.setItem('token', `Bearer ${data.token}`)
+    localStorage.setItem('token', `Bearer ${token}`)
     return isLogin = true;
   } catch (error) {
-    errorRes(error, form)
+    errorRes(error, document.querySelector('#login'), form)
     return isLogin;
   }
 }

@@ -1,6 +1,7 @@
 import { Get } from "./product/request.js";
 import { checkAuth } from "./user/isAuth.js";
 import { GetProductLocalStorage } from "./product/request.js";
+import { $auth } from "./API.js";
 
 const headerData = () => {
   const isAuth = checkAuth()
@@ -28,8 +29,18 @@ const headerData = () => {
     }
   }
 
-  const renderHeader = (data) => {
-    const [basket, favourite] = data
+  const addProducts = async (rout, idArr) => {
+    try {
+      const data = await $auth.post(`api/${rout}/add`, idArr)
+      localStorage.setItem(rout, '[]')
+      window.location.reload()
+      return data
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const renderHeader = ({ basket, favourite }) => {
     const menuFavourites = document.querySelector('#menu-favourite')
     const menuOrders = document.querySelector('#menu-order')
     const menuBasket = document.querySelector('#menu-basket')
@@ -41,8 +52,31 @@ const headerData = () => {
       : menuBasket.textContent = 0
   }
 
+  const uniqueProduct = (productLocalData, idArr, rout) => {
+    if (productLocalData.length === 0) return
+    const idArrLocal = productLocalData.map(obj => obj.id)
+    const filterLocalData = idArrLocal.filter(id =>
+      !idArr.includes(id));
+
+    if (filterLocalData.length === 0) return
+    addProducts(rout, filterLocalData)
+  }
+
+  const synchronizationDatabaseLocalStorage = (basket, favourite) => {
+    if (!isAuth) return
+    const arrBasketId = basket.map(obj => obj.productId)
+    const arrFavouriteId = favourite.map(obj => obj.productId)
+
+    uniqueProduct(basketLocalData, arrBasketId, 'basket')
+    uniqueProduct(favouriteLocalData, arrFavouriteId, 'favourite')
+  }
+
   Promise.all([getBasket(), getFavourite()])
-    .then(data => renderHeader(data))
+    .then(data => {
+      const [basket, favourite] = data
+      renderHeader({ basket, favourite })
+      synchronizationDatabaseLocalStorage(basket, favourite)
+    })
     .catch(err => console.log(err))
 }
 
