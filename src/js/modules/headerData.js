@@ -32,8 +32,8 @@ const headerData = () => {
   const addProducts = async (rout, idArr) => {
     try {
       const data = await $auth.post(`api/${rout}/add`, idArr)
-      localStorage.setItem(rout, '[]')
       window.location.reload()
+      delete localStorage[rout];
       return data
     } catch (error) {
       console.log(error)
