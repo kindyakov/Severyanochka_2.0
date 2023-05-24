@@ -5,7 +5,7 @@ import paginationProduct from "./pagination.js";
 import rating from "./rating.js";
 import { disableCardButtons } from "./disableCardBtn.js";
 import { Params } from "./queryParams.js";
-import { GetProduct } from "./request.js";
+import { $auth } from "../API.js";
 
 const filters = ({ filter, basket, favourite, Rout }) => {
   const footer = document.querySelector('.catalog-products__footer')
@@ -21,16 +21,14 @@ const filters = ({ filter, basket, favourite, Rout }) => {
     rangeSlider.clear()
     inputCheckbox.checked = true
   }
-
-  const getProduct = async (rout, params) => {
+  const getProduct = async ({ rout, params }) => {
     try {
-      const data = await GetProduct({ rout, params })
+      const { data } = await $auth.get(`api/${rout}`, { params })
       return data
     } catch (error) {
       console.log(error)
     }
   }
-
   const stackFun = (products) => {
     const count = products.count
     rating()
@@ -80,7 +78,7 @@ const filters = ({ filter, basket, favourite, Rout }) => {
     const params = createParams()
     product_container.innerHTML = loader()
 
-    getProduct(rout, params)
+    getProduct({ rout, params })
       .then(data => {
         renderProduct(data)
         renderFilter(data.filter)
@@ -96,7 +94,7 @@ const filters = ({ filter, basket, favourite, Rout }) => {
     params.filters.sort_name = name
     params.filters.sort_type = type
 
-    getProduct(rout, params)
+    getProduct({ rout, params })
       .then(data => renderProduct(data))
       .catch(err => console.log(err))
   }

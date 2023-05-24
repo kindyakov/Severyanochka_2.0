@@ -79,53 +79,6 @@ if (wrapper) {
       document.querySelector('.header-catalog__button').classList.remove('active');
     }
   });
-  //mouseover
-  //mouseout
-  //mousemove
-  // if ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0) {
-  //   wrapper.addEventListener('click', (e) => {
-  //     if (e.target.closest('.header-catalog__button')) {
-  //       e.preventDefault();
-  //       catalogMenu.classList.add('open');
-  //       document.querySelector('.header-catalog__button').classList.add('active');
-  //       document.body.classList.add('lock');
-  //       document.querySelector('html').classList.add('lock');
-  //     } else if (catalogMenu.classList.contains('open')) {
-  //       if (!e.target.closest('.wrpper-catalog__button') && !e.target.closest('.header-catalog')) {
-  //         catalogMenu.classList.remove('open')
-  //         document.querySelector('.header-catalog__button').classList.remove('active');
-
-  //         document.body.classList.remove('lock');
-  //         document.querySelector('html').classList.remove('lock');
-  //       }
-  //     }
-  //   });
-  //   let touchY = null;
-
-  //   function touchStart(e) {
-  //     const touch = e.touches[0];
-  //     touchY = touch.clientY;
-  //   }
-  //   function touchMove(e) {
-  //     if (!touchY) {
-  //       return false;
-  //     }
-  //     let catalogMenuHeight = this.clientHeight;
-
-  //     let moveY = e.touches[0].clientY;
-  //     let yDiff = touchY - moveY;
-
-  //     if (yDiff > 150) {
-  //       catalogMenu.classList.remove('open')
-  //       document.querySelector('.header-catalog__button').classList.remove('active');
-
-  //       document.body.classList.remove('lock');
-  //       document.querySelector('html').classList.remove('lock');
-  //     }
-  //   }
-  //   catalogMenu.addEventListener('touchstart', touchStart);
-  //   catalogMenu.addEventListener('touchmove', touchMove);
-  // }
 }
 
 function linkActive(selector, url) {
@@ -149,13 +102,15 @@ if (btnUp) {
       behavior: "smooth"
     });
   })
+
+  window.addEventListener('scroll', function () {
+    const viewport_width = Math.max(document.documentElement.clientHeight, window.innerHeight);
+    if (scrollY >= viewport_width) {
+      btnUp.classList.add('visible');
+    } else {
+      btnUp.classList.remove('visible');
+    }
+  })
 }
 
-window.addEventListener('scroll', function () {
-  const viewport_width = Math.max(document.documentElement.clientHeight, window.innerHeight);
-  if (scrollY >= viewport_width) {
-    btnUp.classList.add('visible');
-  } else {
-    btnUp.classList.remove('visible');
-  }
-})
+

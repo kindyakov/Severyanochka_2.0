@@ -24,9 +24,15 @@ export const HeaderProfile = (user) => {
 
   const t_User = jwt_decode(localStorage.getItem('token'))
   const header__admin = document.querySelector('.header__admin')
+  const profile__menu = document.querySelector('.profile__menu')
+
   if (t_User.role === 'admin') {
     header__admin.classList.remove('disable')
-  } else header__admin.classList.add('disable')
+    profile__menu.classList.add('opacity')
+  } else {
+    header__admin.classList.add('disable')
+    profile__menu.classList.remove('opacity')
+  }
 }
 
 export const exit = () => {
