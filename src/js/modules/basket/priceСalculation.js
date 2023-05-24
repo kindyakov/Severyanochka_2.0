@@ -1,11 +1,12 @@
 import { infoProductHtml, minSumError } from "./productHtml.js"
+import { url } from "../API.js"
 
 const priceCalculation = products => {
   const asideForm = document.querySelector('.basket__aside-form')
   const asidePriceResult = document.querySelector('.basket__aside-info-price-result')
   const basketInfo = document.querySelector('.basket__aside-info')
   const asideFooter = document.querySelector('.basket__aside-footer')
-  const minSum = 1000
+  const minSum = 500
   let priceResult, asideMinsum = document.querySelector('.basket__aside-minsum')
 
   if (products.length === 0) {
@@ -26,13 +27,15 @@ const priceCalculation = products => {
     basketInfo.insertAdjacentHTML('beforeend', infoProductHtml(product))
   });
 
-  if (priceResult <= minSum) {
-    if (asideMinsum) return
-    asideFooter.insertAdjacentHTML('afterbegin', minSumError(minSum))
-    asideMinsum = document.querySelector('.basket__aside-minsum')
-  } else {
-    if (!asideMinsum) return
-    asideMinsum.remove()
+  const minSumRender = () => {
+    if (priceResult <= minSum) {
+      if (asideMinsum) return
+      asideFooter.insertAdjacentHTML('afterbegin', minSumError(minSum))
+      asideMinsum = document.querySelector('.basket__aside-minsum')
+    } else {
+      if (!asideMinsum) return
+      asideMinsum.remove()
+    }
   }
 
   const orderRegistration = e => {
@@ -40,11 +43,12 @@ const priceCalculation = products => {
     if (priceResult <= minSum && asideMinsum) {
       asideMinsum.classList.add('bounce');
       setTimeout(() => { asideMinsum.classList.remove("bounce") }, 350);
-    } else if (priceResult > minSum) {
-      // Создаем заказ в бд и редиректим пользователя на страницу заказа 
+    } else if (+priceResult >= minSum) {
+      location.assign(`${url}order.html`);
     }
   }
 
+  minSumRender()
   asideForm.addEventListener('submit', orderRegistration)
 }
 

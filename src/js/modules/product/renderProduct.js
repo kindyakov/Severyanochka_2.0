@@ -24,7 +24,7 @@ const renderProduct = new Promise((resolve, reject) => {
   }
   const getBasket = async () => {
     try {
-      if (localStorage.getItem('token')) {
+      if (isAuth) {
         const basket = await Get('basket')
         return basket
       } else return null
@@ -34,7 +34,7 @@ const renderProduct = new Promise((resolve, reject) => {
   }
   const getFavourite = async () => {
     try {
-      if (localStorage.getItem('token')) {
+      if (isAuth) {
         const favourite = await Get('favourite')
         return favourite
       } else return null
