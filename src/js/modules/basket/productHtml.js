@@ -28,17 +28,17 @@ export const productHtml = (data) => {
   <div class="basket__card">
     <div class="basket__card-wrapper-checkbox">
       <div class="basket__card-checkbox">
-        <input type="checkbox" id="basket-card-check-${data.id}" class="basket__card-check">
+        <input type="checkbox" id="basket-card-check-${data.id}" class="basket__card-check" checked>
         <label for="basket-card-check-${data.id}" class="basket__card-check-label">✓</label>
       </div>
     </div>
 
     <div class="basket__card-wrapper-content">
-      <a href="https://kindyakov.github.io/severyanochka/html/fruits-vegetables/klubnika-prochie-tovary-svezhaya-200g.html" class="basket__card-wrapper-img">
+      <a href="" class="basket__card-wrapper-img">
         <img src="${renderImgProduct(data.img, data.name)}" class="basket__card-img">
       </a>
       <div class="basket__card-content">
-        <a href="https://kindyakov.github.io/severyanochka/html/fruits-vegetables/klubnika-prochie-tovary-svezhaya-200g.html" class="basket__card-name">${data.name}</a>
+        <a href="" class="basket__card-name">${data.name}</a>
         <div class="basket__card-text">
           <p class="basket__card-wrapper-price wrapper-price">
             <span class="basket__card-price basket__card-price-usual">${data.price} ₽</span>

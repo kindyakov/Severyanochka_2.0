@@ -1,6 +1,6 @@
 import deleteAnimate from './deleteAnimate.js'
 import { Delete } from '../product/request.js'
-import NumberProducts from './numberProducts.js'
+import numberProducts from './numberProducts.js'
 import loader from '../loader.js'
 import countProducts from '../countProducts.js'
 import { productError } from './productHtml.js'
@@ -58,7 +58,7 @@ const deleteProduct = () => {
   }
   const mainLogic = (products) => {
     disableBtn()
-    new NumberProducts(products).quantityLoad()
+    numberProducts(products)
     countProducts('.main-title-quantity', '#menu-basket', products)
   }
   const deleteProduct = async () => {
@@ -87,10 +87,12 @@ const deleteProduct = () => {
     assign()
 
     const inputCheked = Array.from(checkbox).filter(input => input.checked === true)
-    inputCheked.forEach(input => idArr.push(input.id.split('-').reverse()[0]))
-
-    idArr.forEach(id => wCardsDel.push(document
-      .querySelector(`.basket__wrapper-cards[data-id="${id}"]`)))
+    inputCheked.forEach(input => {
+      const wCard = input.closest('.basket__wrapper-cards')
+      const id = wCard.dataset.id
+      idArr.push(id)
+      wCardsDel.push(wCard)
+    })
 
     deleteAnimate(wCardsDel)
     deleteProduct()

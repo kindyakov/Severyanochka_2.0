@@ -3,7 +3,7 @@ import { productHtml, productError } from "./modules/basket/productHtml.js";
 import { Get } from "./modules/product/request.js";
 import deleteProduct from "./modules/basket/deleteProduct.js";
 import priceCalculation from "./modules/basket/priceСalculation.js";
-import NumberProducts from "./modules/basket/numberProducts.js";
+import numberProducts from "./modules/basket/numberProducts.js";
 import { checkAuth } from "./modules/user/isAuth.js";
 import { GetProductLocalStorage } from "./modules/product/request.js";
 
@@ -32,11 +32,11 @@ const renderProduct = (products) => {
     return false
   }
 }
+
 const mainLogic = (products) => {
   if (!products) return
   deleteProduct()
-  priceCalculation(products)
-  new NumberProducts(products)
+  numberProducts(products)
 }
 
 const getBasket = async () => {
