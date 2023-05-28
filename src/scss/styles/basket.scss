@@ -623,6 +623,7 @@
 		flex-direction: column;
 		align-items: flex-start;
 		width: auto;
+		position: relative;
 	}
 
 	&__delivery-inner-span {
@@ -776,6 +777,12 @@
 		&:active {
 			transform: scale(0.93);
 		}
+	}
+}
+
+.authorization-item {
+	&.none {
+		display: none;
 	}
 }
 

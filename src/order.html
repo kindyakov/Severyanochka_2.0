@@ -25,30 +25,34 @@
             <!-- basket -->
             <div class="basket">
               <!-- basket__wrapper -->
-              <div class="basket__wrapper">
-                <form class="basket__delivery">
+              <form class="basket__wrapper" id="form-order">
+                <div class="basket__delivery">
                   <div class="basket__delivery-item">
                     <h3 class="basket__delivery-title">Куда</h3>
                     <div class="basket__delivery-row">
                       <div class="basket__delivery-inner delivery-inner-city">
-                        <span class="basket__delivery-inner-span">Населенный пункт</span>
-                        <input type="text" class="_input" autocomplete="none">
+                        <span class="basket__delivery-inner-span">Город</span>
+                        <input type="text" name="city" class="_input input-address" autocomplete="none">
                       </div>
                       <div class="basket__delivery-inner delivery-inner-street">
                         <span class="basket__delivery-inner-span">Улица</span>
-                        <input type="text" name="street" class="delivery-input-street _input" autocomplete="none">
+                        <input type="text" name="street" class="delivery-input-street _input input-address"
+                          autocomplete="none">
                       </div>
                       <div class="basket__delivery-inner">
                         <span class="basket__delivery-inner-span">Дом</span>
-                        <input type="text" name="house" class="delivery-input-house _input" autocomplete="none">
+                        <input type="text" name="house" class="delivery-input-house _input input-address"
+                          autocomplete="none">
                       </div>
                       <div class="basket__delivery-inner">
                         <span class="basket__delivery-inner-span">Квартира</span>
-                        <input type="text" name="apartment" class="delivery-input-apartment _input" autocomplete="none">
+                        <input type="text" name="flat" class="delivery-input-apartment _input input-address"
+                          autocomplete="none">
                       </div>
                       <div class="basket__delivery-inner">
                         <span class="basket__delivery-inner-span">Подъезд</span>
-                        <input type="text" name="entrance" class="delivery-input-entrance _input" autocomplete="none">
+                        <input type="text" name="entrance" class="delivery-input-entrance _input input-address"
+                          autocomplete="none">
                       </div>
                     </div>
                   </div>
@@ -57,15 +61,28 @@
                     <div class="basket__delivery-row">
                       <div class="basket__delivery-inner">
                         <span class="basket__delivery-inner-span">Дата</span>
-                        <input type="date" name="date" class="delivery-input-date _input">
+                        <input type="date" name="delivery_date" class="delivery-input-date _input">
                       </div>
                       <div class="basket__delivery-inner-time">
                         <span class="basket__delivery-inner-span">Время</span>
                         <div class="basket__delivery-inner-content">
-                          <div class="basket__delivery-time-block active"><span class="span-time">8:00 - 14:00</span>
+                          <div class="basket__delivery-time-block " data-time="8:00-10:00"><span class="span-time">8:00
+                              - 10:00</span>
                           </div>
-                          <div class="basket__delivery-time-block"><span class="span-time">14:00 - 18:00</span></div>
-                          <div class="basket__delivery-time-block"><span class="span-time">18:00 - 20:00</span></div>
+                          <div class="basket__delivery-time-block active" data-time="10:00-12:00"><span
+                              class="span-time">10:00 - 12:00</span>
+                          </div>
+                          <div class="basket__delivery-time-block" data-time="12:00-14:00"><span class="span-time">12:00
+                              - 14:00</span>
+                          </div>
+                          <div class="basket__delivery-time-block" data-time="14:00-16:00"><span class="span-time">14:00
+                              - 16:00</span>
+                          </div>
+                          <div class="basket__delivery-time-block" data-time="16:00-18:00"><span class="span-time">16:00
+                              - 18:00</span></div>
+                          <div class="basket__delivery-time-block" data-time="18:00-20:00">
+                            <span class="span-time">18:00 - 20:00</span>
+                          </div>
                           <div class="basket__delivery-time-block time-disable">
                             <span class="span-time">20:00 - 22:00</span>
                             <div class="basket__delivery-info-wrapper">
@@ -79,7 +96,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="basket__delivery-item">
+                  <div class="basket__delivery-item authorization-item none">
                     <h3 class="basket__delivery-title">Вход</h3>
                     <div class="basket__delivery-row">
                       <div class="basket__delivery-inner delivery-inner-phone">
@@ -94,10 +111,10 @@
                       </div>
                     </div>
                   </div>
-                </form>
+                </div>
                 <!-- basket-aside -->
                 <aside class="basket__aside">
-                  <form class="basket__aside-form">
+                  <div class="basket__aside-form">
                     <div class="basket__aside-discount">
                       <div class="basket__aside-wrapper-checkbox">
                         <label for="basket-aside-discount" class="basket__aside-checkbox">
@@ -128,14 +145,14 @@
                     </div>
 
                     <div class="basket__aside-footer">
-                      <button type="submit" class="basket__aside-button delivery-btn payment-btn">Оплатить на
+                      <button class="basket__aside-button delivery-btn payment-btn">Оплатить на
                         сайте</button>
-                      <button type="submit" class="basket__aside-button delivery-btn2 payment-btn2">Оплатить при
+                      <button class="basket__aside-button delivery-btn2 payment-btn2">Оплатить при
                         получении</button>
                     </div>
-                  </form>
+                  </div>
                 </aside>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -147,6 +164,7 @@
     <div class="btn-up">↑</div>
   </div>
   @@include("html/components/main/_js.html",{})
+  <script src="js/order.min.js"></script>
 </body>
 
 </html>

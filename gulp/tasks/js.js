@@ -20,6 +20,7 @@ const js = () => {
           registration: `./src/js/registration.js`,
           basket: `./src/js/basket.js`,
           favourite: `./src/js/favourite.js`,
+          order: `./src/js/order.js`,
         },
         output: {
           filename: '[name].min.js'

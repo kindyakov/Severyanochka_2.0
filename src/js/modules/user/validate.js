@@ -283,3 +283,85 @@ export const ValidatePassvord = (forma, form) => {
       }
     ])
 }
+
+export const ValidateOrder = (forma) => {
+  forma
+    .addField('input[name="city"]', [
+      {
+        rule: 'required',
+        errorMessage: 'Введите город',
+      },
+      {
+        rule: 'minLength',
+        value: 0,
+        errorMessage: 'Пустое поле',
+      },
+    ])
+    .addField('input[name="street"]', [
+      {
+        rule: 'required',
+        errorMessage: 'Введите улицу',
+      },
+      {
+        rule: 'minLength',
+        value: 0,
+        errorMessage: 'Пустое поле',
+      },
+    ])
+    .addField('input[name="house"]', [
+      {
+        rule: 'required',
+        errorMessage: 'Дом',
+      },
+      {
+        rule: 'number',
+        errorMessage: 'Число',
+      },
+      {
+        rule: 'minLength',
+        value: 0,
+        errorMessage: 'Пустое поле',
+      },
+    ])
+    .addField('input[name="flat"]', [
+      {
+        rule: 'required',
+        errorMessage: 'Квартира',
+      },
+      {
+        rule: 'number',
+        errorMessage: 'Число',
+      },
+      {
+        rule: 'minLength',
+        value: 0,
+        errorMessage: 'Пустое поле',
+      },
+    ])
+    .addField('input[name="entrance"]', [
+      {
+        rule: 'required',
+        errorMessage: 'Введите подъезд',
+      },
+      {
+        rule: 'number',
+        errorMessage: 'Число',
+      },
+      {
+        rule: 'minLength',
+        value: 0,
+        errorMessage: 'Пустое поле',
+      },
+    ])
+    .addField('input[name="delivery_date"]', [
+      {
+        rule: 'required',
+        errorMessage: 'Введите дату доставки',
+      },
+      {
+        rule: 'minLength',
+        value: 0,
+        errorMessage: 'Пустое поле',
+      },
+    ])
+}

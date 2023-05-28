@@ -33,6 +33,10 @@
 		border-radius: 4px;
 		overflow: auto;
 		transition: 0.2s;
+		@media (max-width: $md4) {
+			padding: 30px;
+			width: 100%;
+		}
 	}
 
 	&__title {
