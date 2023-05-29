@@ -2,7 +2,6 @@ import loader from "./modules/loader.js";
 import { productHtml, productError } from "./modules/basket/productHtml.js";
 import { Get } from "./modules/product/request.js";
 import deleteProduct from "./modules/basket/deleteProduct.js";
-import priceCalculation from "./modules/basket/priceСalculation.js";
 import numberProducts from "./modules/basket/numberProducts.js";
 import { checkAuth } from "./modules/user/isAuth.js";
 import { GetProductLocalStorage } from "./modules/product/request.js";

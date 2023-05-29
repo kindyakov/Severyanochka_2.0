@@ -31,11 +31,12 @@ const DeliveryData = (form) => {
 export const createOrder = async (form) => {
   try {
     const deliveryData = DeliveryData(form)
+    saveAddress('.input-address')
 
+    if (!deliveryData) return false
 
     const { data } = await $auth.post('api/order', { deliveryData, orderProduct })
 
-    saveAddress('.input-address')
     return data
   } catch (error) {
     console.log(error)

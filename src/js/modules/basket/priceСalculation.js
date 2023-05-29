@@ -1,5 +1,5 @@
 import { infoProductHtml, minSumError } from "./productHtml.js"
-import { url } from "../API.js"
+import delivery from "../delivery/delivery.js"
 
 const filterProducts = (products) => {
   let newProdust = []
@@ -15,6 +15,10 @@ const filterProducts = (products) => {
 }
 
 const priceCalculation = products => {
+  const basket_product = document.querySelector('#basket-product')
+  const form_order = document.querySelector('#form-order')
+  const main_title = document.querySelector('.main__title')
+  const basket_settings = document.querySelector('.basket__settings')
   const asideForm = document.querySelector('.basket__aside-form')
   const asidePriceResult = document.querySelector('.basket__aside-info-price-result')
   const basketInfo = document.querySelector('.basket__aside-info')
@@ -65,14 +69,21 @@ const priceCalculation = products => {
     }
   }
 
+  const displayDelivery = () => {
+    basket_product.classList.add('_none')
+    basket_settings.classList.add('_none')
+    form_order.classList.remove('_none')
+    main_title.textContent = 'Доставка'
+  }
+
   const orderRegistration = e => {
     e.preventDefault()
     if (priceResult <= minSum && asideMinsum) {
       asideMinsum.classList.add('bounce');
       setTimeout(() => { asideMinsum.classList.remove("bounce") }, 350);
     } else if (priceResult >= minSum) {
-      localStorage.setItem('order_product', JSON.stringify(Products))
-      location.assign(`${url}order.html`);
+      displayDelivery()
+      delivery(Products)
     }
   }
 
@@ -88,11 +99,13 @@ const priceCalculation = products => {
       Products = filterProducts(products)
       performingFunctions()
     }
+    if (e.target.closest('.basket__aside-button')) {
+      orderRegistration(e)
+    }
   }
 
   performingFunctions()
 
-  asideForm.addEventListener('submit', orderRegistration)
   window.addEventListener('click', handlerClick)
 }
 

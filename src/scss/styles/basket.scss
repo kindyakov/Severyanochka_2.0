@@ -22,6 +22,9 @@
 		align-items: center;
 		column-gap: 40px;
 		padding: 8px;
+		&._none {
+			display: none;
+		}
 	}
 
 	&__settings-checkbox {
@@ -90,6 +93,11 @@
 		display: flex;
 		justify-content: space-between;
 		column-gap: 40px;
+		&._none {
+			display: none;
+			opacity: 0;
+			visibility: hidden;
+		}
 	}
 
 	&__content {
