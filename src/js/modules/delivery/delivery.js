@@ -35,9 +35,9 @@ const delivery = (products) => {
       product) => count + +product.count, 0)
 
     main_title_quantity.textContent = countProduct
-
     price_result.textContent = priceResult + ' ₽'
     basket_info.innerHTML = ''
+
     products.forEach(product => {
       basket_info.insertAdjacentHTML('beforeend', infoProductHtml(product))
     });
@@ -46,9 +46,8 @@ const delivery = (products) => {
   const request = async () => {
     try {
       const orderData = await createOrder(form)
-
-
       const idArr = products.map(obj => obj.id)
+
       if (orderData) {
         await Delete('basket', idArr)
       }
@@ -58,7 +57,6 @@ const delivery = (products) => {
   }
 
   const submit = (e) => {
-    console.log(order)
     order.revalidate()
       .then(isValid => isValid && request())
   }
@@ -68,6 +66,7 @@ const delivery = (products) => {
   getAddress('.input-address')
   limitationDate('input[type="date"]')
   renderAside()
-  form.addEventListener('submit', submit)
+
+  form.addEventListener('click', submit)
 }
 export default delivery

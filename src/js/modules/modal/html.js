@@ -3,7 +3,7 @@ export const formLoginH = `
 <div class="login-column">
 <div class="modal__wrapper-input">
   <label class="login__label">Телефон</label>
-  <input type="tel" name="phone" class="login__input modal-phone">
+  <input type="tel" inputmode="tel" name="phone" class="login__input modal-phone">
 </div>
 <div class="modal__wrapper-input">
   <label class="login__label">Пароль</label>
