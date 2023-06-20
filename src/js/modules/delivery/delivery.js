@@ -9,11 +9,13 @@ import { сhooseTime } from "./сhooseTime.js";
 import { Delete } from "../product/request.js";
 
 const delivery = (products) => {
+  const basket_settings = document.querySelector('.basket__settings')
   const form = document.querySelector('#form-order')
   const authorization_item = form.querySelector('.authorization-item')
   const main_title_quantity = document.querySelector('.main-title-quantity')
   const price_result = form.querySelector('.basket__aside-info-price-result')
   const basket_info = form.querySelector('.basket__aside-info')
+  const success_order = document.querySelector('#success-order')
 
   const isAuth = checkAuth()
 
@@ -45,20 +47,27 @@ const delivery = (products) => {
 
   const request = async () => {
     try {
-      const orderData = await createOrder(form)
+      const orderData = await createOrder(form, products)
       const idArr = products.map(obj => obj.id)
 
       if (orderData) {
         await Delete('basket', idArr)
+        form.classList.add('_none')
+        success_order.classList.remove('_none')
       }
     } catch (error) {
-      console.log(error)
+      console.log('Ошибка в создании заказа', error)
     }
   }
 
   const submit = (e) => {
-    order.revalidate()
-      .then(isValid => isValid && request())
+    order.revalidate().then(isValid => isValid && request())
+  }
+
+  const handlerClick = e => {
+    if (e.target.closest('.payment-btn2')) {
+      submit()
+    }
   }
 
   ValidateOrder(order) // валидация формы
@@ -67,6 +76,7 @@ const delivery = (products) => {
   limitationDate('input[type="date"]')
   renderAside()
 
-  form.addEventListener('click', submit)
+  document.addEventListener('click', handlerClick)
 }
+
 export default delivery

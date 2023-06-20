@@ -33,7 +33,7 @@ const renderProduct = (products) => {
 }
 
 const mainLogic = (products) => {
-  if (!products) return
+  if (products.length === 0) return
   deleteProduct()
   numberProducts(products)
 }
@@ -53,7 +53,7 @@ const getBasket = async () => {
       titleQuantity.textContent = 0
     }
   } catch (error) {
-    console.log(error)
+    console.log("Ошибка в получения корзины:", error.message)
   }
 }
 

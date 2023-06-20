@@ -74,7 +74,7 @@ const renderProduct = new Promise((resolve, reject) => {
       }
       render(product)
       disableCardButtons(basket, '.card-button')
-      disableCardButtons(isAuth ? favourite : product, '.card-like')
+      // disableCardButtons(isAuth ? favourite : product, '.card-like')
       rating()
       resolve(returnData)
     })

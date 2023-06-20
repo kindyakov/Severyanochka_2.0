@@ -29,6 +29,15 @@ const headerData = () => {
     }
   }
 
+  const getOrder = async () => {
+    try {
+      const order = await Get('order/list')
+      return order
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const addProducts = async (rout, idArr) => {
     try {
       const data = await $auth.post(`api/${rout}/add`, idArr)
@@ -40,14 +49,16 @@ const headerData = () => {
     }
   }
 
-  const renderHeader = ({ basket, favourite }) => {
+  const renderHeader = ({ basket, favourite, order }) => {
     const menuFavourites = document.querySelector('#menu-favourite')
     const menuOrders = document.querySelector('#menu-order')
     const menuBasket = document.querySelector('#menu-basket')
 
     favourite ? menuFavourites.textContent = favourite.length
       : menuFavourites.textContent = 0
-    menuOrders.textContent = 0
+
+    order ? menuOrders.textContent = order.length : menuOrders.textContent = 0
+
     basket ? menuBasket.textContent = basket.length
       : menuBasket.textContent = 0
   }
@@ -71,13 +82,14 @@ const headerData = () => {
     uniqueProduct(favouriteLocalData, arrFavouriteId, 'favourite')
   }
 
-  Promise.all([getBasket(), getFavourite()])
+  Promise.all([getBasket(), getFavourite(), getOrder()])
     .then(data => {
-      const [basket, favourite] = data
-      renderHeader({ basket, favourite })
+      const [basket, favourite, order] = data
+
+      renderHeader({ basket, favourite, order })
       synchronizationDatabaseLocalStorage(basket, favourite)
     })
-    .catch(err => console.log(err))
+    .catch(err => console.error(err.message))
 }
 
 export default headerData

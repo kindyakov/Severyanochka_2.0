@@ -247,3 +247,19 @@
 		opacity: 1;
 	}
 }
+.count-product {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	position: absolute;
+	left: 8px;
+	top: 6px;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 5px;
+	background-color: rgba(243, 242, 241, 0.6);
+	border-radius: 4px;
+	&::before {
+		font-size: 20px;
+	}
+}

@@ -1,6 +1,6 @@
-import priceCalculation from "./priceСalculation.js";
-const priceWithoutSpaces = (str) => {
+import PriceCalculation from "./priceСalculation.js";
 
+const priceWithoutSpaces = (str) => {
   return str.replace(/[^\d.-]/g, '');
 }
 
@@ -17,6 +17,7 @@ const createNewArr = (products) => {
 
 const numberProducts = (products) => {
   let newProducts = createNewArr(products)
+  const priceCalculation = new PriceCalculation()
 
   const quantityLoad = () => {
     const wCards = document.querySelectorAll('.basket__wrapper-cards')
@@ -33,8 +34,9 @@ const numberProducts = (products) => {
       }
     })
 
-    priceCalculation(newProducts)
+    priceCalculation.performingFunctions(newProducts)
   }
+
   const quantityClick = (e, counter) => {
     const wCards = e.target.closest('.basket__wrapper-cards')
     const counterInput = wCards.querySelector('.basket__card-counter-input')
@@ -49,8 +51,9 @@ const numberProducts = (products) => {
     counterInput.textContent = product.count
     counterPriceSum.textContent = product.priceSum + ' ₽'
 
-    priceCalculation(newProducts)
+    priceCalculation.performingFunctions(newProducts)
   }
+
   const handlerClick = e => {
     if (e.target.closest('.basket__card-counter-btn')) {
       const counter = e.target.dataset.counter

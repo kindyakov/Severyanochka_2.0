@@ -19,11 +19,13 @@ const renderCharacteristic = (arr) => {
   });
   return html.join('')
 }
+
 const renderImg = (arr, src) => {
   const images = JSON.parse(arr)
   const [img] = images
   return (imgHtml(img, `${src}${img}`))
 }
+
 const renderImgProduct = (arr, name) => {
   const html = []
   const images = JSON.parse(arr)
@@ -33,6 +35,7 @@ const renderImgProduct = (arr, name) => {
   })
   return html.join('')
 }
+
 const productHtml = (data) => {
   return `
   <div class="modal-wrapper-title">

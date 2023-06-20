@@ -325,32 +325,14 @@ export const ValidateOrder = (forma) => {
     ])
     .addField('input[name="flat"]', [
       {
-        rule: 'required',
-        errorMessage: 'Квартира',
-      },
-      {
         rule: 'number',
         errorMessage: 'Число',
-      },
-      {
-        rule: 'minLength',
-        value: 0,
-        errorMessage: 'Пустое поле',
       },
     ])
     .addField('input[name="entrance"]', [
       {
-        rule: 'required',
-        errorMessage: 'Введите подъезд',
-      },
-      {
         rule: 'number',
         errorMessage: 'Число',
-      },
-      {
-        rule: 'minLength',
-        value: 0,
-        errorMessage: 'Пустое поле',
       },
     ])
     .addField('input[name="delivery_date"]', [

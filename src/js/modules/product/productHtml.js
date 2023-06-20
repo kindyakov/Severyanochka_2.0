@@ -51,11 +51,12 @@ export const productHtml = (data) => {
       </div>
       <button class="card-button add-btn">В корзину</button>
     </div>
-    <span class="card-like _icon-shape like"></span>
+    ${!isFavorites ? '<span class="card-like _icon-shape like"></span> ' : ''}
     ${isFavorites ? `<span class="card-delete">✖</span>` : ''}
   </div>
   </div>`
 }
+
 export const productError = () => {
   return `<div class="error-products">
   <div class="error-products_content">

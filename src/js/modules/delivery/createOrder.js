@@ -1,17 +1,14 @@
-import { GetProductLocalStorage } from "../product/request.js"
 import { saveAddress } from "./Address.js"
 import { $auth } from "../API.js"
 
-const orderProduct = GetProductLocalStorage('order_product')
-
-const DeliveryData = (form) => {
+const DeliveryData = (form, products) => {
   const time_block = document.querySelectorAll('.basket__delivery-time-block:not(.time-disable)')
 
   let data = {}
   let formData = new FormData(form)
   formData.delete('phone')
 
-  const priceResult = +orderProduct.reduce((sumPrice,
+  const priceResult = +products.reduce((sumPrice,
     product) => sumPrice + +product.priceSum, 0).toFixed(2)
   formData.set('price', priceResult)
 
@@ -28,14 +25,14 @@ const DeliveryData = (form) => {
   return data
 }
 
-export const createOrder = async (form) => {
+export const createOrder = async (form, products) => {
   try {
-    const deliveryData = DeliveryData(form)
+    const deliveryData = DeliveryData(form, products)
     saveAddress('.input-address')
 
     if (!deliveryData) return false
 
-    const { data } = await $auth.post('api/order', { deliveryData, orderProduct })
+    const { data } = await $auth.post('api/order', { deliveryData, products })
 
     return data
   } catch (error) {

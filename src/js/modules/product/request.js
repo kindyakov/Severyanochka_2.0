@@ -1,5 +1,4 @@
 import { $auth, $api } from "../API.js";
-import { productError } from "../basket/productHtml.js";
 
 export const Add = async (rout, productId) => {
   try {
@@ -24,7 +23,16 @@ export const GetProduct = async ({ rout, params }) => {
     const { data } = await $api.get(`api/${rout}`, { params })
     return data
   } catch (error) {
-    console.log(error)
+    console.error('Ошибка в GetProduct:', error.message)
+  }
+}
+
+export const GetProductAuth = async ({ rout, params }) => {
+  try {
+    const { data } = await $auth.get(`api/${rout}`, { params })
+    return data
+  } catch (error) {
+    console.error('Ошибка в GetProduct:', error.message)
   }
 }
 
@@ -41,7 +49,6 @@ export const GetProductLocalStorage = (name) => {
   const product = JSON.parse(localStorage.getItem(name)) || []
   return product
 }
-
 
 export const Delete = async (rout, idArr) => {
   try {

@@ -14,99 +14,96 @@ const filterProducts = (products) => {
   return newProdust
 }
 
-const priceCalculation = products => {
-  const basket_product = document.querySelector('#basket-product')
-  const form_order = document.querySelector('#form-order')
-  const main_title = document.querySelector('.main__title')
-  const basket_settings = document.querySelector('.basket__settings')
-  const asideForm = document.querySelector('.basket__aside-form')
-  const asidePriceResult = document.querySelector('.basket__aside-info-price-result')
-  const basketInfo = document.querySelector('.basket__aside-info')
-  const asideFooter = document.querySelector('.basket__aside-footer')
-  const minSum = 500
-  let Products = filterProducts(products)
+class PriceCalculation {
+  constructor() {
+    this.asidePriceResult = document.querySelector('.basket__aside-info-price-result')
+    this.basketInfo = document.querySelector('.basket__aside-info')
+    this.asideFooter = document.querySelector('.basket__aside-footer')
+    this.minSum = 500
 
-  let priceResult, asideMinsum = document.querySelector('.basket__aside-minsum')
+    this.priceResult = 0
+    this.asideMinsum = document.querySelector('.basket__aside-minsum')
 
-  const checkProducts = () => {
-    if (products.length === 0) {
-      asidePriceResult.textContent = '0 ₽'
+    window.addEventListener('click', this.handlerClick)
+  }
+
+
+  checkProducts = () => {
+    if (this.products.length === 0) {
+      this.asidePriceResult.textContent = '0 ₽'
       return
-    } else if (products.length > 0 && Products.length === 0) {
-      asidePriceResult.textContent = '0 ₽'
-      basketInfo.innerHTML = `<span style="color: red; text-align: center">Продукт не выбран</span>`
+    } else if (this.products.length > 0 && this.Products.length === 0) {
+      this.asidePriceResult.textContent = '0 ₽'
+      this.basketInfo.innerHTML = `<span style="color: red; text-align: center">Продукт не выбран</span>`
     }
   }
 
-  const renderPriceResult = () => {
-    if (Products.length === 0) return
+  renderPriceResult = () => {
+    if (this.Products.length === 0) return
 
-    priceResult = +Products.reduce((sumPrice,
+    this.priceResult = +this.Products.reduce((sumPrice,
       product) => sumPrice + +product.priceSum, 0).toFixed(2)
 
-    asidePriceResult.textContent = priceResult + ' ₽'
-    basketInfo.innerHTML = ''
-    basketInfo.removeAttribute('style')
+    this.asidePriceResult.textContent = this.priceResult + ' ₽'
+    this.basketInfo.innerHTML = ''
+    this.basketInfo.removeAttribute('style')
   }
 
-  const renderAside = () => {
-    if (Products.length === 0) return
-    basketInfo.innerHTML = ''
-    Products.forEach(product => {
-      basketInfo.insertAdjacentHTML('beforeend', infoProductHtml(product))
+  renderAside = () => {
+    if (this.Products.length === 0) return
+    this.basketInfo.innerHTML = ''
+    this.Products.forEach(product => {
+      this.basketInfo.insertAdjacentHTML('beforeend', infoProductHtml(product))
     });
   }
 
-  const minSumRender = () => {
-    if (priceResult <= minSum) {
-      if (asideMinsum) return
-      asideFooter.insertAdjacentHTML('afterbegin', minSumError(minSum))
-      asideMinsum = document.querySelector('.basket__aside-minsum')
+  minSumRender = () => {
+    if (this.priceResult <= this.minSum) {
+      if (this.asideMinsum) return
+      this.asideFooter.insertAdjacentHTML('afterbegin', minSumError(this.minSum))
+      this.asideMinsum = document.querySelector('.basket__aside-minsum')
     } else {
-      if (!asideMinsum) return
-      asideMinsum.remove()
-      asideMinsum = null
+      if (!this.asideMinsum) return
+      this.asideMinsum.remove()
+      this.asideMinsum = null
     }
   }
 
-  const displayDelivery = () => {
-    basket_product.classList.add('_none')
-    basket_settings.classList.add('_none')
-    form_order.classList.remove('_none')
-    main_title.textContent = 'Доставка'
+  performingFunctions = (products) => {
+    this.products = products
+    this.Products = filterProducts(products)
+    this.checkProducts()
+    this.renderPriceResult()
+    this.renderAside()
+    this.minSumRender()
   }
 
-  const orderRegistration = e => {
+  displayDelivery = () => {
+    document.querySelector('#basket-product').classList.add('_none')
+    document.querySelector('.basket__settings').classList.add('_none')
+    document.querySelector('#form-order').classList.remove('_none')
+    document.querySelector('.main__title').textContent = 'Доставка'
+  }
+
+  orderRegistration = e => {
     e.preventDefault()
-    if (priceResult <= minSum && asideMinsum) {
-      asideMinsum.classList.add('bounce');
-      setTimeout(() => { asideMinsum.classList.remove("bounce") }, 350);
-    } else if (priceResult >= minSum) {
-      displayDelivery()
-      delivery(Products)
+    if (this.priceResult <= this.minSum && this.asideMinsum) {
+      this.asideMinsum.classList.add('bounce');
+      setTimeout(() => { this.asideMinsum.classList.remove("bounce") }, 350);
+    } else if (this.priceResult >= this.minSum) {
+      this.displayDelivery()
+      delivery(this.Products)
     }
   }
 
-  const performingFunctions = () => {
-    checkProducts()
-    renderPriceResult()
-    renderAside()
-    minSumRender()
-  }
-
-  const handlerClick = e => {
+  handlerClick = e => {
     if (e.target.closest('input[type="checkbox"]')) {
-      Products = filterProducts(products)
-      performingFunctions()
+      this.Products = filterProducts(products)
+      this.performingFunctions()
     }
-    if (e.target.closest('.basket__aside-button')) {
-      orderRegistration(e)
+    if (e.target.closest('.making-order-btn')) {
+      this.orderRegistration(e)
     }
   }
-
-  performingFunctions()
-
-  window.addEventListener('click', handlerClick)
 }
-
-export default priceCalculation
+export default PriceCalculation
