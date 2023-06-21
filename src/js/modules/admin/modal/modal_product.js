@@ -29,11 +29,11 @@ const modalProduct = (modalId) => {
 
   getDataAll('type')
     .then(data => renderSelect(selectType, data))
-    .catch(err => console.log(err))
+    .catch(err => console.log(err.message))
 
   getDataAll('brand')
     .then(data => renderSelect(selectBrand, data))
-    .catch(err => console.log(err))
+    .catch(err => console.log(err.message))
 
   btmCharacteristic.addEventListener('click', () => {
     wrapperCharacteristic.insertAdjacentHTML('beforeend', characteristicHtml())

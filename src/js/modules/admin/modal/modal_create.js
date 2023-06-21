@@ -95,7 +95,7 @@ const modalCreate = (e) => {
               .catch(err => console.log(err))
           } else {
             Create(form, formName, modal)
-              .then(data => data && location.reload())
+              .then(data => console.log(data))
               // .then(() => close())
               .catch(err => console.log(err))
           }

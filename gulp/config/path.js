@@ -15,6 +15,7 @@ export const path = {
     fonts: `${buildFolder}/fonts/`,
     files: `${buildFolder}/assets/`,
     project: `${buildFolder}/**/*.*`,
+    php: `${buildFolder}/php/`,
   },
   src: {
     html: `${srcFolder}/*.html`,
@@ -24,6 +25,7 @@ export const path = {
     svg: `${srcFolder}/img/**/*.svg`,
     svgicons: `${srcFolder}/svgicons/**/*.svg`,
     files: `${srcFolder}/assets/**/*.*`,
+    php: `${srcFolder}/php/**/*.*`,
   },
   watch: {
     html: `${srcFolder}/**/*.html`,
@@ -32,6 +34,7 @@ export const path = {
     images: `${srcFolder}/img/**/*.{jpg,jpeg,png,gif,webp,svg}`,
     svgicons: `${srcFolder}/svgicons/**/*.svg`,
     files: `${srcFolder}/assets/**/*.*`,
+    php: `${srcFolder}/php/**/*.*`,
   },
   clean: buildFolder,
   buildFolder,

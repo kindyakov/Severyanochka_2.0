@@ -6,8 +6,8 @@ import sideBar from "./modules/product/sideBar.js";
 import filters from "./modules/product/filter.js";
 import { useDynamicAdapt } from "./modules/dynamicAdapt.js";
 
-const productsContainer = document.querySelector('#products-container')
-productsContainer.innerHTML = loader()
+const products_container = document.querySelector('#products-container')
+products_container.innerHTML = loader()
 const Rout = 'product'
 
 renderProduct.then(({ basket, favourite, filter, count }) => {

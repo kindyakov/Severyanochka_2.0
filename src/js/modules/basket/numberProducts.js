@@ -59,6 +59,9 @@ const numberProducts = (products) => {
       const counter = e.target.dataset.counter
       quantityClick(e, counter)
     }
+    if (e.target.closest('input[type="checkbox"]')) {
+      priceCalculation.performingFunctions(newProducts)
+    }
   }
 
   quantityLoad()

@@ -70,8 +70,7 @@ const renderProduct = new Promise((resolve, reject) => {
     .then(data => {
       const [product, basket, favourite] = data
       const returnData = {
-        product: product,
-        basket: basket, favourite: favourite,
+        product, basket, favourite,
         filter: product.filter, count: product.count
       }
       render(product)

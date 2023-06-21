@@ -6,6 +6,7 @@
 		align-items: center;
 		flex-direction: column;
 		row-gap: 120px;
+		position: relative;
 	}
 
 	&__container {
@@ -14,6 +15,10 @@
 		align-items: center;
 		flex-direction: column;
 		row-gap: 45px;
+		.swiper {
+			width: 100%;
+		}
+
 		&_header {
 			width: 100%;
 			display: flex;
@@ -25,18 +30,37 @@
 			display: flex;
 			align-items: center;
 			gap: 24px;
+			@media (max-width: $md3) {
+				flex-direction: column;
+			}
 		}
 
 		&_dateTime {
 			font-weight: 700;
 			font-size: 24px;
+			&.span-time {
+				@media (max-width: $md3) {
+					display: none;
+				}
+			}
 		}
 
 		&_infoOrder {
-			background: #f3f2f1;
 			border-radius: 4px;
 			padding: 4px 8px;
 			font-size: 16px;
+			&._info0 {
+				background-color: #70c05b;
+				color: $white;
+			}
+			&._info1 {
+				background-color: #f3f2f1;
+				color: #414141;
+			}
+			&._info2 {
+				background-color: red;
+				color: $white;
+			}
 		}
 
 		&_price {
@@ -44,11 +68,33 @@
 			font-size: 24px;
 		}
 
-		&_inputDate {
+		&_labelDate {
+			position: relative;
 			background: #70c05b;
 			border-radius: 4px;
 			padding: 8px;
 			color: #ffffff;
+		}
+
+		&_inputDate {
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			opacity: 0;
+			cursor: pointer;
+			&::-webkit-calendar-picker-indicator {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				width: auto;
+				height: auto;
+				color: transparent;
+				background: transparent;
+			}
 		}
 	}
 

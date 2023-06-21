@@ -49,16 +49,6 @@ const product = `
 </div>
 <div class="admin__wrapper-characteristic">
   <div class="admin__button characteristic-btn">Добавить характеристику</div>
-  <div class="admin__characteristic-row">
-    <div class="modal__wrapper-input">
-      <label class="admin__label"></label>
-      <input type="text" name="title" class="admin__input _input" autocomplete="off">
-    </div>
-    <div class="modal__wrapper-input">
-      <label class="admin__label"></label>
-      <input type="text" name="description" class="admin__input _input" autocomplete="off">
-    </div>
-  </div>
 </div>
 <button class="admin__button">Добавить</button>
 </form>

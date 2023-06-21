@@ -1,6 +1,10 @@
 import orderRender from "./modules/order/orderRender.js";
 // import paginationProduct from "./modules/product/pagination.js";
-// import addProducts from "./modules/product/addProducts.js";
+import addProducts from "./modules/product/addProducts.js";
+import loader from "./modules/loader.js";
+
+const order_body = document.querySelector('.order__body')
+order_body.innerHTML = loader()
 
 orderRender.then(() => {
   new Swiper('.order__container-swiper', {
@@ -35,8 +39,9 @@ orderRender.then(() => {
       },
     }
   });
-  // addProducts('basket', '.card-button')
-  // addProducts('favourite', '.card-like')
+
+  addProducts('basket', '.card-button')
+  addProducts('favourite', '.card-like')
 }).catch(error => {
   console.error("Ошибка в order", error.message);
 })

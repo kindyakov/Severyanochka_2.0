@@ -12,6 +12,7 @@ global.app = {
 }
 
 import copy from './gulp/tasks/copy.js'
+import php from './gulp/tasks/php.js'
 import reset from './gulp/tasks/reset.js'
 import { html, catalogHtml } from './gulp/tasks/html.js'
 import server from './gulp/tasks/server.js'
@@ -30,6 +31,7 @@ function watcher() {
   gulp.watch(path.watch.scss, scss)
   gulp.watch(path.watch.js, js)
   gulp.watch(path.watch.images, images)
+  gulp.watch(path.watch.php, php)
 }
 
 // Последовательная обработка шрифтов 
@@ -37,7 +39,7 @@ const fonts = gulp.series(Woff, Woff2)
 // html 
 const Html = gulp.series(html, catalogHtml)
 // Основные задачи
-const mainTasks = gulp.series(fonts, gulp.parallel(copy, Html, scss, js, images))
+const mainTasks = gulp.series(fonts, gulp.parallel(copy, php, Html, scss, js, images))
 // Сценарий выполнения задач 
 const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server))
 const build = gulp.series(reset, mainTasks)

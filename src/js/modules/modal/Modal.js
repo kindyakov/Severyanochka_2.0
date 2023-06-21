@@ -27,6 +27,7 @@ class Modal {
     this.validateForm;
     this.hendleClick()
   }
+  
   hendleClick() {
     document.addEventListener('click', e => {
       if (e.target.closest(`${this.modalActive}`)) {
@@ -46,6 +47,7 @@ class Modal {
       this.close()
     })
   }
+
   createModal() {
     this.modalInsertHTML.insertAdjacentHTML('beforeend', this.modalHtml)
     this.modal = document.querySelector(`#${this.idModal}`);
@@ -60,6 +62,7 @@ class Modal {
 
     this.isCreate = true;
   }
+
   open() {
     this.isModal = true;
     this.addPadding()
@@ -67,6 +70,7 @@ class Modal {
     document.body.classList.add('_lock');
     document.querySelector('html').classList.add('_lock');
   }
+
   close() {
     this.isModal = false;
     // this.modalInsertHTML.style.cssText = '';
@@ -75,6 +79,7 @@ class Modal {
     this.modal.classList.remove('active');
     this.validateForm.refresh()
   }
+
   call() {
     if (!this.isCreate) {
       this.createModal()
@@ -84,6 +89,7 @@ class Modal {
     this.open()
   }
   atimate() { }
+
   addPadding() {
     const document_width = document.documentElement.clientWidth;
     const window_width = window.innerWidth;
@@ -91,6 +97,7 @@ class Modal {
 
     if (wrapper_margin > 0) this.modalInsertHTML.style.cssText = `padding-right: ${wrapper_margin}px;`;
   }
+
   validate() {
     this.validateForm = new JustValidate(`div#${this.idModal} .modal__form`, {
       errorLabelStyle: {
@@ -103,6 +110,7 @@ class Modal {
 
     this.submit()
   }
+
   submit() {
     this.form.addEventListener('submit', () => {
 

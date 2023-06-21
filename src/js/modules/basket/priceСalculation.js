@@ -71,7 +71,7 @@ class PriceCalculation {
 
   performingFunctions = (products) => {
     this.products = products
-    this.Products = filterProducts(products)
+    this.Products = filterProducts(this.products)
     this.checkProducts()
     this.renderPriceResult()
     this.renderAside()
@@ -98,8 +98,7 @@ class PriceCalculation {
 
   handlerClick = e => {
     if (e.target.closest('input[type="checkbox"]')) {
-      this.Products = filterProducts(products)
-      this.performingFunctions()
+      // this.performingFunctions(products)
     }
     if (e.target.closest('.making-order-btn')) {
       this.orderRegistration(e)

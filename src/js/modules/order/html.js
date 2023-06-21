@@ -61,20 +61,30 @@ function formatDate(dateString) {
   return `${day}.${month}.${year}`;
 }
 
+function classInfo(id) {
+  if (Number(id) === 0) {
+    return '_info0'
+  } else if (Number(id) === 1) {
+    return '_info1'
+  } else return '_info2'
+}
+
 const infoOrder = ['Получен', 'В процессе', 'Не доставили', 'Возврат']
 
 export const orderHtml = (obj) => {
   return `
-  <div class="order__container" data-id="${obj.id}">
+  <div class="order__container" data-orderid="${obj.id}">
     <div class="order__container_header">
       <div class="order__container_row">
         <span class="order__container_dateTime">${formatDate(obj.delivery_datum.delivery_date)}</span>
-        <span class="order__container_dateTime">${obj.delivery_datum.delivery_time}</span>
-        <span class="order__container_infoOrder">${infoOrder[obj.delivery_datum.delivery_information]}</span>
+        <span class="order__container_dateTime span-time">${obj.delivery_datum.delivery_time}</span>
+        <span class="order__container_infoOrder ${classInfo(obj.delivery_datum.delivery_information)}">${infoOrder[obj.delivery_datum.delivery_information]}</span>
       </div>
       <div class="order__container_row">
         <span class="order__container_price">${obj.delivery_datum.price} ₽</span>
-        <input type="date" name="date" class="order__container_inputDate">
+        ${Number(obj.delivery_datum.delivery_information) === 1 ? `<label for="inputDate-${obj.id}" class="order__container_labelDate">
+        <span>Когда доставить</span>
+        <input type="date" name="date" id="inputDate-${obj.id}" class="order__container_inputDate"></label>` : ''}
       </div>
     </div>
     <div class="order__container-swiper swiper">

@@ -1,5 +1,5 @@
 .wrapper-card {
-	max-width: 270px;
+	// max-width: 270px;
 }
 .card {
 	width: 100%;
@@ -204,8 +204,8 @@
 	cursor: pointer;
 
 	&.disable {
-		color: $orange;
-
+		color: $error;
+		cursor: default;
 		&::before {
 			font-weight: 700;
 		}
