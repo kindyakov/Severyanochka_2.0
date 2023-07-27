@@ -4,10 +4,10 @@ import loader from "../loader.js";
 import paginationProduct from "./pagination.js";
 import rating from "./rating.js";
 import { disableCardButtons } from "./disableCardBtn.js";
-import { Params } from "./queryParams.js";
-import { $auth } from "../API.js";
+import { params } from "./queryParams.js";
+import { getWithAuthParams, getWithParams } from "./request.js";
 
-const filters = ({ filter, basket, favourite, Rout }) => {
+const filters = ({ filter, basket, favourite, rout }) => {
   const footer = document.querySelector('.catalog-products__footer')
   const inputCheckbox = document.querySelector('.filters__wrapper-checkbox__checkbox');
   const filterMenuList = document.querySelector('.filter-menu__list');
@@ -15,26 +15,19 @@ const filters = ({ filter, basket, favourite, Rout }) => {
   const product_container = document.querySelector('#products-container')
   const filter__select = document.querySelector('.filter__select')
   const rangeSlider = new RangeSlider(filter.min, filter.max)
-  const rout = Rout
 
   const clearFilter = () => {
     rangeSlider.clear()
     inputCheckbox.checked = true
   }
-  const getProduct = async ({ rout, params }) => {
-    try {
-      const { data } = await $auth.get(`api/${rout}`, { params })
-      return data
-    } catch (error) {
-      console.log(error)
-    }
-  }
+
+
   const stackFun = (products) => {
     const count = products.count
     rating()
     disableCardButtons(basket, '.card-button.add-btn')
     disableCardButtons(favourite, '.card-like')
-    paginationProduct({ count, basket, favourite, Rout })
+    paginationProduct({ count, basket, favourite, rout })
   }
 
   const renderProduct = (products) => {
@@ -62,7 +55,6 @@ const filters = ({ filter, basket, favourite, Rout }) => {
     const maxPriceInput = document.querySelector('#max-price');
     const [name, type] = filter__select.value.split('-');
 
-    let params = Params
     params.page = 1
     params.filters = {
       min: +minPriceInput.value,
@@ -74,29 +66,29 @@ const filters = ({ filter, basket, favourite, Rout }) => {
     return params
   }
 
-  const submint = () => {
-    const params = createParams()
-    product_container.innerHTML = loader()
+  const submint = async () => {
+    try {
+      let params = createParams()
+      product_container.innerHTML = loader()
 
-    getProduct({ rout, params })
-      .then(data => {
-        renderProduct(data)
-        renderFilter(data.filter)
-      })
-      .catch(err => console.log(err))
+      const data = await getWithAuthParams({ rout, params })
+      renderProduct(data)
+      renderFilter(data.filter)
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
-  const select = () => {
-    let params = createParams()
-    const [name, type] = filter__select.value.split('-');
+  const select = async () => {
+    try {
+      let params = createParams()
+      product_container.innerHTML = loader()
 
-    product_container.innerHTML = loader()
-    params.filters.sort_name = name
-    params.filters.sort_type = type
-
-    getProduct({ rout, params })
-      .then(data => renderProduct(data))
-      .catch(err => console.log(err))
+      const data = await getWithParams({ rout, params })
+      renderProduct(data)
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
   const handlerClick = (e) => {

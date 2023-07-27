@@ -4,11 +4,10 @@
   <title>{{name}} | Интернет-магазин Северяночка</title>
   <meta charset="UTF-8">
   <meta name="format-detection" content="telephone=no">
-  <link rel="stylesheet" href="../../libs/Swiper/swiper-bundle.min.css">
-  <link rel="stylesheet" href="../../libs/Choices/choices.min.css">
-  <link rel="stylesheet" href="../../libs/nouiSlider/nouislider.min.css">
-  <link rel="stylesheet" href="../../../css/style.min.css">
-  <link rel="shortcut icon" href="../../../img/favicon/favicon.ico">
+  <link rel="stylesheet" href="../assets/libs/Choices/choices.min.css">
+  <link rel="stylesheet" href="../assets/libs/nouiSlider/nouislider.min.css">
+  <link rel="stylesheet" href="../css/style.min.css">
+  <link rel="shortcut icon" href="../img/favicon/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -16,18 +15,18 @@
   <div class="wrapper">
     <header class="header">
       <div class="header__admin">
-        <a href="../../../admin.html" class="header__admin-link">Администрирование</a>
+        <a href="../admin.html" class="header__admin-link">Администрирование</a>
       </div>
       <div class="container">
         <div class="header-wrapper">
           <div class="header-logo">
-            <a href=".../../../index.html" class="link-logo">
-              <img src="../../../img/logo.png" alt="Лого Серебряночка" class="logo-img">
+            <a href="../index.html" class="link-logo">
+              <img src="../img/logo.png" alt="Лого Серебряночка" class="logo-img">
               <span class="header-logo__span">Северяночка</span>
             </a>
           </div>
           <div class="wrpper-catalog__button">
-            <a href="../../../catalog.html" class="header-catalog__button">
+            <a href="../catalog.html" class="header-catalog__button">
               <div class="header-catalog__icon">
                 <span></span>
               </div>
@@ -42,24 +41,24 @@
             <div class="search_result">
               <ul class="search_list">
               </ul>
-              <a href="../../../search-result.html" class="search-all">Все результаты</a>
+              <a href="../search-result.html" class="search-all">Все результаты</a>
             </div>
           </div>
           <div class="header-menu__wrpper">
             <div class="header-menu" data-da=".menu-fixed, 768, 0">
-              <a href="../../../catalog.html" class="header-menu__item header-menu__catalog">
+              <a href="../catalog.html" class="header-menu__item header-menu__catalog">
                 <span class="icon icon-shape _icon-menu"></span>
                 <span class="text">Каталог</span>
               </a>
-              <a href="../../../favourites.html" class="header-menu__item header-menu__favourites">
+              <a href="../favourites.html" class="header-menu__item header-menu__favourites">
                 <span class="icon icon-menu _icon-shape"><span id="menu-favourite" class="cart-quantity"></span></span>
                 <span class="text">Избраное</span>
               </a>
-              <a href="../../../order.html" class="header-menu__item header-menu__orders">
+              <a href="../order.html" class="header-menu__item header-menu__orders">
                 <span class="icon icon-menu _icon-orders"><span id="menu-order" class="cart-quantity"></span></span>
                 <span class="text">Заказы</span>
               </a>
-              <a href="../../../basket.html" class="header-menu__item header-menu__cart">
+              <a href="../basket.html" class="header-menu__item header-menu__cart">
                 <span class="icon icon-menu _icon-cart"><span id="menu-basket" class="cart-quantity"></span></span>
                 <span class="text">Корзина</span>
               </a>
@@ -68,18 +67,18 @@
 
           <div class="header-profil" data-da=".header-menu, 440, last">
             <div class="profile">
-              <a href="../../../profile.html" class="profile__item">
+              <a href="../profile.html" class="profile__item">
                 <div class="profile__wrapper-img">
-                  <img src="" alt="Аватарка" class="profile__img">
+                  <img src="../img/svg/user.svg" alt="Аватарка" class="profile__img">
                 </div>
-                <label class="profile__name _icon-arrow">Андрей</label>
+                <label class="profile__name _icon-arrow"></label>
               </a>
               <ul class="profile__menu opacity">
-                <li class="profile__li"><a href="../../../profile.html" class="profile__link">Мой кабинет</a></li>
-                <li class="profile__li"><a href="../../../profile.html#personal-data" class="profile__link">Профиль</a>
+                <li class="profile__li"><a href="../profile.html" class="profile__link">Мой кабинет</a></li>
+                <li class="profile__li"><a href="../profile.html#personal-data" class="profile__link">Профиль</a>
                 </li>
-                <li class="profile__li"><a href="../../../profile.html#history-purchas"
-                    class="profile__link">Покупки</a></li>
+                <li class="profile__li"><a href="../profile.html#history-purchas" class="profile__link">Покупки</a>
+                </li>
                 <li class="profile__li"><button class="profile__link exit-account">Выйти</button></li>
               </ul>
             </div>
@@ -145,9 +144,9 @@
         <div class="main-body">
           <nav class="main__navigation">
             <ul class="main__navigation-list">
-              <a href="../../../index.html" class="main__navigation-link">Главная</a>
+              <a href="../index.html" class="main__navigation-link">Главная</a>
               <span class="main__navigation-span _icon-arrow"></span>
-              <a href="../../../catalog.html" class="main__navigation-link">Каталог</a>
+              <a href="../catalog.html" class="main__navigation-link">Каталог</a>
               <span class="main__navigation-span _icon-arrow"></span>
               <a href="catalog__milk-cheese-egg.html" class="main__navigation-link">{{name}}</a>
             </ul>
@@ -220,7 +219,7 @@
                       </button>
                     </menu>
                   </nav>
-                  <div id="products-container" class="catalog-products__wrapper" data-typeid="{{typeId}}">
+                  <div id="products-container" class="catalog-products__wrapper" data-typeid="{{id}}">
                     <!-- Здесь выводятся карточки -->
                   </div>
                   <div class="catalog-products__footer novisible">
@@ -259,26 +258,26 @@
       <div class="container">
         <div class="footer__content">
           <nav class="footer__menu">
-            <a href="../../../index.html" class="footer__logo-link"><img src="../../../img/logo-footer.png" alt=""
+            <a href="../index.html" class="footer__logo-link"><img src="../img/logo-footer.png" alt=""
                 class="footer__logo"></a>
             <ul class="footer__menu-list">
-              <li class="footer__menu-item"><a href="../../../about.html" class="footer__menu-link">О компании</a></li>
-              <li class="footer__menu-item"><a href="../../../contacts.html" class="footer__menu-link">Контакты</a></li>
-              <li class="footer__menu-item"><a href="../../../openings.html" class="footer__menu-link">Вакансии</a></li>
-              <li class="footer__menu-item"><a href="../../../articles.html" class="footer__menu-link">Статьи</a></li>
-              <li class="footer__menu-item"><a href="../../../discount.html" class="footer__menu-link">Акции</a></li>
+              <li class="footer__menu-item"><a href="../about.html" class="footer__menu-link">О компании</a></li>
+              <li class="footer__menu-item"><a href="../contacts.html" class="footer__menu-link">Контакты</a></li>
+              <li class="footer__menu-item"><a href="../openings.html" class="footer__menu-link">Вакансии</a></li>
+              <li class="footer__menu-item"><a href="../articles.html" class="footer__menu-link">Статьи</a></li>
+              <li class="footer__menu-item"><a href="../discount.html" class="footer__menu-link">Акции</a></li>
             </ul>
           </nav>
           <nav class="footer__contact">
             <ul class="footer__contact-list">
-              <li class="footer__contact-item"><a href="" class="footer__contact-link"><img
-                    src="../../../img/svg/instagram.svg" alt=""></a></li>
-              <li class="footer__contact-item"><a href="" class="footer__contact-link"><img
-                    src="../../../img/svg/vk.svg" alt=""></a></li>
-              <li class="footer__contact-item"><a href="" class="footer__contact-link"><img
-                    src="../../../img/svg/facebook.svg" alt=""></a></li>
-              <li class="footer__contact-item"><a href="" class="footer__contact-link"><img
-                    src="../../../img/svg/odnaklasshiki.svg" alt=""></a></li>
+              <li class="footer__contact-item"><a href="#" class="footer__contact-link"><img
+                    src="../img/svg/instagram.svg" alt="instagram"></a></li>
+              <li class="footer__contact-item"><a href="#" class="footer__contact-link"><img src="../img/svg/vk.svg"
+                    alt="vk"></a></li>
+              <li class="footer__contact-item"><a href="#" class="footer__contact-link"><img
+                    src="../img/svg/facebook.svg" alt="facebook"></a></li>
+              <li class="footer__contact-item"><a href="#" class="footer__contact-link"><img
+                    src="../img/svg/odnaklasshiki.svg" alt="odnaklasshiki"></a></li>
             </ul>
             <a href="tel:+88007773333" class="footer__contact-tel _icon-phone">8 800 777 33 33</a>
           </nav>
@@ -289,10 +288,9 @@
     <div class="btn-up">↑</div>
   </div>
 
-  <script src="../../libs/inputMask/inputmask.min.js"></script>
-  <script src="../../../js/main.min.js"></script>
-  <script src="../../../js/catalog_product.min.js"></script>
-
+  <script src="../assets/libs/inputMask/inputmask.min.js"></script>
+  <script src="../js/main.min.js"></script>
+  <script src="../js/catalog_product.min.js"></script>
 
 </body>
 

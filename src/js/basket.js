@@ -1,6 +1,6 @@
 import loader from "./modules/loader.js";
 import { productHtml, productError } from "./modules/basket/productHtml.js";
-import { Get } from "./modules/product/request.js";
+import { getWithAuth } from "./modules/product/request.js";
 import deleteProduct from "./modules/basket/deleteProduct.js";
 import numberProducts from "./modules/basket/numberProducts.js";
 import { checkAuth } from "./modules/user/isAuth.js";
@@ -41,7 +41,7 @@ const mainLogic = (products) => {
 const getBasket = async () => {
   try {
     if (isAuth) {
-      const data = await Get('basket/product')
+      const data = await getWithAuth('basket/product')
       renderProduct(data)
       mainLogic(data)
     } else if (basketLocalData.length > 0) {

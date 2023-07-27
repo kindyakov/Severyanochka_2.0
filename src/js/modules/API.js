@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const url = 'http://localhost:3000/'
+export const url = window.location.origin;
 export const api = 'http://localhost:8080/'
 export const apiImgUsers = api + 'img/img_users/'
 export const apiImgProducts = api + 'img/img_products/'

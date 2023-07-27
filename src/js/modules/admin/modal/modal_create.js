@@ -38,6 +38,7 @@ const modalCreate = (e) => {
     validate()
     submit()
   }
+
   const filling = () => {
     form = modal.querySelector('.modal__form')
     formName = form.dataset.validate
@@ -45,20 +46,24 @@ const modalCreate = (e) => {
     tbody = document.querySelector(`#${formName} .admin__table_tbody`)
     characteristicModal = modal.querySelector('.admin__wrapper-characteristic')
   }
+
   const open = () => {
     modal.classList.add('active');
     document.body.classList.add('_lock');
     document.querySelector('html').classList.add('_lock');
   }
+
   const close = () => {
     document.body.classList.remove('_lock');
     document.querySelector('html').classList.remove('_lock');
     modal.classList.remove('active');
     setTimeout(() => remove(), 200)
   }
+
   const remove = () => {
     modal.remove()
   }
+
   const validate = () => {
     validateForm = new JustValidate(`div#${modalId} .modal__form`, {
       errorLabelStyle: {
@@ -69,6 +74,7 @@ const modalCreate = (e) => {
     const validate = Validated[`${formName}`]
     validate(validateForm, `#${modalId}`)
   }
+
   const characteristic = () => {
     const characteristicRow = characteristicModal.querySelectorAll('.admin__characteristic-row')
 
@@ -82,6 +88,7 @@ const modalCreate = (e) => {
       characteristicArr.push(obj)
     });
   }
+
   const submit = () => {
     form.addEventListener('submit', () => {
       validateForm.revalidate()
@@ -90,12 +97,14 @@ const modalCreate = (e) => {
           if (key === 'product') {
             characteristic()
             Create(form, formName, modal, characteristicArr)
-              .then(data => data && location.reload())
+              // .then(res => res.status === 200 && location.reload())
+              .then(res => console.log(res))
               // .then(() => close())
               .catch(err => console.log(err))
           } else {
             Create(form, formName, modal)
-              .then(data => console.log(data))
+              // .then(res => res.status === 200 && location.reload())
+              .then(res => console.log(res))
               // .then(() => close())
               .catch(err => console.log(err))
           }

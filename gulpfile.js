@@ -14,7 +14,7 @@ global.app = {
 import copy from './gulp/tasks/copy.js'
 import php from './gulp/tasks/php.js'
 import reset from './gulp/tasks/reset.js'
-import { html, catalogHtml } from './gulp/tasks/html.js'
+import { html, catalogHtml, page } from './gulp/tasks/html.js'
 import server from './gulp/tasks/server.js'
 import scss from './gulp/tasks/scss.js'
 import js from './gulp/tasks/js.js'
@@ -32,6 +32,7 @@ function watcher() {
   gulp.watch(path.watch.js, js)
   gulp.watch(path.watch.images, images)
   gulp.watch(path.watch.php, php)
+  gulp.watch(path.watch.page, page)
 }
 
 // Последовательная обработка шрифтов 
@@ -39,10 +40,11 @@ const fonts = gulp.series(Woff, Woff2)
 // html 
 const Html = gulp.series(html, catalogHtml)
 // Основные задачи
-const mainTasks = gulp.series(fonts, gulp.parallel(copy, php, Html, scss, js, images))
+const mainTasks = gulp.series(fonts,
+  gulp.parallel(copy, page, php, Html, scss, js, images))
 // Сценарий выполнения задач 
-const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server))
-const build = gulp.series(reset, mainTasks)
+const dev = gulp.series(mainTasks, gulp.parallel(watcher, server)) // reset перед mainTasks
+const build = gulp.series(mainTasks)// reset перед mainTasks
 const deployZIP = gulp.series(reset, mainTasks, zip)
 const deployFTP = gulp.series(reset, mainTasks, ftp)
 

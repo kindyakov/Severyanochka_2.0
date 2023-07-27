@@ -3,72 +3,22 @@ import headerData from './modules/headerData.js'
 import { useDynamicAdapt } from "./modules/dynamicAdapt.js";
 checkSupportWebP()
 useDynamicAdapt()
-// import CreateSliderCards from "./modules/slider/CreateSliderCards.js";
-// import LoadingSwiper from "./modules/slider/LoadingSwiper.js";
 import user from "./modules/user/user.js";
-
+import catalog from "./modules/catalog/catalog.js";
 user()
-
-// const [cardsBasket, cardsFavourites] = CardsFromLS();
-
+catalog()
 const catalogMenu = document.querySelector('.header-catalog');
 const wrapper = document.querySelector('.wrapper');
-const _slides_cards = document.querySelector('._slides-cards');
-//Modal
-const profilButton = document.querySelector('.header-profil');
 //Menu
-const headerOriginal = document.querySelector('.header-menu__wrpper');
-const headerClon = document.querySelector('.menu-fixed')
 const headerMenu = document.querySelector('.header-menu')
-const headerWrapper = document.querySelector('.header-wrapper')
-
+if (headerMenu) headerData()
 //
 const menuLinks = document.querySelectorAll('.header-menu__item');
 const footerLinks = document.querySelectorAll('.footer__menu-link');
 //
 const btnUp = document.querySelector('.btn-up');
 //
-if (headerMenu) headerData()
-// if (_slides_cards) {
-//   Request(urlOrigin)
-//     .then(data => {
-//       new CreateSliderCards({
-//         insert: _slides_cards,
-//         where: 'afterbegin',
-//         title: 'Покупали раньше',
-//         link: urlOrigin + '/discount.html',
-//         linkText: 'Все покупки',
-//         className: 'bought',
-//         cards: GetAllCards({ product: data, random: true }),
-//         urlOrigin: urlOrigin,
-//       });
-//       new CreateSliderCards({
-//         insert: _slides_cards,
-//         where: 'afterbegin',
-//         title: 'Акции',
-//         link: urlOrigin + '/discount.html',
-//         linkText: 'Все акции',
-//         className: 'new_action',
-//         cards: GetAllCards({ product: data, byDiscount: true }),
-//         urlOrigin: urlOrigin,
-//       });
-//       new CreateSliderCards({
-//         insert: _slides_cards,
-//         where: 'afterbegin',
-//         title: 'Новинки',
-//         link: urlOrigin + '/new-products.html',
-//         linkText: 'Все новинки',
-//         className: 'new_products',
-//         cards: GetAllCards({ product: data, random: true }),
-//         urlOrigin: urlOrigin,
-//       });
-//     }).finally(() => {
-//       LoadingSwiper();
-//       Rating();
-//       AddDisableCardBtn(cardsBasket);
-//       AddDisableCardLike(cardsFavourites);
-//     });
-// }
+
 if (wrapper) {
   wrapper.addEventListener('mouseover', function (e) {
     if (e.target.closest('.header-catalog__button')) {
@@ -89,7 +39,7 @@ function linkActive(selector, url) {
     }
   }
 }
-window.addEventListener('load', function () {
+window.addEventListener('DOMContentLoaded', function () {
   let url = document.location.href;
   linkActive(footerLinks, url);
   linkActive(menuLinks, url);

@@ -23,11 +23,11 @@ const product = `
     </div>
     <div class="modal__wrapper-input">
       <label class="admin__label">Цена</label>
-      <input type="text" name="price" class="admin__input _input">
+      <input type="text" name="price" class="admin__input _input" autocomplete="off">
     </div>
     <div class="modal__wrapper-input">
       <label class="admin__label">Цена по карте</label>
-      <input type="text" name="price_card" class="admin__input _input">
+      <input type="text" name="price_card" class="admin__input _input" autocomplete="off">
     </div>
   </div>
   <div class="admin-column">
@@ -43,7 +43,7 @@ const product = `
     </div>
     <div class="modal__wrapper-input">
       <label class="admin__label">Скидка</label>
-      <input type="text" name="discount" class="admin__input _input">
+      <input type="text" name="discount" class="admin__input _input" autocomplete="off">
     </div>
   </div>
 </div>
@@ -112,8 +112,67 @@ const type = `
 </form>
 <div class="modal__close"></div>`
 
+const user = `
+<div class="modal-wrapper-title">
+    <h3 class="modal__title">Тип</h3>
+    <span class="error-res"></span>
+  </div>
+<form class="modal__form" data-validate="type">
+<div class="modal__flex">
+<div class="admin-column">
+    <div class="modal__wrapper-input">
+      <label class="admin__label">Изображение</label>
+      <label class="admin__label-file" for="img-type">
+        <input type="file" accept="image/*" id="img-type" name="img" class="admin__input _input">
+        <span class="file-name"></span>
+        <label class="file-download" for="img-type">Загрузить</label>
+      </label>
+    </div>
+    <div class="admin__wrapper-img"></div>
+  </div>
+  <div class="admin-column">
+    <div class="modal__wrapper-input">
+      <label class="admin__label">Название</label>
+      <input type="text" name="name" class="admin__input _input" autocomplete="off">
+    </div>
+  </div>
+</div>
+<button class="admin__button">Добавить</button>
+</form>
+<div class="modal__close"></div>`
+
+const article = `
+<div class="modal-wrapper-title">
+    <h3 class="modal__title">Тип</h3>
+    <span class="error-res"></span>
+  </div>
+<form class="modal__form" data-validate="type">
+<div class="modal__flex">
+<div class="admin-column">
+    <div class="modal__wrapper-input">
+      <label class="admin__label">Изображение</label>
+      <label class="admin__label-file" for="img-type">
+        <input type="file" accept="image/*" id="img-type" name="img" class="admin__input _input">
+        <span class="file-name"></span>
+        <label class="file-download" for="img-type">Загрузить</label>
+      </label>
+    </div>
+    <div class="admin__wrapper-img"></div>
+  </div>
+  <div class="admin-column">
+    <div class="modal__wrapper-input">
+      <label class="admin__label">Название</label>
+      <input type="text" name="name" class="admin__input _input" autocomplete="off">
+    </div>
+  </div>
+</div>
+<button class="admin__button">Добавить</button>
+</form>
+<div class="modal__close"></div>`
+
 const forms = {
-  product, brand, type
+  product, brand, type, user,
+  article
 }
 
 export default forms

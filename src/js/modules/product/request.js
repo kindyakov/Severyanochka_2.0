@@ -5,34 +5,34 @@ export const Add = async (rout, productId) => {
     const { data } = await $auth.post(`api/${rout}`, { productId })
     return data
   } catch (error) {
-    console.log(error)
+    console.log(error.message)
   }
 }
 
-export const Get = async (rout) => {
+export const getWithAuth = async (rout) => {
   try {
     const { data } = await $auth.get(`api/${rout}`)
     return data
   } catch (error) {
-    console.log(error)
+    console.log(error.message)
   }
 }
 
-export const GetProduct = async ({ rout, params }) => {
+export const getWithParams = async ({ rout, params }) => {
   try {
     const { data } = await $api.get(`api/${rout}`, { params })
     return data
   } catch (error) {
-    console.error('Ошибка в GetProduct:', error.message)
+    console.error('Ошибка в get:', error.message)
   }
 }
 
-export const GetProductAuth = async ({ rout, params }) => {
+export const getWithAuthParams = async ({ rout, params }) => {
   try {
     const { data } = await $auth.get(`api/${rout}`, { params })
     return data
   } catch (error) {
-    console.error('Ошибка в GetProduct:', error.message)
+    console.error('Ошибка в get:', error.message)
   }
 }
 
@@ -41,7 +41,7 @@ export const GetProductId = async (id) => {
     const { data } = await $api.get(`api/product/${id}`)
     return data
   } catch (error) {
-    console.log(error)
+    console.log(error.message)
   }
 }
 
@@ -55,7 +55,7 @@ export const Delete = async (rout, idArr) => {
     const { data } = await $auth.post(`api/${rout}/delete`, idArr)
     return data
   } catch (error) {
-    console.log(error)
+    console.log(error.message)
   }
 }
 
@@ -64,6 +64,6 @@ export const remove = async (rout, id) => {
     const { data } = await $auth.delete(`api/${rout}/${id}`)
     return data
   } catch (error) {
-    console.log(error)
+    console.log(error.message)
   }
 }
