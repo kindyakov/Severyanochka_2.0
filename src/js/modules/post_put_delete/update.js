@@ -10,9 +10,13 @@ export const Update = async (form, rout, id, modal, characteristicData) => {
       if (!formData.get('price_card')) formData.delete('price_card')
       if (!formData.get('discount')) formData.delete('discount')
       formData.append('characteristic', JSON.stringify(characteristicData))
+    } else if (rout === 'user') {
+      const phone = document.querySelector(`.modal__form[data-validate="${rout}"]`).querySelector('input[name="phone"]')
+      formData.set('phone', '7' + phone.inputmask.unmaskedvalue())
     }
-    const { data } = await $auth.put(`api/${rout}/${id}`, formData)
-    return data
+
+    const response = await $auth.put(`api/${rout}/${id}`, formData)
+    return response
   } catch (error) {
     errorRes(error, modal, false)
   }

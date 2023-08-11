@@ -1,4 +1,4 @@
-import { url } from "./modules/API.js";
+import { baseUrl } from "./modules/API.js";
 // import loader from './modules/loader.js'
 import { checkAuth } from './modules/user/isAuth.js'
 import personalData from "./modules/profile/personalData.js";
@@ -9,7 +9,7 @@ import updataPassword from "./modules/profile/updataPassword.js";
 // import getPurchases вывод всех покупок
 
 const isAuth = checkAuth()
-if (!isAuth) location.assign(`${url}/index.html`)
+if (!isAuth) location.assign(`${baseUrl}/index.html`)
 
 tabsProfile()
 updataPassword()

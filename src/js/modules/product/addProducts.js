@@ -38,13 +38,13 @@ const addProducts = (rout, selectorBtn) => {
     }
   }
 
-  const handlerClick = (e) => {
+  const handleClick = (e) => {
     if (e.target.closest(`${selectorBtn}:not(.disable)`)) {
       clickBtn(e)
     }
   }
 
-  window.addEventListener('click', handlerClick)
+  window.addEventListener('click', handleClick)
 }
 
 export default addProducts

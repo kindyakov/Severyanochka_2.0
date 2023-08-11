@@ -64,7 +64,7 @@ const delivery = (products) => {
     order.revalidate().then(isValid => isValid && request())
   }
 
-  const handlerClick = e => {
+  const handleClick = e => {
     if (e.target.closest('.payment-btn2')) {
       submit()
     }
@@ -76,7 +76,7 @@ const delivery = (products) => {
   limitationDate('input[type="date"]')
   renderAside()
 
-  document.addEventListener('click', handlerClick)
+  document.addEventListener('click', handleClick)
 }
 
 export default delivery

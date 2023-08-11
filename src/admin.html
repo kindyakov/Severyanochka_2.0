@@ -21,22 +21,13 @@
     </header>
     <div class="admin__wrapper">
       <aside class="admin__aside">
-        <!-- <div class="admin__aside-menu">
-          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 0 284.929 284.929" xml:space="preserve">
-            <path d="M282.082,195.285L149.028,62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665,0.953-6.567,2.856L2.856,195.285
-		C0.95,197.191,0,199.378,0,201.853c0,2.474,0.953,4.664,2.856,6.566l14.272,14.271c1.903,1.903,4.093,2.854,6.567,2.854
-		c2.474,0,4.664-0.951,6.567-2.854l112.204-112.202l112.208,112.209c1.902,1.903,4.093,2.848,6.563,2.848
-		c2.478,0,4.668-0.951,6.57-2.848l14.274-14.277c1.902-1.902,2.847-4.093,2.847-6.566
-		C284.929,199.378,283.984,197.188,282.082,195.285z" />
-          </svg>
-        </div> -->
         <ul class="admin__aside-list">
           <li class="admin__aside-th"><a href="#product" class="admin__aside-tab">Продукты</a></li>
           <li class="admin__aside-th"><a href="#brand" class="admin__aside-tab">Бренды</a></li>
           <li class="admin__aside-th"><a href="#type" class="admin__aside-tab">Типы</a></li>
           <li class="admin__aside-th"><a href="#feedback" class="admin__aside-tab">Отзывы</a></li>
           <li class="admin__aside-th"><a href="#user" class="admin__aside-tab">Пользователи</a></li>
+          <li class="admin__aside-th"><a href="#article" class="admin__aside-tab">Статьи</a></li>
         </ul>
       </aside>
       <main class="admin__main">
@@ -244,8 +235,47 @@
           <div class="admin__wrapper-pagination">
           </div>
         </div>
+        <div class="admin__content" id="article">
+          <h2 class="admin__title">Статьи</h2>
+          <div class="admin__menu">
+            <input type="search" name="search" id="search_article" class="admin__menu_input _input" autocomplete="off"
+              placeholder="поиск">
+            <div>
+              <button class="admin__menu_button delete" data-delete="article">Удалить</button>
+              <button class="admin__menu_button update" data-updata="article">Редактировать</button>
+              <button class="admin__menu_button create" data-create="article">Добавить статью</button>
+            </div>
+          </div>
+          <div class="admin__wrapper-table">
+            <table class="admin__table">
+              <thead class="admin__table_thead">
+                <tr class="admin__table_row">
+                  <th class="admin__table_title _checkbox"><label for="checkbox_user_th"><input type="checkbox"
+                        name="checkbox" id="checkbox_user_th" class="admin__table_checkbox _all"></label></th>
+                  <th class="admin__table_title _active-1" data-sorting="id">id<span class="_icon-arrow"></span></th>
+                  <th class="admin__table_title" data-sorting="title">Заголовок<span class="_icon-arrow"></span></th>
+                  <th class="admin__table_title" data-sorting="text">Текст<span class="_icon-arrow"></span></th>
+                  <th class="admin__table_title" data-sorting="img">Изображение<span class="_icon-arrow"></span></th>
+                  <th class="admin__table_title" data-sorting="createdAt">Дата создания<span class="_icon-arrow"></span>
+                  </th>
+                  <th class="admin__table_title" data-sorting="updatedAt">Дата обновления<span class="_icon-arrow">
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="admin__table_tbody">
+
+              </tbody>
+            </table>
+          </div>
+          <div class="admin__wrapper-pagination">
+          </div>
+        </div>
         <div class="background-loader"></div>
       </main>
+    </div>
+    <div class="notification">
+      <span class="notification__span"></span>
     </div>
   </div>
 </body>

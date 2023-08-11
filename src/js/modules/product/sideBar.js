@@ -77,7 +77,7 @@ const sideBar = () => {
     html.classList.remove('lock');
   }
 
-  const handlerClick = e => {
+  const handleClick = e => {
     if (e.target.classList.contains('filter-adaptive-active')) {
       sideBarActive()
     }
@@ -93,7 +93,7 @@ const sideBar = () => {
 
   window.addEventListener('resize', handlerResize)
   window.addEventListener('scroll', handlerScroll)
-  window.addEventListener('click', handlerClick)
+  window.addEventListener('click', handleClick)
 
 
   const touchStart = (e) => {

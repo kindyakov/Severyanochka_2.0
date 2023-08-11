@@ -1,8 +1,8 @@
 import translit from '../../../translite.js'
-import { apiImgProducts, apiImgBrands, apiImgTypes, } from "../../../API.js"
+import { apiImgProducts, apiImgBrands, apiImgTypes, apiImgUsers } from "../../../API.js"
 import { imgHtml } from '../../../modal/previewImg.js'
 
-const renderCharacteristic = (arr) => {
+function renderCharacteristic(arr) {
   let html = []
   arr.forEach(obj => {
     html.push(`<div class="admin__characteristic-row" data-charId="${obj.id}">
@@ -20,20 +20,47 @@ const renderCharacteristic = (arr) => {
   return html.join('')
 }
 
-const renderImg = (arr, src) => {
+function renderImg(arr, src) {
+  console.log(arr)
   const images = JSON.parse(arr)
   const [img] = images
   return (imgHtml(img, `${src}${img}`))
 }
 
-const renderImgProduct = (arr, name) => {
-  const html = []
+function renderImgProduct(arr, name) {
+  let html = []
   const images = JSON.parse(arr)
   const srcImg = `${apiImgProducts}${translit(name)}/`
   images.forEach(img => {
     html.push(imgHtml(img, `${srcImg}${img}`))
   })
   return html.join('')
+}
+
+function rederSelect(role) {
+  let option = {
+    user: `<option value="user" ${'user' === role ? 'selected' : ''}>Пользователь</option>`,
+    editor: `<option value="editor" ${'editor' === role ? 'selected' : ''}>Редактор</option>`,
+    admin: `<option value="admin" ${'admin' === role ? 'selected' : ''}>Администратор</option>`
+  }
+
+  return Object.values(option).join('');
+}
+
+function rederGender(gender) {
+  let option = {
+    man: `
+      <label for="gender-man" class="registration__item-label" data-gender="Мужской">
+        <input type="radio" id="gender-man" name="gender" value="Мужской" class="registration__input-radio" ${gender === 'Мужской' ? 'checked' : ''}>
+        <label for="gender-man" class="registration__item-label-check"><span>Мужской</span></label>
+      </label>`,
+    woman: `
+      <label for="gender-woman" class="registration__item-label" data-gender="Женский">
+        <input type="radio" id="gender-woman" name="gender" value="Женский" class="registration__input-radio" ${gender === 'Женский' ? 'checked' : ''}>
+        <label for="gender-woman" class="registration__item-label-check"><span>Женский</span></label>
+      </label>`,
+  }
+  return Object.values(option).join('');
 }
 
 const productHtml = (data) => {
@@ -100,8 +127,8 @@ const productHtml = (data) => {
 </div>`}
 </div >
   <button class="admin__button">Обновить</button>
-</form >
-  <div class="modal__close"></div>`
+</form>
+<div class="modal__close"></div>`
 }
 const brandHtml = (data) => {
   return `
@@ -134,7 +161,7 @@ const brandHtml = (data) => {
 <div class="modal__close"></div>`
 }
 const typeHtml = (data) => {
-  return `<div div class="modal-wrapper-title" >
+  return `<div div class="modal-wrapper-title">
     <h3 class="modal__title">Тип</h3>
     <span class="error-res"></span>
   </div>
@@ -165,40 +192,134 @@ const typeHtml = (data) => {
 <div class="modal__close"></div>`
 }
 const userHtml = (data) => {
-  return ` < div class="modal-wrapper-title" >
-  <h3 class="modal__title">Продукт</h3>
+  return `<div class="modal-wrapper-title">
+  <h3 class="modal__title">Пользователь</h3>
   <span class="error-res"></span>
-</ >
-<form class="modal__form" data-validate="type">
+</div>
+<form class="modal__form" data-validate="user">
 <div class="modal__flex">
 <div class="admin-column">
-    <div class="modal__wrapper-input">
-      <label class="admin__label">Изображение</label>
-      <label class="admin__label-file" for="img-update-type">
-        <input type="file" accept="image/*" id="img-update-type" name="img" class="admin__input _input">
-        <span class="file-name"></span>
-        <label class="file-download" for="img-update-type">Загрузить</label>
-      </label>
-    </div>
-    <div class="admin__wrapper-img">
-
-    </div>
+<div class="modal__wrapper-input">
+<label class="admin__label">Роль</label>
+<select class="admin__select" name="role"> 
+  ${rederSelect(data.role)}
+</select>
+</div>
+  <div class="modal__wrapper-input">
+    <label class="admin__label">Изображение</label>
+    <label class="admin__label-file" for="img-type">
+      <input type="file" accept="image/*" id="img-type" name="img" class="admin__input _input">
+      <span class="file-name">${data.img ? data.img : ''}</span>
+      <label class="file-download" for="img-type">Загрузить</label>
+    </label>
   </div>
+  <div class="admin__wrapper-img">
+    ${data.img ? imgHtml(data.img, `${apiImgUsers}${data.img}`) : ''}
+  </div>
+</div>
+<div class="admin-column">
+  <div class="modal__wrapper-input">
+    <label class="admin__label">Телефон</label>
+    <input type="text" name="phone" class="admin__input _input" autocomplete="off" inputmode="tel" value="${data.phone.replace(/^7/, '')}">
+  </div>
+  <div class="modal__wrapper-input">
+    <label class="admin__label">Имя</label>
+    <input type="text" name="name" class="account-data__input _input" autocomplete="off" value="${data.name}">
+  </div>
+  <div class="modal__wrapper-input">
+    <label class="admin__label">Фамилия</label>
+    <input type="text" name="surname" class="account-data__input _input" autocomplete="off" value="${data.surname}">
+  </div>
+  <div class="modal__wrapper-input">
+      <label class="admin__label">Пароль</label>
+      <input type="password" name="password" class="account-data__input _input" autocomplete="off" disabled>
+    </div>
+    <div class="modal__wrapper-input">
+      <label class="admin__label">Повторите пароль</label>
+      <input type="password" name="confirm-password" class="account-data__input _input" autocomplete="off" disabled>
+    </div>
+</div>
   <div class="admin-column">
     <div class="modal__wrapper-input">
-      <label class="admin__label">Название</label>
-      <input type="text" name="name" class="admin__input _input" autocomplete="off" value="${data.name}">
+      <label class="admin__label">Область</label>
+      <input type="text" name="region" class="admin__input _input" autocomplete="off" value="${data.region}">
+    </div>
+    <div class="modal__wrapper-input">
+      <label class="admin__label">Город</label>
+      <input type="text" name="city" class="account-data__input _input" autocomplete="off" value="${data.city}">
+    </div>
+    <div class="modal__wrapper-input">
+      <label class="admin__label">Пол</label>
+      <div class="registration__item-content">
+        ${rederGender(data.gender)}
+      </div>
+    </div>
+    <div class="modal__wrapper-input">
+      <label class="admin__label">Дата рождения</label>
+      <input type="date" name="date_birth" class="account-data__input _input" autocomplete="off" value="${data.date_birth}">
+    </div>
+    <div class="modal__wrapper-input">
+      <label class="admin__label">Почта</label>
+      <input type="text" name="email" class="account-data__input _input" autocomplete="off" value="${data.email ? data.email : ''}">
     </div>
   </div>
+</div >
+  <button class="admin__button">Обновить</button>
+</form >
+<div class="modal__close"></div>
+<div class="modal__error-body">
+<div class="modal__error-content">
+  <div class="modal__error-block">
+    <p class="modal__error-text"></p>
+    <button class="modal__error-btn">Ок</button>
+  </div>
+</div>
+</div>`
+}
+const articleHtml = (data) => {
+  return `
+  <div div class="modal-wrapper-title">
+  <h3 class="modal__title">Статья</h3>
+  <span class="error-res"></span>
+</div>
+<form class="modal__form" data-validate="article">
+<div class="modal__flex">
+<div class="admin-column">
+  <div class="modal__wrapper-input">
+    <label class="admin__label">Изображение</label>
+    <label class="admin__label-file" for="img-update-type">
+      <input type="file" accept="image/*" id="img-update-type" name="img" class="admin__input _input">
+      <span class="file-name"></span>
+      <label class="file-download" for="img-update-type">Загрузить</label>
+    </label>
+  </div>
+  <div class="admin__wrapper-img">
+  </div>
+</div>
+<div class="admin-column">
+  <div class="modal__wrapper-input">
+    <label class="admin__label">Название</label>
+    <input type="text" name="name" class="admin__input _input" autocomplete="off" value="${data.name}">
+  </div>
+</div>
 </div>
 <button class="admin__button">Обновить</button>
 </form>
-<div class="modal__close"></div>`
+<div class="modal__close"></div>
+<div class="modal__error-body">
+  <div class="modal__error-content">
+    <div class="modal__error-block">
+      <p class="modal__error-text"></p>
+      <button class="modal__error-btn">Ок</button>
+    </div>
+  </div>
+</div>`
 }
 
 export const modal_html = {
   product: productHtml,
   brand: brandHtml,
   type: typeHtml,
-  // user: userHtml
+  user: userHtml,
+  article: articleHtml
 }

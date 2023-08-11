@@ -10,12 +10,12 @@ export const сhooseTime = (selector) => {
     time_block.forEach(block => block.classList.remove('active'))
   }
 
-  const handlerClick = e => {
+  const handleClick = e => {
     if (e.target.closest(`${selector}:not(.time-disable)`)) {
       removeActive()
       addActive(e)
     }
   }
 
-  window.addEventListener('click', handlerClick)
+  window.addEventListener('click', handleClick)
 }

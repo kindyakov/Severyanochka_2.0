@@ -1,32 +1,24 @@
-import translit from "../translite.js"
-import { apiImgProducts } from "../API.js"
+import { renderImgProduct, createProductURL } from "../API.js"
 
-const renderImgProduct = (arr, name) => {
-  const images = JSON.parse(arr)
-  const srcImg = `${apiImgProducts}${translit(name)}/`
-  const [img] = images
-  return `${srcImg}${img}`
-}
-
-export const productOrderHtml = (obj) => {
-  return `<div class="wrapper-card swiper-slide" data-productId="${obj.product.id}">
+export const productOrderHtml = (data) => {
+  return `<div class="wrapper-card swiper-slide" data-productId="${data.product.id}">
   <div class="card">
-    <a href="" class="card-wrapper-img">
-      <img src="${renderImgProduct(obj.product.img, obj.product.name)}" alt="${obj.product.name}" class="card-img">
-      ${obj.product.discount ? `<span class="card-discount">${obj.product.discount}%</span>` : ''}
+    <a href="${createProductURL(data.product.type.name, data.product.name)}" class="card-wrapper-img">
+      <img src="${renderImgProduct(data.product.img, data.product.name)}" alt="${data.product.name}" class="card-img">
+      ${data.product.discount ? `<span class="card-discount">${data.product.discount}%</span>` : ''}
     </a>
     <div class="card-content">
       <div class="card-wrapper-price">
         <p class="card-price-text">
-          <span class="card-price__ordinary card-price">${obj.product.price} ₽</span>
+          <span class="card-price__ordinary card-price">${data.product.price} ₽</span>
           <i class="card-price__i">Обычная</i>
         </p>
       <p class="card-price-text">
-        ${obj.product.price_card ? `<span class="card-price__card card-price">${obj.product.price_card} ₽</span>
+        ${data.product.price_card ? `<span class="card-price__card card-price">${data.product.price_card} ₽</span>
         <i>С картой</i>` : ''}
       </p></div>
       <div class="card-info">
-        <a href="" class="card-name-product">${obj.product.name}</a>
+        <a href="${createProductURL(data.product.type.name, data.product.name)}" class="card-name-product">${data.product.name}</a>
         <div class="card-rating">
           <div class="card-rating__active">
             <div class="card-rating__item _icon-star"></div>
@@ -35,7 +27,7 @@ export const productOrderHtml = (obj) => {
             <div class="card-rating__item _icon-star"></div>
             <div class="card-rating__item _icon-star"></div>
           </div>
-          <div class="card-rating__items" data-rating="${obj.product.rating}">
+          <div class="card-rating__items" data-rating="${data.product.rating}">
             <div class="card-rating__item _icon-star"></div>
             <div class="card-rating__item _icon-star"></div>
             <div class="card-rating__item _icon-star"></div>
@@ -47,7 +39,7 @@ export const productOrderHtml = (obj) => {
       <button class="card-button add-btn">В корзину</button>
     </div>
     <span class="card-like _icon-shape like"></span>
-    <div class="_icon-cart count-product">${obj.count}</div>
+    <div class="_icon-cart count-product">${data.count}</div>
   </div>
   </div>`
 }
@@ -71,20 +63,20 @@ function classInfo(id) {
 
 const infoOrder = ['Получен', 'В процессе', 'Не доставили', 'Возврат']
 
-export const orderHtml = (obj) => {
+export const orderHtml = (data) => {
   return `
-  <div class="order__container" data-orderid="${obj.id}">
+  <div class="order__container" data-orderid="${data.id}">
     <div class="order__container_header">
       <div class="order__container_row">
-        <span class="order__container_dateTime">${formatDate(obj.delivery_datum.delivery_date)}</span>
-        <span class="order__container_dateTime span-time">${obj.delivery_datum.delivery_time}</span>
-        <span class="order__container_infoOrder ${classInfo(obj.delivery_datum.delivery_information)}">${infoOrder[obj.delivery_datum.delivery_information]}</span>
+        <span class="order__container_dateTime">${formatDate(data.delivery_datum.delivery_date)}</span>
+        <span class="order__container_dateTime span-time">${data.delivery_datum.delivery_time}</span>
+        <span class="order__container_infoOrder ${classInfo(data.delivery_datum.delivery_information)}">${infoOrder[data.delivery_datum.delivery_information]}</span>
       </div>
       <div class="order__container_row">
-        <span class="order__container_price">${obj.delivery_datum.price} ₽</span>
-        ${Number(obj.delivery_datum.delivery_information) === 1 ? `<label for="inputDate-${obj.id}" class="order__container_labelDate">
+        <span class="order__container_price">${data.delivery_datum.price} ₽</span>
+        ${Number(data.delivery_datum.delivery_information) === 1 ? `<label for="inputDate-${data.id}" class="order__container_labelDate">
         <span>Когда доставить</span>
-        <input type="date" name="date" id="inputDate-${obj.id}" class="order__container_inputDate"></label>` : ''}
+        <input type="date" name="date" id="inputDate-${data.id}" class="order__container_inputDate"></label>` : ''}
       </div>
     </div>
     <div class="order__container-swiper swiper">

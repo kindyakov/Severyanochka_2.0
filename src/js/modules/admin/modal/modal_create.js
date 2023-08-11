@@ -6,21 +6,22 @@ import Create from "../../post_put_delete/create.js";
 import forms from "../forms.js";
 import modalProduct from "./modal_product.js";
 import RenderTable from "../render.js";
+import modal_error from "./modal_info.js";
+import { $api } from "../../API.js";
 
 const modalCreate = (e) => {
   const key = e.target.dataset.create
   const formHtml = forms[key]
   const admin = document.querySelector('.admin')
   const modalId = 'modal-create'
-  let modal, form, validateForm, renderTable, tbody,
-    content, formName, characteristicModal, characteristicArr = []
+  let modal, form, validateForm, content, formName, renderTable, tbody, characteristicModal, characteristicArr = []
 
   const hendleClick = (e) => {
     if (e.target.classList.contains('modal__body') || e.target.closest('.modal__close')) {
       close()
     }
   }
-
+  // 
   const create = () => {
     admin.insertAdjacentHTML('beforeend', modalHtml(modalId))
     modal = document.querySelector(`#${modalId}`)
@@ -36,7 +37,7 @@ const modalCreate = (e) => {
 
     setTimeout(() => open(), 10)
     validate()
-    submit()
+    form.addEventListener('submit', submit)
   }
 
   const filling = () => {
@@ -89,27 +90,35 @@ const modalCreate = (e) => {
     });
   }
 
-  const submit = () => {
-    form.addEventListener('submit', () => {
-      validateForm.revalidate()
-        .then(isValid => {
-          if (!isValid) return
-          if (key === 'product') {
-            characteristic()
-            Create(form, formName, modal, characteristicArr)
-              // .then(res => res.status === 200 && location.reload())
-              .then(res => console.log(res))
-              // .then(() => close())
-              .catch(err => console.log(err))
-          } else {
-            Create(form, formName, modal)
-              // .then(res => res.status === 200 && location.reload())
-              .then(res => console.log(res))
-              // .then(() => close())
-              .catch(err => console.log(err))
-          }
-        })
-    })
+  const submit = async () => {
+    try {
+      const isValid = await validateForm.revalidate()
+      if (!isValid) return
+
+      if (key === 'product') {
+        characteristic()
+        const res = await Create(form, formName, modal, characteristicArr)
+        modal_error(res.data)
+
+      } else if (key === 'user') {
+        let formData = new FormData(form)
+        formData.set('phone', '7' + form.querySelector('input[name="phone"]').inputmask.unmaskedvalue())
+        if (formData.get('email').length === 0) formData.delete('email')
+        // if (formData.get('card_discount').length === 0) formData.delete('card_discount')
+        formData.delete('checkbox')
+        formData.delete('confirm-password')
+
+        const response = await $api.post('api/user/register', formData)
+        response.status === 200 && document.location.reload()
+      } else {
+        const res = await Create(form, formName, modal)
+        modal_error(res.data)
+      }
+
+    } catch (error) {
+      console.log(error)
+      alert(error.response.data.message)
+    }
   }
 
   create()

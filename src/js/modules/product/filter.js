@@ -91,7 +91,7 @@ const filters = ({ filter, basket, favourite, rout }) => {
     }
   }
 
-  const handlerClick = (e) => {
+  const handleClick = (e) => {
     if (e.target.classList.contains('filters_box-paramets__btn')) {
       clearFilter()
     }
@@ -107,7 +107,7 @@ const filters = ({ filter, basket, favourite, rout }) => {
   }
 
   filter__select.addEventListener('change', select)
-  window.addEventListener('click', handlerClick)
+  window.addEventListener('click', handleClick)
 }
 
 export default filters

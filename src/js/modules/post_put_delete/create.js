@@ -30,9 +30,6 @@ const Create = async (form, rout, modal, characteristicData) => {
     }
 
     const response = await $auth.post(`api/${rout}`, formData)
-    console.log(response)
-
-    if (rout !== 'product' && rout !== 'type') return response
 
     if (response.status === 200) {
       const responsePHP = await createTypeFile(

@@ -98,7 +98,7 @@ const deleteProduct = () => {
     deleteProduct()
   }
 
-  const handlerClick = e => {
+  const handleClick = e => {
     if (e.target.closest('.basket__card-check.basket__settings-check')) {
       clickAllImput()
     }
@@ -110,7 +110,7 @@ const deleteProduct = () => {
     }
   }
 
-  window.addEventListener('click', handlerClick)
+  window.addEventListener('click', handleClick)
 }
 
 export default deleteProduct

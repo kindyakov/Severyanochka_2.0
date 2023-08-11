@@ -1,11 +1,15 @@
 import translit from "../translite.js"
-import { apiImgProducts } from "../API.js"
+import { apiImgProducts, baseUrl } from "../API.js"
 
 const renderImgProduct = (arr, name) => {
   const images = JSON.parse(arr)
   const srcImg = `${apiImgProducts}${translit(name)}/`
   const [img] = images
   return `${srcImg}${img}`
+}
+
+function createProductURL(type, name) {
+  return `${baseUrl}/catalog/${translit(type)}/${translit(name)}.html`
 }
 
 export const productError = () => {
@@ -34,11 +38,11 @@ export const productHtml = (data) => {
     </div>
 
     <div class="basket__card-wrapper-content">
-      <a href="" class="basket__card-wrapper-img">
+      <a href="${createProductURL(data.type.name, data.name)}" class="basket__card-wrapper-img">
         <img src="${renderImgProduct(data.img, data.name)}" class="basket__card-img">
       </a>
       <div class="basket__card-content">
-        <a href="" class="basket__card-name">${data.name}</a>
+        <a href="${createProductURL(data.type.name, data.name)}" class="basket__card-name">${data.name}</a>
         <div class="basket__card-text">
           <p class="basket__card-wrapper-price wrapper-price">
             <span class="basket__card-price basket__card-price-usual">${data.price} ₽</span>

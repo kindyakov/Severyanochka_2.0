@@ -1,66 +1,15 @@
 import Delete from '../../post_put_delete/delete.js'
 import { modalHtml } from "../../modal/html.js"
 
-const productHtml = () => {
+function deleteModal(title, rout) {
   return `<div class="modal-wrapper-title">
-  <h3 class="modal__title">Продукты</h3>
+  <h3 class="modal__title">${title}</h3>
   <span class="error-res"></span>
 </div>
-<form class="modal__form" data-validate="product">
+<form class="modal__form" data-validate="${rout}">
   <div class="modal__flex">
     <div class="admin-column">
-      <p class="admin__info-text">Вы дествительно хотите удалить выбранные продукты</p>
-    </div>
-  </div>
-<div class="admin__wrapper-button">
-<button class="admin__button">Подтвердить</button>
-<button class="admin__button cancel">Отменить</button>
-</div>
-</form>`
-}
-const brandHtml = () => {
-  return `<div class="modal-wrapper-title">
-  <h3 class="modal__title">Бренды</h3>
-  <span class="error-res"></span>
-</div>
-<form class="modal__form" data-validate="brand">
-  <div class="modal__flex">
-    <div class="admin-column">
-      <p class="admin__info-text">Вы дествительно хотите удалить выбранные бренды</p>
-    </div>
-  </div>
-  <div class="admin__wrapper-button">
-  <button class="admin__button">Подтвердить</button>
-  <button class="admin__button cancel">Отменить</button>
-  </div>
-</form>`
-}
-const typeHtml = () => {
-  return `<div class="modal-wrapper-title">
-  <h3 class="modal__title">Типы</h3>
-  <span class="error-res"></span>
-</div>
-<form class="modal__form" data-validate="type">
-  <div class="modal__flex">
-    <div class="admin-column">
-      <p class="admin__info-text">Вы дествительно хотите удалить выбранные типы</p>
-    </div>
-  </div>
-  <div class="admin__wrapper-button">
-  <button class="admin__button">Подтвердить</button>
-  <button class="admin__button cancel">Отменить</button>
-  </div>
-</form>`
-}
-const userHtml = () => {
-  return `<div class="modal-wrapper-title">
-  <h3 class="modal__title">Пользователи</h3>
-  <span class="error-res"></span>
-</div>
-<form class="modal__form" data-validate="user">
-  <div class="modal__flex">
-    <div class="admin-column">
-      <p class="admin__info-text">Вы дествительно хотите удалить выбранных пользователей</p>
+      <p class="admin__info-text">Вы дествительно хотите удалить выбранные ${rout}</p>
     </div>
   </div>
   <div class="admin__wrapper-button">
@@ -70,21 +19,27 @@ const userHtml = () => {
 </form>`
 }
 
-const html = {
-  product: productHtml,
-  brand: brandHtml,
-  type: typeHtml,
-  user: userHtml
+async function deleteFile(fileName, name, id, rout, nameType) {
+  try {
+    const response = await axios.post(
+      'http://sevaryanochka/dist/php/delete_html_file.php',
+      { fileName, name, id, rout, nameType }
+    )
+
+    return response
+  } catch (error) {
+    console.error('Произошла ошибка:', error.message);
+  }
 }
-const modalDelete = (key, id) => {
-  const KEY = key
-  const ID = id
-  const formHtml = html[KEY]
+
+const modalDelete = (rout, id) => {
   const admin = document.querySelector('.admin')
+  const admin_content = admin.querySelector(`#${rout}`)
+  const admin_title = admin_content.querySelector('.admin__title')
   const modalId = 'modal-delete'
-  let modal, content, form, formName
+  let modal, content, form
 
-  const hendleClick = (e) => {
+  const handleclick = (e) => {
     if (e.target.classList.contains('modal__body') || e.target.closest('.modal__close')) {
       close()
     }
@@ -93,12 +48,11 @@ const modalDelete = (key, id) => {
     admin.insertAdjacentHTML('beforeend', modalHtml(modalId))
     modal = document.querySelector(`#${modalId}`)
     content = modal.querySelector('.modal__content')
-    content.innerHTML = formHtml()
+    content.innerHTML = deleteModal(admin_title.textContent, rout)
     form = modal.querySelector('.modal__form')
-    formName = form.dataset.validate
 
     setTimeout(() => open(), 10)
-    submit()
+    form.addEventListener('submit', submit)
   }
   const open = () => {
     modal.classList.add('active');
@@ -111,23 +65,27 @@ const modalDelete = (key, id) => {
     modal.classList.remove('active');
     setTimeout(() => remove(), 200)
   }
+
   const remove = () => modal.remove()
-  const submit = () => {
-    form.addEventListener('submit', e => {
+
+  const submit = async (e) => {
+    try {
       e.preventDefault()
       if (e.submitter.classList.contains('cancel')) {
         close()
         return
       }
-
-      Delete(formName, ID, modal)
-        .then(data => location.reload())
-        .catch(err => console.log(err)
-        )
-    })
+      const response = await Delete(rout, id, modal)
+      // response.status === 200 && location.reload()
+      console.log(response)
+    } catch (error) {
+      console.log(error.message)
+    }
   }
+
   create()
-  window.addEventListener('click', hendleClick)
+  document.removeEventListener('click', handleclick)
+  document.addEventListener('click', handleclick)
   window.addEventListener('keyup', e => { if (e.key === 'Escape') close() })
 }
 

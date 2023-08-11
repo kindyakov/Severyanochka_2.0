@@ -54,7 +54,7 @@ const numberProducts = (products) => {
     priceCalculation.performingFunctions(newProducts)
   }
 
-  const handlerClick = e => {
+  const handleClick = e => {
     if (e.target.closest('.basket__card-counter-btn')) {
       const counter = e.target.dataset.counter
       quantityClick(e, counter)
@@ -65,7 +65,7 @@ const numberProducts = (products) => {
   }
 
   quantityLoad()
-  window.addEventListener('click', handlerClick)
+  window.addEventListener('click', handleClick)
 }
 
 export default numberProducts

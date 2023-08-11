@@ -26,7 +26,7 @@ const deleteProduct = () => {
     }
   }
 
-  const handlerClick = e => {
+  const handleClick = e => {
     if (e.target.closest('.card-delete')) {
       const wCard = e.target.closest('.wrapper-card')
       const id = wCard.dataset.productid
@@ -34,7 +34,7 @@ const deleteProduct = () => {
       deleteFavoyrite(id)
     }
   }
-  window.addEventListener('click', handlerClick)
+  window.addEventListener('click', handleClick)
 }
 
 export default deleteProduct

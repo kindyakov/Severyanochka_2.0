@@ -24,7 +24,7 @@ class PriceCalculation {
     this.priceResult = 0
     this.asideMinsum = document.querySelector('.basket__aside-minsum')
 
-    window.addEventListener('click', this.handlerClick)
+    window.addEventListener('click', this.handleClick)
   }
 
 
@@ -96,7 +96,7 @@ class PriceCalculation {
     }
   }
 
-  handlerClick = e => {
+  handleClick = e => {
     if (e.target.closest('input[type="checkbox"]')) {
       // this.performingFunctions(products)
     }

@@ -1,5 +1,6 @@
 import { getData } from "./get_data.js"
 import RenderTable from "./render.js"
+import { paramsAdmin } from "./Params.js"
 
 const paginationHtml = (page, active = '') => {
   return `<div class="admin__pagination ${active}" data-page="${page}">
@@ -26,26 +27,25 @@ const pagination = (counts, id) => {
 
   const activePagin = (page) => {
     paginations.forEach(pagin => {
-      if (pagin.dataset.page === page) {
+      if (+pagin.dataset.page === +page) {
         pagin.classList.add('_active')
       } else pagin.classList.remove('_active')
     });
   }
 
-  const handlerClick = (e) => {
+  const handleClick = (e) => {
     if (e.target.closest('.admin__pagination:not(._active)')) {
       const pagin = e.target.closest('.admin__pagination')
-      page = pagin.dataset.page
-      const params = { page, limit }
-      activePagin(page)
+      paramsAdmin.page = pagin.dataset.page
 
-      getData({ rout, params })
+      activePagin(paramsAdmin.page)
+      getData(rout, paramsAdmin)
         .then(data => Renders(tbody, data))
-        .catch(err => console.log(err))
+        .catch(err => console.log(err.message))
     }
   }
 
-  wrapperPagin.addEventListener('click', handlerClick)
+  wrapperPagin.addEventListener('click', handleClick)
 }
 
 export default pagination

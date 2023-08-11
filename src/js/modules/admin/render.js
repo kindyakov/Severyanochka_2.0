@@ -21,7 +21,7 @@ export const renderProducts = (insert, arrayData) => {
     <td class="admin__table_cell" data-update="brand">${data.brandId}</td>
     <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
     <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
-  </tr > `)
+  </tr>`)
   });
 }
 
@@ -37,7 +37,7 @@ export const renderBrands = (insert, arrayData) => {
     <td class="admin__table_cell" data-update="name">${data.name}</td>
     <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
     <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
-  </tr> `)
+  </tr>`)
   });
 
 }
@@ -54,7 +54,7 @@ export const renderTypes = (insert, arrayData) => {
       <td class="admin__table_cell" data-update="name">${data.name}</td>
       <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
       <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
-    </tr> `)
+    </tr>`)
   });
 }
 
@@ -72,7 +72,7 @@ const renderFeedback = (insert, arrayData) => {
     <td class="admin__table_cell">${data.productId}</td>
     <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
     <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
-  </tr> `)
+  </tr>`)
   });
 }
 
@@ -96,7 +96,24 @@ export const renderUsers = (insert, arrayData) => {
     <td class="admin__table_cell">${data.role}</td>
     <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
     <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
-  </tr> `)
+  </tr>`)
+  });
+}
+
+const renderArticle = (insert, arrayData) => {
+  if (!arrayData) return
+  insert.innerHTML = ''
+  arrayData.rows.forEach(data => {
+    insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row tr_${data.id}" >
+    <td class="admin__table_cell _checkbox"><label for="checkbox_user_td_${data.id}"><input type="checkbox"
+          name="checkbox" id="checkbox_user_td_${data.id}" class="admin__table_checkbox input-checkbox"></label></td>
+    <td class="admin__table_cell">${data.id}</td>
+    <td class="admin__table_cell">${data.title}</td>
+    <td class="admin__table_cell">${data.text}</td>
+    <td class="admin__table_cell">${data.img}</td>
+    <td class="admin__table_cell">${dataFormate(data.createdAt)}</td>
+    <td class="admin__table_cell">${dataFormate(data.updatedAt)}</td>
+  </tr>`)
   });
 }
 
@@ -105,7 +122,8 @@ const RenderTable = {
   brand: renderBrands,
   type: renderTypes,
   feedback: renderFeedback,
-  user: renderUsers
+  user: renderUsers,
+  article: renderArticle
 }
 
 export default RenderTable

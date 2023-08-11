@@ -7,13 +7,14 @@ import loader from "../loader.js"
 import sortingTabble from "./sortingTable.js"
 
 const aside = () => {
+  const admin__aside = document.querySelector('.admin__aside')
   const admin__content = document.querySelectorAll('.admin__content')
   const admin__asideTab = document.querySelectorAll('.admin__aside-tab')
   const params = paramsAdmin
 
-  const Loader = (isNone = false) => {
+  const Loader = (isLoad = false) => {
     const backgroundLoader = document.querySelector('.background-loader')
-    if (isNone) {
+    if (isLoad) {
       backgroundLoader.classList.remove('_visible')
     } else {
       backgroundLoader.classList.add('_visible')
@@ -25,14 +26,15 @@ const aside = () => {
     try {
       Loader()
       const Renders = RenderTable[rout]
-      const data = await getData({ rout, params })
+      const data = await getData(rout, params)
       Loader(true)
+      if (!data || data.count === 0) return
       Renders(tbody, data)
       pagination(data.count, rout)
       Table(table)
       sortingTabble()
     } catch (error) {
-      console.log(error)
+      console.log(error.message)
     }
   }
 
@@ -55,7 +57,7 @@ const aside = () => {
     table.classList.add('_active')
   }
 
-  const handlerClick = e => {
+  const handleClick = e => {
     if (e.target.closest('.admin__aside-tab:not(._active)')) {
       const { table, tbody, rout } = assign(e)
       removeActive()
@@ -73,7 +75,7 @@ const aside = () => {
     renderTable({ tbody, table, rout })
   }
 
-  window.addEventListener('click', handlerClick)
+  admin__aside.addEventListener('click', handleClick)
   window.addEventListener('load', handlerLoad)
 }
 

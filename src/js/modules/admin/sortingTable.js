@@ -6,8 +6,6 @@ import RenderTable from "./render.js"
 import { getData } from "./get_data.js"
 
 const sortingTabble = () => {
-  let params = paramsAdmin
-
   const Loader = (isNone = false) => {
     const backgroundLoader = document.querySelector('.background-loader')
     if (isNone) {
@@ -31,7 +29,7 @@ const sortingTabble = () => {
     try {
       Loader()
       const Renders = RenderTable[rout]
-      const data = await getData({ rout, params })
+      const data = await getData(rout, paramsAdmin)
       Loader(true)
       Renders(tbody, data)
       pagination(data.count, rout)
@@ -66,7 +64,7 @@ const sortingTabble = () => {
   }
 
 
-  const handlerClick = e => {
+  const handleClick = e => {
     if (e.target.closest('.admin__table_title:not(._checkbox)')) {
       const th = e.target.closest('.admin__table_title')
       const dataSorting = th.dataset.sorting
@@ -75,13 +73,13 @@ const sortingTabble = () => {
       removeActive(table, dataSorting)
       const attribute = addActive(th)
 
-      params.sorting = { data: dataSorting, type: attribute }
+      paramsAdmin.sorting = { data: dataSorting, type: attribute }
 
       renderTable({ tbody, table, rout })
     }
   }
-
-  window.addEventListener('click', handlerClick)
+  document.removeEventListener('click', handleClick)
+  document.addEventListener('click', handleClick)
 }
 
 export default sortingTabble

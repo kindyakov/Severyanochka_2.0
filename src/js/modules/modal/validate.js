@@ -28,6 +28,7 @@ export const validate_login = (validate, form) => {
       },
     ])
 }
+
 export const validate_created_product = (validate, id) => {
   validate
     .addField(`div${id} input[name="img"]`, [
@@ -152,9 +153,160 @@ export const validate_created_type = (validate, id) => {
     ])
 }
 
+export const validate_created_user = (validate, id) => {
+  const inputPhone = document.querySelector(`div${id} input[name="phone"]`);
+  new Inputmask('+7 (999) 999-99-99').mask(inputPhone); // Маска телефона
+
+  validate
+    .addField(`div${id} input[name="img"]`, [
+      {
+        rule: 'files',
+        value: {
+          files: {
+            extensions: ['jpeg', 'jpg', 'png', 'webp', 'jfif'],
+            // maxSize: 20000,
+            // minSize: 10000,
+            types: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/jfif',],
+          },
+        },
+        errorMessage: 'Изображение'
+      },
+    ])
+    .addField(`div${id} input[name="phone"]`, [
+      {
+        rule: 'required',
+        errorMessage: 'Введите телефон',
+      },
+      {
+        validator: value => {
+          const phone = inputPhone.inputmask.unmaskedvalue()
+          return Boolean(Number(phone) && phone.length === 10)
+        },
+        errorMessage: 'Не верный формат',
+      }
+    ])
+    .addField(`div${id} input[name="name"]`, [
+      {
+        rule: 'required',
+        errorMessage: 'Введите имя',
+      }
+    ])
+    .addField(`div${id} input[name="surname"]`, [
+      {
+        rule: 'required',
+        errorMessage: 'Введите фамилию',
+      }
+    ])
+    .addField(`div${id} input[name="password"]`, [
+      {
+        rule: 'required',
+        errorMessage: 'Введите пароль',
+      },
+      {
+        rule: 'minLength',
+        value: 6,
+        errorMessage: 'Пароль должен содержать минимум 6 символов',
+      },
+    ])
+    .addField(`div${id} input[name="confirm-password"]`, [
+      {
+        rule: 'required',
+        value: '/[а-яА-яa-zA-z]/gi',
+        errorMessage: 'Повторите пароль',
+      },
+      {
+        validator: value => {
+          const pass = document.querySelector(`div${id} input[name="password"]`)
+          return value === pass.value
+        },
+        errorMessage: 'Пароли не совпадают',
+      }
+    ])
+    .addField(`div${id} input[name="date_birth"]`, [
+      {
+        rule: 'required',
+        errorMessage: 'Введите дату рождения',
+      },
+      {
+        rule: 'minLength',
+        value: 0,
+        errorMessage: 'Пустое поле',
+      },
+    ])
+    .addField(`div${id} input[name="region"]`, [
+      {
+        rule: 'required',
+        errorMessage: 'Введите регион',
+      },
+      {
+        rule: 'minLength',
+        value: 0,
+        errorMessage: 'Пустое поле',
+      },
+      {
+        rule: 'customRegexp',
+        value: /[а-яА-я]/gi,
+        errorMessage: 'Не верный формат',
+      },
+    ])
+    .addField(`div${id} input[name="city"]`, [
+      {
+        rule: 'required',
+        errorMessage: 'Введите город',
+      },
+      {
+        rule: 'minLength',
+        value: 0,
+        errorMessage: 'Пустое поле',
+      },
+      {
+        rule: 'customRegexp',
+        value: /[а-яА-я]/gi,
+        errorMessage: 'Не верный формат',
+      },
+    ])
+    .addField(`div${id} input[name="email"]`, [
+      {
+        rule: 'email',
+        errorMessage: 'Не верный формат',
+      },
+    ])
+
+  if (id === '#modal-update') {
+    validate.removeField(`div${id} input[name="password"]`)
+    validate.removeField(`div${id} input[name="confirm-password"]`)
+  }
+}
+
+export const validate_created_article = (validate, id) => {
+  validate
+    .addField(`div${id} input[name="img"]`, [
+      {
+        rule: 'files',
+        value: {
+          files: {
+            extensions: ['jpeg', 'jpg', 'png', 'webp', 'jfif'],
+            // maxSize: 20000,
+            // minSize: 10000,
+            types: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/jfif',],
+          },
+        },
+        errorMessage: 'Изображение'
+      },
+    ])
+    .addField(`div${id} input[name="name"]`, [
+      {
+        rule: 'required',
+        errorMessage: 'Введите тип продуктов',
+      }
+    ])
+}
+
 export const Validated = {
   login: validate_login,
   product: validate_created_product,
   brand: validate_created_brand,
   type: validate_created_type,
+  user: validate_created_user,
+  article: validate_created_article
 }

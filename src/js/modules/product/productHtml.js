@@ -1,5 +1,5 @@
 import translit from "../translite.js"
-import { apiImgProducts } from "../API.js"
+import { apiImgProducts, baseUrl } from "../API.js"
 
 const renderImgProduct = (arr, name) => {
   const images = JSON.parse(arr)
@@ -8,15 +8,19 @@ const renderImgProduct = (arr, name) => {
   return `${srcImg}${img}`
 }
 
+function createProductURL(type, name) {
+  return `${baseUrl}/catalog/${translit(type)}/${translit(name)}.html`
+}
+
 let isFavorites = false
-if (location.pathname === '/favourites.html') {
+if (location.pathname.split('/').reverse()[0] === 'favourites.html') {
   isFavorites = true
 }
 
 export const productHtml = (data) => {
   return `<div class="wrapper-card" data-productId="${data.id}">
   <div class="card">
-    <a href="../catalog/${translit(data.type.name)}/${translit(data.name)}.html" class="card-wrapper-img">
+    <a href="${createProductURL(data.type.name, data.name)}" class="card-wrapper-img">
       <img src="${renderImgProduct(data.img, data.name)}" alt="${data.name}" class="card-img">
       ${data.discount ? `<span class="card-discount">${data.discount}%</span>` : ''}
     </a>
@@ -31,7 +35,7 @@ export const productHtml = (data) => {
         <i>С картой</i>` : ''}
       </p></div>
       <div class="card-info">
-        <a href="../catalog/${translit(data.type.name)}/${translit(data.name)}.html" class="card-name-product">${data.name}</a>
+        <a href="${createProductURL(data.type.name, data.name)}" class="card-name-product">${data.name}</a>
         <div class="card-rating">
           <div class="card-rating__active">
             <div class="card-rating__item _icon-star"></div>

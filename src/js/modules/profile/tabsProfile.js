@@ -22,7 +22,7 @@ const tabsProfile = () => {
     return { hash, tabP }
   }
 
-  const handlerClick = (e) => {
+  const handleClick = (e) => {
     if (e.target.closest('.account-tabs')) {
       const { tabP } = assign(e)
       addActive(tabP)
@@ -38,7 +38,7 @@ const tabsProfile = () => {
     addActive(tabP)
   }
 
-  window.addEventListener('click', handlerClick)
+  window.addEventListener('click', handleClick)
   window.addEventListener('load', handlerLoad)
 }
 

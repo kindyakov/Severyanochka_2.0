@@ -43,8 +43,8 @@ const Html = gulp.series(html, catalogHtml)
 const mainTasks = gulp.series(fonts,
   gulp.parallel(copy, page, php, Html, scss, js, images))
 // Сценарий выполнения задач 
-const dev = gulp.series(mainTasks, gulp.parallel(watcher, server)) // reset перед mainTasks
-const build = gulp.series(mainTasks)// reset перед mainTasks
+const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server))
+const build = gulp.series(reset, mainTasks)
 const deployZIP = gulp.series(reset, mainTasks, zip)
 const deployFTP = gulp.series(reset, mainTasks, ftp)
 

@@ -4,8 +4,9 @@ let mapObject = {
   center: coordinates[0],
   zoom: 15,
 }
-let map;
-let marker = markers[0];
+
+let map, marker = markers[0];
+
 function init() {
   map = new ymaps.Map('map', mapObject)
 
@@ -48,4 +49,5 @@ map_menu.addEventListener('click', function (e) {
     }
   }
 })
+
 ymaps.ready(init);

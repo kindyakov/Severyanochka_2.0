@@ -7,9 +7,7 @@ import modalProduct from "./modal_product.js"
 import { getDataId } from "../get_data.js"
 import { modal_html } from "./html/modal_html.js"
 
-const modalUpdate = (key, id) => {
-  const rout = key
-  const ID = id
+const modalUpdate = (rout, id) => {
   const formHtml = modal_html[rout]
   const admin = document.querySelector('.admin')
   const modalId = 'modal-update'
@@ -44,11 +42,11 @@ const modalUpdate = (key, id) => {
       PreviewImg(`#${modalId}`, true) // Загрузка фото
     } else PreviewImg(`#${modalId}`)
     validate() // Валидация
-    submit() // Отправка формы
+    form.addEventListener('submit', submit) // Отправка формы
   }
   const filling = () => {
     form = modal.querySelector('.modal__form')
-    formName = form.dataset.validate
+    // formName = form.dataset.validate
   }
   const open = () => {
     modal.classList.add('active');
@@ -85,26 +83,24 @@ const modalUpdate = (key, id) => {
       },
     });
 
-    const validated = Validated[formName]
-    validated(validateForm, `#${modalId} `)
+    const validated = Validated[rout]
+    validated(validateForm, `#${modalId}`)
   }
-  const submit = () => {
-    form.addEventListener('submit', (e) => {
-      validateForm.revalidate()
-        .then(isValid => {
-          if (!isValid) return
-          if (rout === 'product') {
-            characteristic()
-            Update(form, rout, ID, modal, characteristicArr)
-              .then(data => data && location.reload())
-              .catch(err => console.log(err))
-          } else {
-            Update(form, rout, ID, modal)
-              .then(data => data && location.reload())
-              .catch(err => console.log(err))
-          }
-        })
-    })
+  const submit = async () => {
+    try {
+      const isValid = await validateForm.revalidate()
+      if (!isValid) return
+      if (rout === 'product') {
+        characteristic()
+        const response = await Update(form, rout, id, modal, characteristicArr)
+        response.status === 200 && location.reload()
+      } else {
+        const response = await Update(form, rout, id, modal)
+        response.status === 200 && location.reload()
+      }
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
   create()

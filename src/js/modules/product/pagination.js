@@ -122,7 +122,7 @@ const paginationProduct = ({ count, basket, favourite, rout }) => {
     }
   }
 
-  const handlerClick = e => {
+  const handleClick = e => {
     if (e.target.closest('.module-pagination__item')) {
       clickPagin(e)
     }
@@ -138,7 +138,7 @@ const paginationProduct = ({ count, basket, favourite, rout }) => {
   renderPagination()
   disableBtn()
   disableArrows()
-  products__footer.addEventListener('click', handlerClick)
+  products__footer.addEventListener('click', handleClick)
 }
 
 export default paginationProduct

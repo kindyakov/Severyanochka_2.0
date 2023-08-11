@@ -1,12 +1,15 @@
 import checkSupportWebP from "./modules/checkSupportWebP.js"
 import headerData from './modules/headerData.js'
 import { useDynamicAdapt } from "./modules/dynamicAdapt.js";
-checkSupportWebP()
-useDynamicAdapt()
 import user from "./modules/user/user.js";
 import catalog from "./modules/catalog/catalog.js";
+import { Search } from "./components/search.js";
+
+checkSupportWebP()
+useDynamicAdapt()
 user()
 catalog()
+
 const catalogMenu = document.querySelector('.header-catalog');
 const wrapper = document.querySelector('.wrapper');
 //Menu
@@ -17,7 +20,8 @@ const menuLinks = document.querySelectorAll('.header-menu__item');
 const footerLinks = document.querySelectorAll('.footer__menu-link');
 //
 const btnUp = document.querySelector('.btn-up');
-//
+// Поиск
+const search = new Search('#header-input', '.search_result');
 
 if (wrapper) {
   wrapper.addEventListener('mouseover', function (e) {

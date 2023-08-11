@@ -1,15 +1,14 @@
 import handlerBtnUpdate from "./handlerBtnUpdate.js";
 import handlerBtnDelete from "./handlerBtnDelete.js";
 import modalCreate from "./modal/modal_create.js";
-import sortingTabble from "./sortingTable.js";
 
 const table = (tables) => {
-  const table = tables;
-  const btnCreate = table.querySelector('.admin__menu_button.create')
-  const btnUpdate = table.querySelector('.admin__menu_button.update')
-  const btnDelete = table.querySelector('.admin__menu_button.delete')
-  const all_checkbox = table.querySelector('.admin__table_checkbox._all')
-  const checkbox = table.querySelectorAll('.input-checkbox')
+  const admin_wrapper = document.querySelector('.admin__wrapper')
+  const btnCreate = tables.querySelector('.admin__menu_button.create')
+  const btnUpdate = tables.querySelector('.admin__menu_button.update')
+  const btnDelete = tables.querySelector('.admin__menu_button.delete')
+  const all_checkbox = tables.querySelector('.admin__table_checkbox._all')
+  const checkbox = tables.querySelectorAll('.input-checkbox')
   let activeCheckbox
 
   const main_checkbox = (target) => {
@@ -30,7 +29,7 @@ const table = (tables) => {
         if (checkedInput.length === checkbox.length) all_checkbox.checked = true
       } else if (checkedInput.length === 0) {
         disableBtn()
-        table.querySelector('.admin__table_checkbox._all').checked = false;
+        tables.querySelector('.admin__table_checkbox._all').checked = false;
       }
       if (checkedInput.length === 1) {
         btnUpdate.classList.add('_active')
@@ -40,30 +39,26 @@ const table = (tables) => {
     })
   }
 
-  const hendlerClick = (e) => {
-    const target = e.target;
-    if (target.closest('.input-checkbox')) {
+  const handleClick = (e) => {
+    if (e.target.matches('.input-checkbox')) {
       activeBtn()
-    }
-    if (target.closest('.admin__table_checkbox._all')) {
-      main_checkbox(target)
+    } else if (e.target.matches('.admin__table_checkbox._all')) {
+      main_checkbox(e.target)
       activeBtn()
-    }
-    if (target.closest('.admin__aside-tab')) {
+    } else if (e.target.closest('.admin__aside-tab')) {
       disableBtn()
+    } else if (e.target.matches('.admin__menu_button.create')) {
+      modalCreate(e)
+    } else if (e.target.matches('.admin__menu_button.update')) {
+      handlerBtnUpdate(e, activeCheckbox)
+    } else if (e.target.matches('.admin__menu_button.delete')) {
+      handlerBtnDelete(e, checkbox)
     }
   }
 
-  window.addEventListener('click', hendlerClick)
-  if (btnUpdate) {
-    btnUpdate.addEventListener('click', e => handlerBtnUpdate(e, activeCheckbox))
-  }
-  if (btnDelete) {
-    btnDelete.addEventListener('click', e => handlerBtnDelete(e, checkbox))
-  }
-  if (btnCreate) {
-    btnCreate.addEventListener('click', e => modalCreate(e))
-  }
+  // Удаляем предыдущий обработчик перед добавлением нового
+  admin_wrapper.removeEventListener('click', handleClick)
+  admin_wrapper.addEventListener('click', handleClick)
 }
 
 export default table

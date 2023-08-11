@@ -15,7 +15,7 @@ function typeItemHtml({ img, name }) {
   </a>
 </div>`
 }
-console.log(translit('Сметана ПРОСТОКВАШИНО 15%, без змж, 300г, Россия, 300 г'))
+
 const catalog = () => {
   const main_catalog = document.querySelector('#catalog ')
   if (!main_catalog) return
