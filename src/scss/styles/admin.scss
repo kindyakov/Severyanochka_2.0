@@ -136,7 +136,7 @@
 		align-items: center;
 		justify-content: space-between;
 		&_input {
-			max-width: 300px;
+			max-width: 320px;
 			&::placeholder {
 				color: #bfbfbf;
 			}
@@ -185,7 +185,20 @@
 			}
 		}
 	}
-
+	&__search-block {
+		position: relative;
+		width: 320px;
+		form {
+			position: relative;
+			.btn-search {
+				position: absolute;
+				top: 50%;
+				right: 10px;
+				font-size: 24px;
+				transform: translate(0, -50%);
+			}
+		}
+	}
 	&__wrapper-table {
 		overflow: auto;
 		width: 100%;

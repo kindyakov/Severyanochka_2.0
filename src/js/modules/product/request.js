@@ -9,6 +9,15 @@ export const Add = async (rout, productId) => {
   }
 }
 
+export const search = async (rout, value) => {
+  try {
+    const { data } = await $auth.get(`/api/search/${rout}?search=${value}`)
+    return data
+  } catch (error) {
+    console.log('Ошибка при поиске: ', error.message)
+  }
+}
+
 export const getWithAuth = async (rout) => {
   try {
     const { data } = await $auth.get(`api/${rout}`)

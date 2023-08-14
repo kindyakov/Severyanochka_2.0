@@ -5,8 +5,9 @@
   <title>Админ панель | Интернет-магазин Северяночка</title>
   <meta charset="UTF-8">
   <meta name="format-detection" content="telephone=no">
-  <link rel="stylesheet" href="css/style.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.min.css">
+  <link rel="shortcut icon" href="img/svg/favicon.ico">
 </head>
 
 <body>
@@ -34,8 +35,18 @@
         <div class="admin__content" id="product">
           <h2 class="admin__title">Продукты</h2>
           <div class="admin__menu">
-            <input type="text" name="search" id="search_product" class="admin__menu_input _input" autocomplete="off"
-              placeholder="поиск">
+            <div class="admin__search-block" data-search="product">
+              <form class="form-search">
+                <input type="text" name="search" class="admin__menu_input _input" placeholder="Найти продукт"
+                  autocomplete="off">
+                <button type="submit" class="_icon-search btn-search"></button>
+              </form>
+              <div class="search_result">
+                <ul class="search_list">
+                </ul>
+                <a href="search.html" class="search-all">Все результаты</a>
+              </div>
+            </div>
             <div>
               <button class="admin__menu_button delete" data-delete="product">Удалить</button>
               <button class="admin__menu_button update" data-updata="product">Редактировать</button>
@@ -79,8 +90,18 @@
         <div class="admin__content" id="brand">
           <h2 class="admin__title">Бренды</h2>
           <div class="admin__menu">
-            <input type="text" name="search" id="search_brand" class="admin__menu_input _input" autocomplete="off"
-              placeholder="поиск">
+            <div class="admin__search-block" data-search="brand">
+              <form class="form-search">
+                <input type="text" name="search" class="admin__menu_input _input" placeholder="Найти бренд"
+                  autocomplete="off">
+                <button type="submit" class="_icon-search btn-search"></button>
+              </form>
+              <div class="search_result">
+                <ul class="search_list">
+                </ul>
+                <a href="search.html" class="search-all">Все результаты</a>
+              </div>
+            </div>
             <div>
               <button class="admin__menu_button delete" data-delete="brand">Удалить</button>
               <button class="admin__menu_button update" data-updata="brand">Редактировать</button>
@@ -114,8 +135,18 @@
         <div class="admin__content" id="type">
           <h2 class="admin__title">Типы</h2>
           <div class="admin__menu">
-            <input type="text" name="search" id="search_type" class="admin__menu_input _input" autocomplete="off"
-              placeholder="поиск">
+            <div class="admin__search-block" data-search="type">
+              <form class="form-search">
+                <input type="text" name="search" class="admin__menu_input _input" placeholder="Найти тип"
+                  autocomplete="off">
+                <button type="submit" class="_icon-search btn-search"></button>
+              </form>
+              <div class="search_result">
+                <ul class="search_list">
+                </ul>
+                <a href="search.html" class="search-all">Все результаты</a>
+              </div>
+            </div>
             <div>
               <button class="admin__menu_button delete" data-delete="type">Удалить</button>
               <button class="admin__menu_button update" data-updata="type">Редактировать</button>
@@ -149,8 +180,18 @@
         <div class="admin__content" id="feedback">
           <h2 class="admin__title">Отзывы</h2>
           <div class="admin__menu">
-            <input type="text" name="search" id="search_fedback" class="admin__menu_input _input" autocomplete="off"
-              placeholder="поиск">
+            <div class="admin__search-block" data-search="feedback">
+              <form class="form-search">
+                <input type="text" name="search" class="admin__menu_input _input" placeholder="Найти отзыв"
+                  autocomplete="off">
+                <button type="submit" class="_icon-search btn-search"></button>
+              </form>
+              <div class="search_result">
+                <ul class="search_list">
+                </ul>
+                <a href="search.html" class="search-all">Все результаты</a>
+              </div>
+            </div>
             <div>
               <button class="admin__menu_button delete" data-delete="type">Удалить</button>
               <button class="admin__menu_button update" data-updata="type">Редактировать</button>
@@ -191,8 +232,18 @@
         <div class="admin__content" id="user">
           <h2 class="admin__title">Пользователи</h2>
           <div class="admin__menu">
-            <input type="text" name="search" id="search_user" class="admin__menu_input _input" autocomplete="off"
-              placeholder="поиск">
+            <div class="admin__search-block" data-search="user">
+              <form class="form-search">
+                <input type="text" name="search" class="admin__menu_input _input" placeholder="Найти пользователя"
+                  autocomplete="off">
+                <button type="submit" class="_icon-search btn-search"></button>
+              </form>
+              <div class="search_result">
+                <ul class="search_list">
+                </ul>
+                <a href="search.html" class="search-all">Все результаты</a>
+              </div>
+            </div>
             <div>
               <button class="admin__menu_button delete" data-delete="user">Удалить</button>
               <button class="admin__menu_button update" data-updata="user">Редактировать</button>
@@ -238,8 +289,18 @@
         <div class="admin__content" id="article">
           <h2 class="admin__title">Статьи</h2>
           <div class="admin__menu">
-            <input type="search" name="search" id="search_article" class="admin__menu_input _input" autocomplete="off"
-              placeholder="поиск">
+            <div class="admin__search-block" data-search="article">
+              <form class="form-search">
+                <input type="text" name="search" class="admin__menu_input _input" placeholder="Найти статью"
+                  autocomplete="off">
+                <button type="submit" class="_icon-search btn-search"></button>
+              </form>
+              <div class="search_result">
+                <ul class="search_list">
+                </ul>
+                <a href="search.html" class="search-all">Все результаты</a>
+              </div>
+            </div>
             <div>
               <button class="admin__menu_button delete" data-delete="article">Удалить</button>
               <button class="admin__menu_button update" data-updata="article">Редактировать</button>
@@ -280,7 +341,7 @@
   </div>
 </body>
 <script src="assets/libs/inputMask/inputmask.min.js"></script>
-<script src="js/main.min.js"></script>
+<!-- <script src="js/main.min.js"></script> -->
 <script src="js/admin.min.js"></script>
 
 </html>

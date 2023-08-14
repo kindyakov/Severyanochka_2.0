@@ -1,10 +1,9 @@
 import { productHtml, productError } from "./productHtml.js"
-import { getWithAuth, getWithParams } from "./request.js"
+import { getWithAuth, getWithParams, GetProductLocalStorage } from "./request.js"
 import rating from "./rating.js"
 import { disableCardButtons } from "./disableCardBtn.js"
 import { params } from "./queryParams.js"
 import { checkAuth } from "../user/isAuth.js"
-import { GetProductLocalStorage } from "./request.js"
 
 const renderProduct = new Promise((resolve, reject) => {
   const product_container = document.querySelector('#products-container')

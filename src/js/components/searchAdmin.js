@@ -8,15 +8,17 @@ function insertMark(str, val) {
   return str.slice(0, i) + '<mark>' + str.slice(i, i + len) + '</mark>' + str.slice(i + len)
 }
 
-export class Search {
-  constructor(inputElementId, resultsElementId) {
-    this.form = document.querySelector('.header-search')
-    this.searchInput = this.form.querySelector(inputElementId);
-    this.searchResults = document.querySelector(resultsElementId);
-    this.searchList = this.searchResults.querySelector('.search_list')
+export class SearchAdmin {
+  constructor(rout) {
+    this.searchBlock = document.querySelector(`.admin__search-block[data-search="${rout}"]`)
+    this.form = this.searchBlock.querySelector('.form-search')
+    this.searchInput = this.searchBlock.querySelector('.admin__menu_input');
+    this.searchResults = this.searchBlock.querySelector('.search_result');
+    this.searchList = this.searchBlock.querySelector('.search_list')
 
     this.timerId = null;
-    this.value
+    this.value;
+    this.rout = rout;
 
     this.searchInput.addEventListener('input', this.handleInput.bind(this));
     this.form.addEventListener('submit', this.submit.bind(this))
@@ -52,7 +54,7 @@ export class Search {
 
   async performSearch(value) {
     try {
-      const data = await search('product', value);
+      const data = await search(this.rout, value);
 
       if (data.length > 0) {
         this.renderResults(data)
@@ -67,9 +69,6 @@ export class Search {
   submit(e) {
     e.preventDefault()
     if (!this.value && this.value.length === 0) return
-    const queryParams = new URLSearchParams();
-    queryParams.set("search", this.value);
-    location.assign(`${baseUrl}/search.html?${queryParams.toString()}`)
   }
 
   activeList() {
@@ -91,13 +90,15 @@ export class Search {
 
   cardHtml(card) {
     return `<li class="search_li" data-productid="${card.id}">
-    <a href="${createProductURL(card.type.name, card.name)}" class="search_link">
+    <div class="search_link">
       <div class="search-wrapper_img">
-        <img class="search_img" src="${renderImgProduct(card.img, card.name)}" alt="Картинка">
+        <img class="search_img" src="" alt="Картинка">
       </div>
-      <span class="search_span">${insertMark(card.name, this.value)}</span>
-      <span class="search_price">${card.price} ₽</span>
-    </a>
+      <span class="search_span">
+        ${this.rout === 'user' ? insertMark(`${card.surname} ${card.name}`, this.value) : insertMark(card.name, this.value)}
+      </span>
+      ${this.rout === 'product' ? `<span class="search_price">${card.price} ₽</span>` : ''}
+    </div>
   </li>`
   }
 }

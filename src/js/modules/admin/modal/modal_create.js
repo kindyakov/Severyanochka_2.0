@@ -123,8 +123,8 @@ const modalCreate = (e) => {
 
   create()
 
-  window.addEventListener('click', hendleClick)
-  window.addEventListener('keyup', e => { if (e.key === 'Escape') close() })
+  document.addEventListener('click', hendleClick)
+  document.addEventListener('keyup', e => { if (e.key === 'Escape') close() })
 }
 
 export default modalCreate

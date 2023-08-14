@@ -5,6 +5,7 @@ import pagination from "./pagination.js"
 import Table from "./table.js"
 import loader from "../loader.js"
 import sortingTabble from "./sortingTable.js"
+import { SearchAdmin } from "../../components/searchAdmin.js"
 
 const aside = () => {
   const admin__aside = document.querySelector('.admin__aside')
@@ -60,6 +61,8 @@ const aside = () => {
   const handleClick = e => {
     if (e.target.closest('.admin__aside-tab:not(._active)')) {
       const { table, tbody, rout } = assign(e)
+      const searchAdmin = new SearchAdmin(rout)
+      
       removeActive()
       addActive(e.target, table)
       renderTable({ tbody, table, rout })
@@ -69,6 +72,7 @@ const aside = () => {
   const handlerLoad = () => {
     const { id, table, tbody, rout } = assign()
     const [tab] = Array.from(admin__asideTab).filter(tab => tab.getAttribute('href') === id)
+    const searchAdmin = new SearchAdmin(rout)
 
     removeActive()
     addActive(tab, table)

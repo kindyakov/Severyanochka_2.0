@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+@@include("html/components/main/_head.html", {"title":"Результат поиска"})
+
+<body>
+  <div class="wrapper">
+    @@include("html/components/main/_header.html", {})
+    <main class="main">
+      <div class="container">
+        <div class="search-result">
+          <div class="search-result__body">
+            <h1 class="search-result__title">Результат поиска</h1>
+            <div class="search-result__respons-wrapper">
+              <span class="search-result__respons search-result-span">по запросу -</span>
+              <span class="search-result__value search-result-span"></span>
+              <span class="search-result__error search-result-span" style="display: none;">- Сожалеем, но ничего не
+                найдено.</span>
+            </div>
+            <div class="grid-container search-result__content">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    @@include("html/components/main/_footer.html",{})
+
+    <div class="menu-fixed"></div>
+    <div class="btn-up">↑</div>
+  </div>
+  <script src="js/search.min.js"></script>
+  @@include("html/components/main/_js.html",{})
+</body>
+
+</html>

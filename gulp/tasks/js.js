@@ -21,6 +21,7 @@ const js = () => {
           basket: `./src/js/basket.js`,
           favourite: `./src/js/favourite.js`,
           order: `./src/js/order.js`,
+          search: `./src/js/search.js`,
         },
         output: {
           filename: '[name].min.js'

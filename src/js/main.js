@@ -4,11 +4,13 @@ import { useDynamicAdapt } from "./modules/dynamicAdapt.js";
 import user from "./modules/user/user.js";
 import catalog from "./modules/catalog/catalog.js";
 import { Search } from "./components/search.js";
+import headerCatalog from "./components/headerCatalog.js";
 
 checkSupportWebP()
 useDynamicAdapt()
 user()
 catalog()
+headerCatalog()
 
 const catalogMenu = document.querySelector('.header-catalog');
 const wrapper = document.querySelector('.wrapper');
