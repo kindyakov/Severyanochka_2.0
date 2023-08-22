@@ -97,9 +97,9 @@ const modalCreate = (e) => {
 
       if (key === 'product') {
         characteristic()
-        const res = await Create(form, formName, modal, characteristicArr)
-        modal_error(res.data)
-
+        const response = await Create(form, formName, modal, characteristicArr)
+        modal_error(response.data)
+        response.status === 200 && close()
       } else if (key === 'user') {
         let formData = new FormData(form)
         formData.set('phone', '7' + form.querySelector('input[name="phone"]').inputmask.unmaskedvalue())
@@ -111,13 +111,13 @@ const modalCreate = (e) => {
         const response = await $api.post('api/user/register', formData)
         response.status === 200 && document.location.reload()
       } else {
-        const res = await Create(form, formName, modal)
-        modal_error(res.data)
+        const response = await Create(form, formName, modal)
+        modal_error(response.data)
+        response.status === 200 && close()
       }
 
     } catch (error) {
-      console.log(error)
-      alert(error.response.data.message)
+      console.log('Ошибка submit: ', error)
     }
   }
 

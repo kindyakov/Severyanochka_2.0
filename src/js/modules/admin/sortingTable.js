@@ -5,7 +5,7 @@ import Table from "./table.js"
 import RenderTable from "./render.js"
 import { getData } from "./get_data.js"
 
-const sortingTabble = () => {
+const sortingTabble = ({ tbody, table, rout }) => {
   const Loader = (isNone = false) => {
     const backgroundLoader = document.querySelector('.background-loader')
     if (isNone) {
@@ -16,15 +16,6 @@ const sortingTabble = () => {
     }
   }
 
-  const assign = () => {
-    const hash = location.hash || '#product'
-    const id = hash
-    const table = document.querySelector(`${id}`)
-    const tbody = table.querySelector('.admin__table_tbody')
-    const rout = id.replace('#', '')
-    return { id, table, tbody, rout }
-  }
-
   const renderTable = async ({ tbody, table, rout }) => {
     try {
       Loader()
@@ -32,8 +23,6 @@ const sortingTabble = () => {
       const data = await getData(rout, paramsAdmin)
       Loader(true)
       Renders(tbody, data)
-      pagination(data.count, rout)
-      Table(table)
     } catch (error) {
       console.log(error)
     }
@@ -63,12 +52,10 @@ const sortingTabble = () => {
     }
   }
 
-
   const handleClick = e => {
     if (e.target.closest('.admin__table_title:not(._checkbox)')) {
       const th = e.target.closest('.admin__table_title')
       const dataSorting = th.dataset.sorting
-      const { table, tbody, rout } = assign()
 
       removeActive(table, dataSorting)
       const attribute = addActive(th)

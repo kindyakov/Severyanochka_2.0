@@ -8,7 +8,7 @@ const table = (tables) => {
   const btnUpdate = tables.querySelector('.admin__menu_button.update')
   const btnDelete = tables.querySelector('.admin__menu_button.delete')
   const all_checkbox = tables.querySelector('.admin__table_checkbox._all')
-  const checkbox = tables.querySelectorAll('.input-checkbox')
+  let checkbox = tables.querySelectorAll('.input-checkbox')
   let activeCheckbox
 
   const main_checkbox = (target) => {
@@ -21,7 +21,7 @@ const table = (tables) => {
   }
   const activeBtn = () => {
     let checkedInput = []
-
+    checkbox = tables.querySelectorAll('.input-checkbox')
     checkbox.forEach(input => {
       if (input.checked === true) {
         checkedInput.push(input)

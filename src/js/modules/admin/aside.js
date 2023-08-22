@@ -11,7 +11,6 @@ const aside = () => {
   const admin__aside = document.querySelector('.admin__aside')
   const admin__content = document.querySelectorAll('.admin__content')
   const admin__asideTab = document.querySelectorAll('.admin__aside-tab')
-  const params = paramsAdmin
 
   const Loader = (isLoad = false) => {
     const backgroundLoader = document.querySelector('.background-loader')
@@ -27,13 +26,13 @@ const aside = () => {
     try {
       Loader()
       const Renders = RenderTable[rout]
-      const data = await getData(rout, params)
+      const data = await getData(rout, paramsAdmin)
       Loader(true)
       if (!data || data.count === 0) return
       Renders(tbody, data)
       pagination(data.count, rout)
       Table(table)
-      sortingTabble()
+      sortingTabble({ tbody, table, rout })
     } catch (error) {
       console.log(error.message)
     }
@@ -62,7 +61,7 @@ const aside = () => {
     if (e.target.closest('.admin__aside-tab:not(._active)')) {
       const { table, tbody, rout } = assign(e)
       const searchAdmin = new SearchAdmin(rout)
-      
+
       removeActive()
       addActive(e.target, table)
       renderTable({ tbody, table, rout })
