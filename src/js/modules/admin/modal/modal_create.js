@@ -1,7 +1,7 @@
 import JustValidate from "just-validate"
 import { modalHtml } from "../../modal/html.js"
 import { Validated } from "../../modal/validate.js"
-import PreviewImg from "../../modal/previewImg.js"
+import LoadImageIntoInput from "../../modal/previewImg.js"
 import Create from "../../post_put_delete/create.js";
 import forms from "../forms.js";
 import modalProduct from "./modal_product.js";
@@ -31,10 +31,9 @@ const modalCreate = (e) => {
     filling() // 1 выполняется после создания
 
     if (key === 'product') {
-      PreviewImg(`#${modalId}`, true)
       modalProduct(`#${modalId}`)
-    } else PreviewImg(`#${modalId}`)
-
+    }
+    new LoadImageIntoInput(`#${modalId}`)
     setTimeout(() => open(), 10)
     validate()
     form.addEventListener('submit', submit)
@@ -94,7 +93,6 @@ const modalCreate = (e) => {
     try {
       const isValid = await validateForm.revalidate()
       if (!isValid) return
-
       if (key === 'product') {
         characteristic()
         const response = await Create(form, formName, modal, characteristicArr)

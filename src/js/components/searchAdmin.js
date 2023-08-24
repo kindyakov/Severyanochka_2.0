@@ -1,5 +1,9 @@
-import { renderImgProduct, createProductURL, baseUrl } from "../modules/API.js";
 import { search } from "../modules/product/request.js";
+import loader from "../modules/loader.js"
+import RenderTable from "../modules/admin/render.js"
+import { getData } from "../modules/admin/get_data.js"
+import { paramsAdmin } from "../modules/admin/Params.js"
+import pagination from "../modules/admin/pagination.js"
 
 function insertMark(str, val) {
   let i = str.trim().toLowerCase().search(val)
@@ -9,19 +13,20 @@ function insertMark(str, val) {
 }
 
 export class SearchAdmin {
-  constructor(rout) {
-    this.searchBlock = document.querySelector(`.admin__search-block[data-search="${rout}"]`)
-    this.form = this.searchBlock.querySelector('.form-search')
-    this.searchInput = this.searchBlock.querySelector('.admin__menu_input');
-    this.searchResults = this.searchBlock.querySelector('.search_result');
-    this.searchList = this.searchBlock.querySelector('.search_list')
-
+  constructor({ tbody, table, rout }) {
     this.timerId = null;
     this.value;
+    this.params = paramsAdmin
+
+    this.form = table.querySelector('.form-search')
+    this.searchInput = table.querySelector('.admin__menu_input');
+
+    this.tbody = tbody;
+    this.table = table;
     this.rout = rout;
+    this.Renders = RenderTable[rout]
 
     this.searchInput.addEventListener('input', this.handleInput.bind(this));
-    this.form.addEventListener('submit', this.submit.bind(this))
     document.addEventListener('click', this.handleClick.bind(this))
     document.addEventListener('keyup', e => {
       if (e.key === 'Escape') {
@@ -33,72 +38,68 @@ export class SearchAdmin {
 
   handleInput(e) {
     clearTimeout(this.timerId);
-
     this.value = e.target.value.trim().toLowerCase();
 
     this.timerId = setTimeout(() => {
       if (this.value.length > 0) {
         this.performSearch(this.value);
+        this.table.querySelector('.admin__wrapper-pagination').style.display = 'none'
       } else {
-        this.disableList()
+        this.clearTbody()
+        this.renderTable()
       }
     }, 300);
   }
 
   handleClick(e) {
-    if (!e.target.closest(`.admin__search-block[data-search="${this.rout}"]`)) {
+    if (e.target.closest(`.admin__aside-tab`)) {
       this.form.reset()
-      this.disableList()
     }
   }
 
   async performSearch(value) {
     try {
+      this.Loader()
       const data = await search(this.rout, value);
+      this.Loader(true)
 
       if (data.length > 0) {
-        this.renderResults(data)
+        this.Renders(this.tbody, { count: data.length, rows: data })
       } else {
-        this.disableList()
+        this.clearTbody()
       }
     } catch (error) {
       console.error('Ошибка при выполнении запроса', error);
     }
   }
 
-  submit(e) {
-    e.preventDefault()
-    if (!this.value && this.value.length === 0) return
+  clearTbody() {
+    this.tbody.innerHTML = '';
   }
 
-  activeList() {
-    this.searchList.innerHTML = '';
-    this.searchResults.classList.add('_active')
+  Loader(isNone = false) {
+    const backgroundLoader = document.querySelector('.background-loader')
+    if (isNone) {
+      backgroundLoader.classList.remove('_visible')
+    } else {
+      backgroundLoader.classList.add('_visible')
+      backgroundLoader.innerHTML = loader()
+    }
   }
 
-  disableList() {
-    this.searchList.innerHTML = '';
-    this.searchResults.classList.remove('_active')
-  }
+  async renderTable() {
+    try {
+      this.Loader()
+      const data = await getData(this.rout, this.params)
+      this.Loader(true)
 
-  renderResults(data) {
-    this.activeList()
-    data.forEach(card => {
-      this.searchList.insertAdjacentHTML('beforeend', this.cardHtml(card))
-    })
-  }
-
-  cardHtml(card) {
-    return `<li class="search_li" data-productid="${card.id}">
-    <div class="search_link">
-      <div class="search-wrapper_img">
-        <img class="search_img" src="" alt="Картинка">
-      </div>
-      <span class="search_span">
-        ${this.rout === 'user' ? insertMark(`${card.surname} ${card.name}`, this.value) : insertMark(card.name, this.value)}
-      </span>
-      ${this.rout === 'product' ? `<span class="search_price">${card.price} ₽</span>` : ''}
-    </div>
-  </li>`
+      if (data || data.count > 0) {
+        this.Renders(this.tbody, data)
+        this.table.querySelector('.admin__wrapper-pagination').removeAttribute('style')
+        pagination(data.count, this.rout)
+      }
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 }

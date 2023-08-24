@@ -2,15 +2,15 @@ import translit from '../translite.js'
 import { $api } from '../API.js'
 import { apiImgTypes } from '../API.js'
 
-function renderImg(arrImg) {
+function renderImg(name, arrImg) {
   const [img] = JSON.parse(arrImg)
-  return `${apiImgTypes}${img}`
+  return `${apiImgTypes}${translit(name)}/${img}`
 }
 
 function typeItemHtml({ img, name }) {
   return `<div class="main__catalog-cards">
   <a href="catalog/${translit(name)}.html" class="main__catalog-link link-catalog">
-    <img src="${img && renderImg(img)}" alt="${name}" class="main__catalog-img">
+    <img src="${img && renderImg(name, img)}" alt="${name}" class="main__catalog-img">
     <div class="main__catalog-cards_gradient"><span class="main__catalog-name_cards">${name}</span></div>
   </a>
 </div>`

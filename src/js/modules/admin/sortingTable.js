@@ -16,7 +16,7 @@ const sortingTabble = ({ tbody, table, rout }) => {
     }
   }
 
-  const renderTable = async ({ tbody, table, rout }) => {
+  const renderTable = async ({ tbody, rout }) => {
     try {
       Loader()
       const Renders = RenderTable[rout]
@@ -62,9 +62,10 @@ const sortingTabble = ({ tbody, table, rout }) => {
 
       paramsAdmin.sorting = { data: dataSorting, type: attribute }
 
-      renderTable({ tbody, table, rout })
+      renderTable({ tbody, rout })
     }
   }
+
   document.removeEventListener('click', handleClick)
   document.addEventListener('click', handleClick)
 }

@@ -1,7 +1,3 @@
-import translit from '../../../translite.js'
-import { apiImgProducts, apiImgBrands, apiImgTypes, apiImgUsers } from "../../../API.js"
-import { imgHtml } from '../../../modal/previewImg.js'
-
 function renderCharacteristic(arr) {
   let html = []
   arr.forEach(obj => {
@@ -17,23 +13,6 @@ function renderCharacteristic(arr) {
   </div>
   </div>`)
   });
-  return html.join('')
-}
-
-function renderImg(arr, src) {
-  console.log(arr)
-  const images = JSON.parse(arr)
-  const [img] = images
-  return (imgHtml(img, `${src}${img}`))
-}
-
-function renderImgProduct(arr, name) {
-  let html = []
-  const images = JSON.parse(arr)
-  const srcImg = `${apiImgProducts}${translit(name)}/`
-  images.forEach(img => {
-    html.push(imgHtml(img, `${srcImg}${img}`))
-  })
   return html.join('')
 }
 
@@ -80,7 +59,7 @@ const productHtml = (data) => {
         <label class="file-download" for="img-update-product">Загрузить</label>
       </label>
     </div>
-    <div class="admin__wrapper-img">${data.img ? renderImgProduct(data.img, data.name) : ''}</div>
+    <div class="admin__wrapper-img"></div>
   </div>
   <div class="admin-column">
     <div class="modal__wrapper-input">
@@ -130,6 +109,7 @@ const productHtml = (data) => {
 </form>
 <div class="modal__close"></div>`
 }
+
 const brandHtml = (data) => {
   return `
     <div class="modal-wrapper-title">
@@ -147,7 +127,7 @@ const brandHtml = (data) => {
         <label class="file-download" for="img-update-brand">Загрузить</label>
       </label>
     </div>
-    <div class="admin__wrapper-img">${data.img ? renderImg(data.img, apiImgBrands) : ''}</div>
+    <div class="admin__wrapper-img"></div>
   </div>
   <div class="admin-column">
     <div class="modal__wrapper-input">
@@ -160,6 +140,7 @@ const brandHtml = (data) => {
 </form>
 <div class="modal__close"></div>`
 }
+
 const typeHtml = (data) => {
   return `<div div class="modal-wrapper-title">
     <h3 class="modal__title">Тип</h3>
@@ -177,7 +158,6 @@ const typeHtml = (data) => {
       </label>
     </div>
     <div class="admin__wrapper-img">
-    ${data.img ? renderImg(data.img, apiImgTypes) : ''}
     </div>
   </div>
   <div class="admin-column">
@@ -191,6 +171,7 @@ const typeHtml = (data) => {
 </form>
 <div class="modal__close"></div>`
 }
+
 const userHtml = (data) => {
   return `<div class="modal-wrapper-title">
   <h3 class="modal__title">Пользователь</h3>
@@ -209,12 +190,11 @@ const userHtml = (data) => {
     <label class="admin__label">Изображение</label>
     <label class="admin__label-file" for="img-type">
       <input type="file" accept="image/*" id="img-type" name="img" class="admin__input _input">
-      <span class="file-name">${data.img ? data.img : ''}</span>
+      <span class="file-name"></span>
       <label class="file-download" for="img-type">Загрузить</label>
     </label>
   </div>
   <div class="admin__wrapper-img">
-    ${data.img ? imgHtml(data.img, `${apiImgUsers}${data.img}`) : ''}
   </div>
 </div>
 <div class="admin-column">
@@ -276,6 +256,7 @@ const userHtml = (data) => {
 </div>
 </div>`
 }
+
 const articleHtml = (data) => {
   return `
   <div div class="modal-wrapper-title">

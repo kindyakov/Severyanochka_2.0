@@ -60,7 +60,7 @@ const aside = () => {
   const handleClick = e => {
     if (e.target.closest('.admin__aside-tab:not(._active)')) {
       const { table, tbody, rout } = assign(e)
-      const searchAdmin = new SearchAdmin(rout)
+      const searchAdmin = new SearchAdmin({ table, tbody, rout })
 
       removeActive()
       addActive(e.target, table)
@@ -71,7 +71,7 @@ const aside = () => {
   const handlerLoad = () => {
     const { id, table, tbody, rout } = assign()
     const [tab] = Array.from(admin__asideTab).filter(tab => tab.getAttribute('href') === id)
-    const searchAdmin = new SearchAdmin(rout)
+    const searchAdmin = new SearchAdmin({ table, tbody, rout })
 
     removeActive()
     addActive(tab, table)

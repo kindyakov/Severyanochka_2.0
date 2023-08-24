@@ -58,7 +58,8 @@
     "inputmask": "^5.0.8",
     "just-validate": "^4.2.0",
     "jwt-decode": "^3.1.2",
-    "nouislider": "^15.7.0"
+    "nouislider": "^15.7.0",
+    "sortablejs": "^1.15.0"
   },
   "browser": {
     "fs": false,

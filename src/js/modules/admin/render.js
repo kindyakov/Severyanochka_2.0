@@ -4,7 +4,7 @@ const dataFormate = (date) => {
 }
 
 export const renderProducts = (insert, arrayData) => {
-  if (!arrayData || arrayData.length < 1) return
+  if (!arrayData) return
   insert.innerHTML = ''
   arrayData.rows.forEach(data => {
     insert.insertAdjacentHTML('beforeend', `<tr class="admin__table_row tr_${data.id}">

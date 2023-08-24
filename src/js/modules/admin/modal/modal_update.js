@@ -1,7 +1,7 @@
 import JustValidate from "just-validate"
 import { modalHtml } from "../../modal/html.js"
 import { Validated } from "../../modal/validate.js"
-import PreviewImg from "../../modal/previewImg.js"
+import LoadImageIntoInput from "../../modal/previewImg.js"
 import Update from "../../post_put_delete/update.js"
 import modalProduct from "./modal_product.js"
 import { getDataId } from "../get_data.js"
@@ -18,47 +18,52 @@ const modalUpdate = (rout, id) => {
       close()
     }
   }
-  const request = async () => {
+
+  const create = async () => {
     try {
       data = await getDataId(rout, id)
-      return data
+      admin.insertAdjacentHTML('beforeend', modalHtml(modalId))
+      modal = document.querySelector(`#${modalId} `)
+      content = modal.querySelector('.modal__content')
+      content.innerHTML = formHtml(data)
+      orderFunction(data)
     } catch (error) {
       console.log(error)
     }
   }
-  const create = () => {
-    admin.insertAdjacentHTML('beforeend', modalHtml(modalId))
-    modal = document.querySelector(`#${modalId} `)
-    content = modal.querySelector('.modal__content')
-    request()
-      .then(data => content.innerHTML = formHtml(data))
-      .then(() => orderFunction())
-  }
-  const orderFunction = () => {
+
+  const orderFunction = (data) => {
     filling() // 1 выполняется после создания
     setTimeout(() => open(), 10) // Открытие окна
     if (rout === 'product') {
       modalProduct(`#${modalId}`)
-      PreviewImg(`#${modalId}`, true) // Загрузка фото
-    } else PreviewImg(`#${modalId}`)
-    validate() // Валидация
+    }
+    new LoadImageIntoInput(`#${modalId}`).loadImageInput({
+      rout, productName: data.name,
+      jsonImagesName: data.img
+    }).then(validate) // валидация
+
     form.addEventListener('submit', submit) // Отправка формы
   }
+
   const filling = () => {
     form = modal.querySelector('.modal__form')
     // formName = form.dataset.validate
   }
+
   const open = () => {
     modal.classList.add('active');
     document.body.classList.add('_lock');
     document.querySelector('html').classList.add('_lock');
   }
+
   const close = () => {
     document.body.classList.remove('_lock');
     document.querySelector('html').classList.remove('_lock');
     modal.classList.remove('active');
     setTimeout(() => remove(), 200)
   }
+
   const remove = () => modal.remove()
 
   const characteristic = () => {
@@ -76,16 +81,17 @@ const modalUpdate = (rout, id) => {
       characteristicArr.push(obj)
     });
   }
+
   const validate = () => {
     validateForm = new JustValidate(`div#${modalId} .modal__form`, {
       errorLabelStyle: {
         color: '#d31111'
       },
     });
-
     const validated = Validated[rout]
     validated(validateForm, `#${modalId}`)
   }
+
   const submit = async () => {
     try {
       const isValid = await validateForm.revalidate()

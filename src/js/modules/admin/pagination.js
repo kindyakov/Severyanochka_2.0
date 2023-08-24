@@ -2,8 +2,8 @@ import { getData } from "./get_data.js"
 import RenderTable from "./render.js"
 import { paramsAdmin } from "./Params.js"
 
-const paginationHtml = (page, active = '') => {
-  return `<div class="admin__pagination ${active}" data-page="${page}">
+const paginationHtml = (page) => {
+  return `<div class="admin__pagination" data-page="${page}">
   <span class="admin__pagination-count">${page}</span>
   </div>`
 }
@@ -13,16 +13,15 @@ const pagination = (counts, id) => {
   const tbody = content.querySelector('.admin__table_tbody')
   const wrapperPagin = content.querySelector('.admin__wrapper-pagination')
   const rout = id
-  let page, limit = 15
+  let limit = 15
   const numberPages = Math.ceil(counts / limit)
   const Renders = RenderTable[rout]
-
   wrapperPagin.innerHTML = ''
-  for (let _page = 1; _page <= numberPages; _page++) {
-    if (_page === 1) {
-      wrapperPagin.insertAdjacentHTML('beforeend', paginationHtml(_page, '_active'))
-    } else { wrapperPagin.insertAdjacentHTML('beforeend', paginationHtml(_page)) }
+
+  for (let page = 1; page <= numberPages; page++) {
+    wrapperPagin.insertAdjacentHTML('beforeend', paginationHtml(page))
   }
+
   const paginations = content.querySelectorAll('.admin__pagination')
 
   const activePagin = (page) => {
@@ -45,6 +44,7 @@ const pagination = (counts, id) => {
     }
   }
 
+  activePagin(paramsAdmin.page)
   wrapperPagin.addEventListener('click', handleClick)
 }
 
